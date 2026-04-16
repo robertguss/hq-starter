@@ -1,0 +1,86 @@
+filters:
+  and:
+    - file.hasTag("content")
+formulas:
+  engagement_rate: if(impressions, (engagements / impressions * 100).toFixed(1) + "%", "")
+  days_since_published: if(published_date, (today() - date(published_date)).days, "")
+properties:
+  formula.engagement_rate:
+    displayName: Eng. Rate
+  formula.days_since_published:
+    displayName: Days Ago
+views:
+  - type: table
+    name: All Content
+    groupBy:
+      property: channel
+      direction: ASC
+    order:
+      - file.name
+      - channel
+      - pillar
+      - status
+      - published_date
+      - impressions
+      - engagements
+      - formula.engagement_rate
+  - type: table
+    name: Published
+    filters:
+      and:
+        - status == "published"
+    order:
+      - file.name
+      - channel
+      - pillar
+      - published_date
+      - impressions
+      - engagements
+      - formula.engagement_rate
+    summaries:
+      impressions: Sum
+      engagements: Sum
+  - type: table
+    name: Drafts & Planned
+    filters:
+      not:
+        - status == "published"
+    order:
+      - file.name
+      - channel
+      - pillar
+      - status
+      - created
+  - type: table
+    name: By Pillar
+    filters:
+      and:
+        - status == "published"
+    groupBy:
+      property: pillar
+      direction: ASC
+    order:
+      - file.name
+      - pillar
+      - channel
+      - published_date
+      - impressions
+      - formula.engagement_rate
+    summaries:
+      impressions: Average
+  - type: table
+    name: Top Performers
+    filters:
+      and:
+        - status == "published"
+    order:
+      - file.name
+      - channel
+      - pillar
+      - impressions
+      - engagements
+      - formula.engagement_rate
+      - published_date
+    summaries:
+      impressions: Max
+      engagements: Max

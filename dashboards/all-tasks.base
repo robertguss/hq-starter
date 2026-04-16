@@ -1,0 +1,47 @@
+filters:
+  and:
+    - file.hasTag("task")
+    - file.ext == "md"
+    - '!file.inFolder("_templates")'
+formulas:
+  days_until_due: if(due, (date(due) - today()).days, "")
+  is_overdue: if(due, date(due) < today() && status != "done" && status != "cancelled", false)
+  priority_label: if(priority == 1, "P1 High", if(priority == 2, "P2 Med", "P3 Low"))
+  age_days: (today() - date(created)).days
+properties:
+  formula.days_until_due:
+    displayName: Due In
+  formula.priority_label:
+    displayName: Priority
+  formula.age_days:
+    displayName: Age
+  initiative:
+    displayName: Initiative
+views:
+  - type: table
+    name: Active
+    filters:
+      and:
+        - status != "done"
+        - status != "cancelled"
+    groupBy:
+      property: status
+      direction: ASC
+    order:
+      - file.name
+      - status
+      - formula.priority_label
+      - company
+      - initiative
+      - due
+      - formula.days_until_due
+    summaries:
+      formula.age_days: Average
+  - type: table
+    name: Completed
+    filters: status == "done"
+    order:
+      - file.name
+      - company
+      - initiative
+      - completed

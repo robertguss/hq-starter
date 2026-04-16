@@ -1,0 +1,39 @@
+filters:
+  and:
+    - file.hasTag("task")
+    - file.ext == "md"
+    - company == "{{company_1}}"
+    - '!file.inFolder("_templates")'
+formulas:
+  days_until_due: if(due, (date(due) - today()).days, "")
+  priority_label: if(priority == 1, "P1 High", if(priority == 2, "P2 Med", "P3 Low"))
+properties:
+  formula.days_until_due:
+    displayName: Due In
+  formula.priority_label:
+    displayName: Priority
+views:
+  - type: table
+    name: Active
+    filters:
+      and:
+        - status != "done"
+        - status != "cancelled"
+    groupBy:
+      property: initiative
+      direction: ASC
+    order:
+      - file.name
+      - status
+      - formula.priority_label
+      - initiative
+      - due
+      - formula.days_until_due
+  - type: table
+    name: Done
+    filters: status == "done"
+    order:
+      - file.name
+      - initiative
+      - completed
+    limit: 20

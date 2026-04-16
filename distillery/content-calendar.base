@@ -1,0 +1,55 @@
+filters:
+  and:
+    - file.hasTag("content")
+formulas:
+  month: if(published_date, date(published_date).format("YYYY-MM"), if(created, date(created).format("YYYY-MM"), ""))
+  days_ago: if(published_date, (today() - date(published_date)).days, "")
+  is_recent: if(published_date, (today() - date(published_date)).days < 30, false)
+properties:
+  formula.month:
+    displayName: Month
+  formula.days_ago:
+    displayName: Days Ago
+  formula.is_recent:
+    displayName: Recent
+views:
+  - type: table
+    name: Timeline
+    filters:
+      and:
+        - status == "published"
+    groupBy:
+      property: formula.month
+      direction: DESC
+    order:
+      - published_date
+      - file.name
+      - channel
+      - pillar
+      - formula.days_ago
+  - type: table
+    name: Drafts Pipeline
+    filters:
+      not:
+        - status == "published"
+    order:
+      - file.name
+      - channel
+      - pillar
+      - status
+      - created
+  - type: table
+    name: Pillar Coverage
+    filters:
+      and:
+        - status == "published"
+    groupBy:
+      property: pillar
+      direction: ASC
+    order:
+      - file.name
+      - channel
+      - published_date
+      - formula.days_ago
+    summaries:
+      formula.days_ago: Filled
