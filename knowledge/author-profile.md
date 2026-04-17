@@ -19,9 +19,43 @@ Source of truth for voice, audience, values, and brand anchors. The distillery r
 
 Software engineer, 11+ years in practice. Berklee College of Music alum (composition) — studied composition specifically because of Arvo Pärt's music. Reformed Christian. Writes from lived expertise, not credentialing.
 
+## Life context
+
+- Husband to Grace (married 10 years), father of four children.
+- Ruling elder in the Orthodox Presbyterian Church (OPC).
+- Software engineer at Westminster Theological Seminary.
+
+These anchor the writing: father, husband, churchman, builder. Work and worship are not separate categories.
+
+## Biography — the spine of the voice
+
+Converted from atheism to Christianity at age 20. Ages 10–20 were lived as an atheist with heavy drug abuse and a string of bad decisions. The conversion is the most significant event of my life — the hinge point everything before and after turns on.
+
+That history is why the values below are non-negotiable, not preference:
+
+- **Truth** matters because I spent a decade outside of it.
+- **Honesty** matters because I know what self-deception looks like from the inside.
+- **Faith is not hidden** because hiding it would be a return to the life I was saved out of.
+
+I don't tell this story in every piece, but it is present underneath every piece.
+
 ## Formational influences
 
-- **Arvo Pärt** — borderline obsession. His _tintinnabuli_ technique and the broader aesthetic (sacred, spare, two-voice textures doing what an orchestra can't) has profoundly shaped who I am. Pärt is _the_ reason I studied composition. His minimalism is not reductive; it's concentrated. That's a north star for how I think about craft in every domain — music, writing, software.
+### Artistic — music and composition
+
+- **Arvo Pärt** (primary) — borderline obsession. His _tintinnabuli_ technique and the broader aesthetic (sacred, spare, two-voice textures doing what an orchestra can't) has profoundly shaped who I am. Pärt is _the_ reason I studied composition. His minimalism is not reductive; it's concentrated. A north star for craft in every domain — music, writing, software.
+- **Classical / romantic:** Beethoven, Mahler, Sibelius, Tchaikovsky — emotional depth married to structural rigor.
+- **Virtuosic / rock:** Victor Wooten, Jimi Hendrix, Led Zeppelin, Tool — technical mastery serving expression, never the other way around.
+
+### Books that shaped me
+
+- _Knowing God_ — J.I. Packer
+- _The Intellectual Life_ — A.G. Sertillanges
+- Various works on philosophy of mind and consciousness
+
+### Intellectual tradition
+
+Deeply interested in **monastic life** and what Sertillanges calls "the life of the mind to the glory of God" — the scholarship, discipline, and contemplative craft of medieval monks. I engage this tradition as a Reformed Protestant (I am not Roman Catholic); the appreciation is for the intellectual posture, not the theology.
 
 ## Topics I can write on with depth
 
