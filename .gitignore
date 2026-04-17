@@ -2,3 +2,7 @@
 .DS_Store
 .trash/
 .superpowers/
+__pycache__/
+*.pyc
+.tools/.raindrop.env
+
