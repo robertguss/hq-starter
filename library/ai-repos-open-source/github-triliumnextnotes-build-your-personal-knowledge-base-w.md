@@ -12,7 +12,9 @@ source_domain: "github.com"
 source_type_raindrop: link
 collection: "AI Repos & Open Source"
 collection_id: 69284315
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-17
+hydrated_via: github-api
 ---
 ## Excerpt
 
@@ -20,4 +22,7 @@ Build your personal knowledge base with TriliumNext Notes - TriliumNext/Notes
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-17 via github-api -->
+
+> [!IMPORTANT]
+> TriliumNext started as a fork of the original Trilium repository (`zadam/trilium`). @zadam transferred the original repo to us so the work will continue in https://github.com/TriliumNext/Trilium.

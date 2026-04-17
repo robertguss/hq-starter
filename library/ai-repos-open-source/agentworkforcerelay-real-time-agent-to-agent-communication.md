@@ -12,7 +12,9 @@ source_domain: "github.com"
 source_type_raindrop: link
 collection: "AI Repos & Open Source"
 collection_id: 69284315
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-17
+hydrated_via: github-api
 ---
 ## Excerpt
 
@@ -20,4 +22,128 @@ Real-time agent to agent communication
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-17 via github-api -->
+
+# agent-relay
+
+> Real-time messaging between AI agents.
+
+[![npm](https://img.shields.io/npm/v/@agent-relay/sdk)](https://www.npmjs.com/package/@agent-relay/sdk)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+
+---
+
+## Install
+
+**TypeScript / Node.js**
+
+```bash
+npm install @agent-relay/sdk
+# or
+bun add @agent-relay/sdk
+```
+
+**Python**
+
+```bash
+pip install agent-relay-sdk
+```
+
+See the [Python SDK](./packages/sdk-py) for full documentation.
+
+## Documentation
+
+- **Web:** [agentrelay.com/docs](https://agentrelay.com/docs)
+- **Markdown:** [agentrelay.com/docs/markdown](https://agentrelay.com/docs/markdown) — plain-text docs for LLMs and terminal use
+
+## Usage
+
+```typescript
+import { AgentRelay, Models } from '@agent-relay/sdk';
+
+const relay = new AgentRelay();
+
+relay.onMessageReceived = (msg) => console.log(`[${msg.from} → ${msg.to}]: ${msg.text}`);
+
+const channel = ['tic-tac-toe'];
+
+const x = await relay.claude.spawn({
+  name: 'PlayerX',
+  model: Models.Claude.SONNET,
+  channels: channel,
+  task: 'Play tic-tac-toe as X against PlayerO. You go first.',
+});
+const o = await relay.codex.spawn({
+  name: 'PlayerO',
+  model: Models.Codex.GPT_5_3_CODEX_SPARK,
+  channels: channel,
+  task: 'Play tic-tac-toe as O against PlayerX.',
+});
+
+console.log('Waiting for agents to be ready...');
+await Promise.all([relay.waitForAgentReady('PlayerX'), relay.waitForAgentReady('PlayerO')]);
+console.log('Both ready. Starting game.');
+
+relay.system().sendMessage({ to: 'PlayerX', text: 'Start.' });
+
+const FIVE_MINUTES = 5 * 60 * 1000;
+await AgentRelay.waitForAny([x, o], FIVE_MINUTES);
+await relay.shutdown();
+```
+
+## Claude Code Plugin
+
+Use Agent Relay directly inside Claude Code — no SDK required. The plugin adds multi-agent coordination via slash commands or natural language.
+
+```
+/plugin marketplace add Agentworkforce/skills
+/plugin install claude-relay-plugin
+```
+
+Once installed, coordinate agents with built-in skills:
+
+```
+> /relay-team Refactor the auth module — split the middleware, update tests, and update docs
+> /relay-fanout Run linting fixes across all packages in the monorepo
+> /relay-pipeline Analyze the API logs, then generate a summary report, then draft an email
+```
+
+Or just describe what you want in plain language:
+
+```
+> Use relay fan-out to lint all packages in parallel
+> Split the migration into three relay workers — one for the schema, one for the API, one for the frontend
+```
+
+See the [plugin README](https://github.com/AgentWorkforce/skills/tree/main/plugins/claude-relay-plugin) for full details.
+
+## Supported CLI’s
+
+- Claude
+- Codex
+- Gemini
+- Opencode
+
+---
+
+## Agent Relay CLI
+
+Install via
+
+```
+curl -fsSL https://raw.githubusercontent.com/AgentWorkforce/relay/main/install.sh | bash
+```
+
+## License
+
+Apache-2.0 — Copyright 2026 Agent Workforce Incorporated
+
+---
+
+**Links:** [Documentation](https://agentrelay.com/docs) · [Docs (Markdown)](https://agentrelay.com/docs/markdown.md) · [Issues](https://github.com/AgentWorkforce/relay/issues) · [Discord](https://discord.gg/6E6CTxM8um)
+
+> **Plain-text docs:** Every docs page is available as generated Markdown from the website, backed by the same MDX source as the rendered docs:
+>
+> ```bash
+> curl https://agentrelay.com/docs/markdown/introduction.md
+> ```

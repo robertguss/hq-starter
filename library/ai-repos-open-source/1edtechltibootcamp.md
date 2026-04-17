@@ -12,7 +12,9 @@ source_domain: "github.com"
 source_type_raindrop: link
 collection: "AI Repos & Open Source"
 collection_id: 69284315
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-17
+hydrated_via: github-api
 ---
 ## Excerpt
 
@@ -20,4 +22,88 @@ Contribute to 1EdTech/ltibootcamp development by creating an account on GitHub.
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-17 via github-api -->
+
+# LTI Bootcamp
+
+This page is collecting various links that relates to understanding and implementing LTI Tools and Platforms. Feel free
+to issue PR to add additional resources you think may be useful to fellow implementers. 
+
+The resources listed here are for information only and have not been vetted. So make your own review to decide or not to use any code or library referenced here.
+
+Thanks!
+
+## Quick Links
+
+- [LTI Project Page](https://www.imsglobal.org/activity/learning-tools-interoperability) (Bookmark this!)
+  - 1.3 specification
+  - LTI Service specifications
+  - [LTI Tools Implementation Guide](https://www.imsglobal.org/spec/lti/v1p3/impl-assess)
+  - Migration guide
+    -  [LTI Platform Migration Specifics from 1.1 to 1.3](https://www.imsglobal.org/lti-platform-migration-specifics)
+  - IMS Security Framework v1.0
+  - Links to many other supporting materials
+  - [ SameSite Cookie Issues for LTI Tool Providers](https://www.imsglobal.org/samesite-cookie-issues-lti-tool-providers)
+  - [Monthly Roundtable Presentations](https://www.imsglobal.org/forum/learning-tools-interoperability/181286) (login required)
+- [LTI Toolkit](https://www.imsglobal.org/lti/toolkit) - Helpful information and sample RFP language for IT organizations and procurement offices
+- [LTI Forums](https://www.imsglobal.org/forums/learning-tools-and-content-alliance/learning-tools-interoperability) - Great place to get help and ask questions when implementing LTI-A
+- [IMS Reference Implementation (RI)](https://lti-ri.imsglobal.org/) - Hosted Platform and Tool for testing and learning LTI
+  - [RI Github Repo](https://github.com/IMSGlobal/lti-reference-implementation) - Example code in Ruby (Contributing Members only)
+- Browser plugins to see all steps of LTI launch in browser developer tools tab:
+    - [Firefox LTI Plugin](https://addons.mozilla.org/af/firefox/addon/lti-debugger/)
+    - [Chrome LTI Plugin](https://chrome.google.com/webstore/detail/lti-debugger/cpjdeioljkbgkldnbojoagdoiggnlhll)
+- Code Libraries & Reference Implementations
+  - PHP
+    - [Library: 1.3 core + services](https://github.com/IMSGlobal/lti-1-3-php-library)
+    - [Reference: Demo Tool Code](https://github.com/IMSGlobal/lti-1-3-php-example-tool)
+    - [Reference: TAO Hosted test platform](https://lti.showcase.gcp.taocloud.org/platform/message/launch/deep-linking)
+    - Libraries: Open Assessment Technologies, TAO's PHP Libraries
+      - [1.3 core](https://github.com/oat-sa/lib-lti1p3-core)
+      - [Deep Linking](https://github.com/oat-sa/lib-lti1p3-deep-linking)
+      - [Names & Roles](https://github.com/oat-sa/lib-lti1p3-nrps)
+      - [Symfony Bundle](https://github.com/oat-sa/bundle-lti1p3)
+  - Python
+    - [Library: PyLTI 1.3](https://github.com/dmitry-viskov/pylti1.3) - Has library and Flask/Django examples
+    - [Reference: Flask LTI app starter template from UCF](https://github.com/ucfopen/lti-13-template-flask)
+    - [Robotest Test tool (python/fastapi)](https://github.com/claudevervoort/ltiautotest) [robotest](https://robotest.theedtech.dev)
+    - [Library: django-lti](https://github.com/academic-innovation/django-lti) - LTI Advantage support for Django projects
+    - [Open Learning: LTI 1.3 Platform](https://github.com/OpenLearningNet/lti1p3platform) - with Django example
+  - Java
+    - [Reference: Unicon Spring Boot Java LTI Advantage Demo/starter](https://github.com/Unicon/tool13demo)
+    - Libraries: Open University of Catalonia's Java libraries
+      - [LTI 1.3 & LTI Advantage Java Library](https://github.com/UOC/java-lti-1.3)
+      - [Spring Boot LTI Advantage library](https://github.com/UOC/spring-boot-lti-advantage)
+      - [Java LTI 1.3 Example App](https://github.com/UOC/java-lti-1.3-provider-example)
+  - Javascript/Node
+    - [Library: 1.3 Core and Services](https://github.com/Cvmcosta/ltijs)
+    - [Reference: Blackboard Node Tool Provider](https://github.com/blackboard/BBDN-LTI-Tool-Provider-Node)
+    - [Reference: Atomic LTI Worker](https://github.com/atomicjolt-com/atomic-lti-worker)
+  - .net
+    - [Reference: .net Example Platform](https://github.com/andyfmiller/LtiAdvantagePlatform)
+  - Ruby
+    - [Atomic Jolt LTI Starter App](https://github.com/atomicjolt/lti_starter_app)
+  - Rust
+    - [Reference: Atomic Forge](https://github.com/atomicjolt-com/atomic-forge)
+  - [AWS LTI 'Shim' Service](https://aws-samples.github.io/enable-lti/)
+- Other Learning Materials
+  - [LTI Advantage Overview Video](https://www.youtube.com/watch?v=BjtoMk-1KcY)
+  - [An Illustrated Guide to OAuth and OpenID Connect](https://developer.okta.com/blog/2019/10/21/illustrated-guide-to-oauth-and-oidc)
+  - [Claude's LTI Advantage Primer presentation](https://docs.google.com/presentation/d/1uvqbPiPJoeSPOP_OrXWCOuS_D5snlSl0GP5uWQhOm98/edit?usp=sharing)
+  - [Robotest Test tool (python/fastapi)](https://github.com/claudevervoort/ltiautotest) [robotest](https://robotest.theedtech.dev)
+  - Videos from Claude Vervoort
+    - [What is LTI?](https://www.youtube.com/watch?v=f_6pWiQpg5s)
+    - [Trust in LTI 1.3 Advantage](https://www.youtube.com/watch?v=bWMVneE7vqI)
+    - [LTI Advantage Launch and OIDC](https://www.youtube.com/watch?v=g3y4vwtP6vQ)
+    - [LTI Advantage Service API Security](https://www.youtube.com/watch?v=PavmOAiMUzg)
+    - [LTI Advantage Multi-Tenant, Registration and Deployment](https://www.youtube.com/watch?v=xD95AlNxnog)
+    - [LTI Advantage Grading](https://youtu.be/XXzjuDQYsO4)
+  - [Jupyter Notebook dev bootcamp](https://ltibootcamp.theedtech.dev/)
+  - OAuth 2.0 Simulators: experiment with different OAuth2 and OIDC flows that make it easier to understand the different flows in practice:
+    - [Aaron Parecki’s OAuth 2.0 Playground](https://oauth.com/playground/)
+    - [Philippe De Ryck’s OAuth 2.0 Flow Simulator](https://pragmaticwebsecurity.com/articles/oauthoidc/oauth-flow-simulator.html)
+- LMS Demo/Documentation
+  - [Setting up Turnitin in Blackboard](https://www.youtube.com/watch?v=qzw7Y061SP8)
+  - [Canvas Instructions for configuring Tool Provider](https://community.canvaslms.com/docs/DOC-16729-42141110178)
+- Useful Tools
+  - [jwt.io](jwt.io) - Decode JWT strings and find libraries
+  - [LTI GPT](https://chat.openai.com/g/g-l3Uw5D4re-lti-expert-gpt) or Standard GPT-4 - An AI trained on LTI 1.3 and related specs, provides easy explanations and code generation. This requires a ChatGPT subscription, free otherwise. Initial testing have given mixed results, including hallucinating LTI Services and with results not very different standard GPT-4. Usual AI advice applies: use it as exploration only - that you use this model or standard GPT, not as a substitute for the actual specifications and related implementation guides.

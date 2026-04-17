@@ -12,7 +12,9 @@ source_domain: "github.com"
 source_type_raindrop: link
 collection: "AI Repos & Open Source"
 collection_id: 69284315
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-17
+hydrated_via: github-api
 ---
 ## Excerpt
 
@@ -20,4 +22,6 @@ The agent-native LLM router for OpenClaw. 41+ models, 1ms routing, USDC payments
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-17 via github-api — 404 -->
+
+<!-- Repo BlockRunAI/ClawRouter not found (deleted or renamed) -->
