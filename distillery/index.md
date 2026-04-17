@@ -23,13 +23,16 @@ knowledge/          distillery/content/
 ```
 
 **Inputs:**
+
 - `knowledge/` — company strategy, competitive research, market positioning, team context, domain expertise. What makes your company unique and what you know about your space.
 - `library/` — external signals: articles, blog posts, social media posts, conference talks, meeting transcripts, conversations. Raw material with full content stored in the body. The `library/index.md` serves as a compiled wiki — a synthesized, categorized, cross-linked summary of everything in the library. This is the intermediate "understanding" layer between raw signals and published content.
 
 **Outputs:**
+
 - `distillery/content/<channel_id>/` — one file per published or planned content piece, organized by channel. Full post text in the body, metadata and analytics in frontmatter.
 
 **Channels:**
+
 - `distillery/channels/` — channel definitions with voice, format, audience, and tactical rules. These instruct the AI agent on how to draft for each channel.
 
 The agent acts as the compiler: reads knowledge + library context, follows channel instructions, produces drafts. You review and publish manually.
@@ -47,6 +50,7 @@ Library files store the full text/transcript/content in their body, not just a U
 ### Knowledge + Library = inputs, Distillery = output only
 
 Distillery does not have its own intake mechanism. It is purely a content output layer that compiles from two existing HQ sources:
+
 - `knowledge/` for company context (strategy, research, positioning)
 - `library/` for external signals (articles, transcripts, conversations)
 
@@ -60,11 +64,16 @@ The three-layer flow: `library/ items` (raw) -> `library/index.md` (compiled wik
 
 ## Channels
 
-<!-- Update this table with your channels -->
-
-| Channel | Cadence | Description |
-|---|---|---|
-| (define your channels in `distillery/channels/`) | | |
+| Channel                                                     | Cadence | Description                                   |
+| ----------------------------------------------------------- | ------- | --------------------------------------------- |
+| [[channels/blog\|Blog]]                                     | —       | Long-form writing on personal site / platform |
+| [[channels/newsletter\|Newsletter]]                         | —       | Email subscriber channel                      |
+| [[channels/twitter\|Twitter / X]]                           | —       | Short posts, threads, real-time commentary    |
+| [[channels/linkedin\|LinkedIn]]                             | —       | Professional network posts                    |
+| [[channels/youtube\|YouTube]]                               | —       | Video content                                 |
+| [[channels/podcast\|Podcast]]                               | —       | Audio episodes                                |
+| [[channels/example-blog\|Example Blog]] (reference)         | 2/month | Reference template only                       |
+| [[channels/example-linkedin\|Example LinkedIn]] (reference) | 3/week  | Reference template only                       |
 
 ## Pillars
 

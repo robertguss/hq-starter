@@ -2,9 +2,8 @@
 tags:
   - knowledge
 title: "{{title}}"
-company:
+company: personal
 topics: []
 source: ""
-created: {{date:YYYY-MM-DD}}
+created: { { date:YYYY-MM-DD } }
 ---
-

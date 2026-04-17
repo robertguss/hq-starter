@@ -3,9 +3,9 @@ tags:
   - library
 title: "{{title}}"
 url: ""
-company: []
+company: [personal]
 topics: []
-created: {{date:YYYY-MM-DD}}
+created: { { date:YYYY-MM-DD } }
 ---
 
 ## Raw Content

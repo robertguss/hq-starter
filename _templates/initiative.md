@@ -2,10 +2,10 @@
 tags:
   - initiative
 title: "{{title}}"
-company:
+company: personal
 status: active
-owner:
-started: {{date:YYYY-MM-DD}}
+owner: Robert Guss
+started: { { date:YYYY-MM-DD } }
 target_date:
 ---
 

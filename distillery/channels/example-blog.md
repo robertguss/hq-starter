@@ -1,11 +1,11 @@
 ---
 tags:
   - channel
-title: "{{company_1}} Blog"
+title: "Example Blog (reference)"
 channel_id: example-blog
-company: [{{company_1}}]
+company: [personal]
 cadence: "2/month"
-created: {{created_date}}
+created: 2026-04-17
 ---
 
 ## Purpose

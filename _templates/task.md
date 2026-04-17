@@ -4,15 +4,13 @@ tags:
 title: "{{title}}"
 status: backlog
 priority: 2
-company:
+company: personal
 initiative:
 due:
-created: {{date:YYYY-MM-DD}}
+created: { { date:YYYY-MM-DD } }
 completed:
 ---
 
 ## Context
 
-
 ## Done When
-

@@ -1,11 +1,11 @@
 ---
 tags:
   - channel
-title: "{{owner_name}}'s LinkedIn"
+title: "Example LinkedIn (reference)"
 channel_id: example-linkedin
-company: [{{company_1}}]
+company: [personal]
 cadence: "3/week"
-created: {{created_date}}
+created: 2026-04-17
 ---
 
 ## Strategy
@@ -37,17 +37,18 @@ Define 3-5 keywords your content orbits around. Everything you publish should co
 
 After every draft, run the post through these reviewers. Each grades 0-10 with specific notes. Iterate until combined score is 8+ and you approve.
 
-| Reviewer | Perspective |
-|---|---|
-| **Copywriter** | Writing quality, structure, strongest/weakest lines |
-| **Platform specialist** | Hook strength, scroll-stop, engagement mechanics, CTA |
-| **Jargon detector** | Flag anything that smells like typical LinkedIn BS |
-| **Target reader: Role A** | Would your primary audience engage? |
-| **Target reader: Role B** | Would your secondary audience follow the argument? |
+| Reviewer                  | Perspective                                           |
+| ------------------------- | ----------------------------------------------------- |
+| **Copywriter**            | Writing quality, structure, strongest/weakest lines   |
+| **Platform specialist**   | Hook strength, scroll-stop, engagement mechanics, CTA |
+| **Jargon detector**       | Flag anything that smells like typical LinkedIn BS    |
+| **Target reader: Role A** | Would your primary audience engage?                   |
+| **Target reader: Role B** | Would your secondary audience follow the argument?    |
 
 ## Anti-patterns
 
 Define what you DON'T want in your content. Examples:
+
 - No triple-staccato statements (three short sentences pretending to be prose)
 - No numbered listicles as structure
 - No performative vulnerability

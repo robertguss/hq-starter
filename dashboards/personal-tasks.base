@@ -2,7 +2,7 @@ filters:
   and:
     - file.hasTag("task")
     - file.ext == "md"
-    - company == "{{company_1}}"
+    - company == "personal"
     - '!file.inFolder("_templates")'
 formulas:
   days_until_due: if(due, (date(due) - today()).days, "")
