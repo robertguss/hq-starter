@@ -58,5 +58,5 @@ The full schema spec lives in `knowledge/hq-vault-design.md`. Refer to it when a
 
 - [[initiatives/pocket-apologist|Ship Pocket Apologist iOS App]]
 - [[initiatives/sweep|Finish Sweep iOS App]]
-- [[initiatives/sentinela|Ship Sentinela Ad Blocker iOS App]]
+- [[initiatives/sentinel|Ship Sentinel Ad Blocker iOS App]]
 - [[initiatives/pyloop|Build PyLoop — Custom Python Agent Harness]]

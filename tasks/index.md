@@ -21,7 +21,7 @@ title: Tasks
 
 <!-- No tasks yet -->
 
-## Ship Sentinela Ad Blocker iOS App
+## Ship Sentinel Ad Blocker iOS App
 
 <!-- No tasks yet -->
 

@@ -1,7 +1,7 @@
 ---
 tags:
   - initiative
-title: "Ship Sentinela Ad Blocker iOS App"
+title: "Ship Sentinel Ad Blocker iOS App"
 company: personal
 status: active
 owner: Robert Guss
@@ -11,7 +11,7 @@ target_date:
 
 ## Goal
 
-Ship Sentinela (ad blocker) to the App Store.
+Ship Sentinel (ad blocker) to the App Store.
 
 ## Context
 
