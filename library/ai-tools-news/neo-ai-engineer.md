@@ -1,0 +1,19 @@
+---
+tags:
+  - library
+title: "Neo AI engineer"
+url: "https://heyneo.so/"
+company: [personal]
+topics: []
+created: 2025-08-22
+source_type: raindrop
+raindrop_id: 1309414553
+source_domain: "heyneo.so"
+source_type_raindrop: link
+collection: "AI Tools & News"
+collection_id: 69284314
+hydrated: false
+---
+## Raw Content
+
+<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->

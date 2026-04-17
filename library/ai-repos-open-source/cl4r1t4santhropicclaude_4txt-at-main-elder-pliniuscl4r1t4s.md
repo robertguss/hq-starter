@@ -1,0 +1,23 @@
+---
+tags:
+  - library
+title: "CL4R1T4S/ANTHROPIC/Claude_4.txt at main · elder-plinius/CL4R1T4S"
+url: "https://github.com/elder-plinius/CL4R1T4S/blob/main/ANTHROPIC/Claude_4.txt"
+company: [personal]
+topics: []
+created: 2025-05-31
+source_type: raindrop
+raindrop_id: 1122256313
+source_domain: "github.com"
+source_type_raindrop: link
+collection: "AI Repos & Open Source"
+collection_id: 69284315
+hydrated: false
+---
+## Excerpt
+
+SYSTEM PROMPT TRANSPARENCY FOR ALL - CHATGPT, GEMINI, GROK, CLAUDE, PERPLEXITY, CURSOR, WINDSURF, DEVIN, REPLIT, AND MORE! - elder-plinius/CL4R1T4S
+
+## Raw Content
+
+<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->

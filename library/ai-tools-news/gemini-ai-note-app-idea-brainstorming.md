@@ -1,0 +1,23 @@
+---
+tags:
+  - library
+title: "‎Gemini - AI Note App Idea Brainstorming"
+url: "https://gemini.google.com/share/5e66a9bb04b8"
+company: [personal]
+topics: []
+created: 2025-05-31
+source_type: raindrop
+raindrop_id: 1122244923
+source_domain: "gemini.google.com"
+source_type_raindrop: link
+collection: "AI Tools & News"
+collection_id: 69284314
+hydrated: false
+---
+## Excerpt
+
+Created with Gemini Advanced
+
+## Raw Content
+
+<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->

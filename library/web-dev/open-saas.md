@@ -1,0 +1,23 @@
+---
+tags:
+  - library
+title: "Open SaaS"
+url: "https://opensaas.sh/?ref=producthunt"
+company: [personal]
+topics: []
+created: 2025-07-29
+source_type: raindrop
+raindrop_id: 1272482679
+source_domain: "opensaas.sh"
+source_type_raindrop: link
+collection: "Web Dev"
+collection_id: 69284319
+hydrated: false
+---
+## Excerpt
+
+Free, open-source SaaS boilerplate starter for React & NodeJS.
+
+## Raw Content
+
+<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
