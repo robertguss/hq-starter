@@ -22,7 +22,9 @@ Raw items live in `library/<collection-slug>/*.md`. Each file has metadata-only 
 
 ## Imported collections
 
-Status: **full Raindrop import complete** — 2026-04-17. 1,269 bookmarks across 18 folders, all `hydrated: false`.
+Status: **Raindrop + X/Twitter imports complete** — 2026-04-17. 1,498 items across 19 folders, all `hydrated: false`.
+
+### From Raindrop (1,269 items, 18 folders)
 
 | Collection             | Folder                  | Items     |
 | ---------------------- | ----------------------- | --------- |
@@ -44,7 +46,16 @@ Status: **full Raindrop import complete** — 2026-04-17. 1,269 bookmarks across
 | iOS & Swift            | `ios-swift/`            | 4         |
 | Recipes                | `recipes/`              | 3         |
 | Photography            | `photography/`          | 1         |
-| **Total**              |                         | **1,269** |
+| **Raindrop total**     |                         | **1,269** |
+
+### From X/Twitter bookmarks (229 items, 1 folder)
+
+Synced via [fieldtheory](https://fieldtheory.dev/cli) (local cache at `~/.ft-bookmarks/bookmarks.jsonl`). Re-sync with `fieldtheory sync --yes` then re-run `python .tools/x_import.py` — importer is idempotent on `tweet_id`.
+
+| Collection  | Folder         | Items   |
+| ----------- | -------------- | ------- |
+| X/Twitter   | `x-bookmarks/` | 229     |
+| **X total** |                | **229** |
 
 ## Synthesis
 
