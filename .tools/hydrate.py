@@ -241,6 +241,139 @@ def fetch_article_jina(url: str, token: str | None, max_retries: int = 3):
             raise
 
 
+# ---------- arxiv fetcher (native API) ----------
+
+ARXIV_ID_PAT = re.compile(r"(\d{4}\.\d{4,5})(v\d+)?")
+
+
+def extract_arxiv_id(url: str):
+    try:
+        u = urllib.parse.urlparse(url)
+    except Exception:
+        return None
+    if "arxiv.org" not in u.netloc.lower():
+        return None
+    m = ARXIV_ID_PAT.search(u.path)
+    if m:
+        return m.group(1) + (m.group(2) or "")
+    return None
+
+
+def fetch_arxiv(url: str, token: str | None = None):
+    aid = extract_arxiv_id(url)
+    if not aid:
+        raise ValueError(f"Not an arxiv URL: {url}")
+    api_url = f"http://export.arxiv.org/api/query?id_list={aid}"
+    req = urllib.request.Request(
+        api_url, headers={"User-Agent": "hq-vault-hydrator/0.1"}
+    )
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        xml = resp.read().decode("utf-8", errors="replace")
+    # Minimal XML parse — pull title, summary, authors
+    import xml.etree.ElementTree as ET
+
+    ns = {"a": "http://www.w3.org/2005/Atom"}
+    root = ET.fromstring(xml)
+    entry = root.find("a:entry", ns)
+    if entry is None:
+        raise FileNotFoundError(f"No arxiv entry for {aid}")
+    title = (entry.findtext("a:title", "", ns) or "").strip()
+    summary = (entry.findtext("a:summary", "", ns) or "").strip()
+    published = (entry.findtext("a:published", "", ns) or "").strip()
+    authors = [
+        (a.findtext("a:name", "", ns) or "").strip()
+        for a in entry.findall("a:author", ns)
+    ]
+    body = (
+        f"**{title}**\n\n"
+        f"**Authors:** {', '.join(a for a in authors if a)}\n\n"
+        f"**Published:** {published}\n\n"
+        f"## Abstract\n\n{summary}\n"
+    )
+    return body, {"id": aid}
+
+
+# ---------- Social fetcher (HN + Reddit JSON APIs) ----------
+
+
+def fetch_social(url: str, token: str | None = None):
+    u = urllib.parse.urlparse(url)
+    host = u.netloc.lower()
+    headers = {"User-Agent": "hq-vault-hydrator/0.1 (personal vault)"}
+
+    if host == "news.ycombinator.com":
+        q = urllib.parse.parse_qs(u.query)
+        item_id = (q.get("id") or [""])[0]
+        if not item_id:
+            raise ValueError(f"No HN item id in {url}")
+        api = f"https://hacker-news.firebaseio.com/v0/item/{item_id}.json"
+        req = urllib.request.Request(api, headers=headers)
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            data = json.load(resp)
+        if not data:
+            raise FileNotFoundError(f"HN item {item_id} not found")
+        parts = [
+            f"**{data.get('title', '(no title)')}**",
+            f"**By:** {data.get('by', '?')}  |  **Score:** {data.get('score', 0)}  |  "
+            f"**Comments:** {data.get('descendants', 0)}",
+        ]
+        if data.get("url"):
+            parts.append(f"**URL:** {data['url']}")
+        if data.get("text"):
+            parts += ["", data["text"]]
+        return "\n\n".join(parts), {"id": item_id, "source": "hn"}
+
+    if host.endswith("reddit.com"):
+        api = url.rstrip("/") + ".json"
+        req = urllib.request.Request(api, headers=headers)
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            data = json.load(resp)
+        if not isinstance(data, list) or not data:
+            raise FileNotFoundError(f"No Reddit data at {api}")
+        post = data[0]["data"]["children"][0]["data"]
+        parts = [
+            f"**{post.get('title', '(no title)')}**",
+            f"**r/{post.get('subreddit', '?')}**  |  "
+            f"**u/{post.get('author', '?')}**  |  "
+            f"**Score:** {post.get('score', 0)}  |  "
+            f"**Comments:** {post.get('num_comments', 0)}",
+        ]
+        if post.get("url") and post["url"] != url:
+            parts.append(f"**Linked URL:** {post['url']}")
+        selftext = (post.get("selftext") or "").strip()
+        if selftext:
+            parts += ["", selftext]
+        # Top-level comments (first 5)
+        comments = data[1]["data"]["children"][:5] if len(data) > 1 else []
+        if comments:
+            parts += ["", "## Top comments", ""]
+            for c in comments:
+                cd = c.get("data", {})
+                if cd.get("body"):
+                    parts.append(
+                        f"**u/{cd.get('author', '?')}** "
+                        f"(score {cd.get('score', 0)}):\n\n> "
+                        + cd["body"].replace("\n", "\n> ")
+                    )
+                    parts.append("")
+        return "\n\n".join(parts), {"id": post.get("id", ""), "source": "reddit"}
+
+    raise ValueError(f"Not HN or Reddit: {host}")
+
+
+# ---------- PDF fetcher (via Jina Reader — handles PDF URLs) ----------
+
+
+def is_pdf_url(url: str) -> bool:
+    if not url:
+        return False
+    if url.lower().endswith(".pdf"):
+        return True
+    if "application/pdf" in url.lower() or "application%2fpdf" in url.lower():
+        return True
+    return False
+
+
 # ---------- Twitter fetcher (no-op — body already from fieldtheory) ----------
 
 
@@ -348,6 +481,16 @@ def collect_candidates(type_filter: str):
             fm, _ = parse_frontmatter(text)
             if fm and get_fm_field(fm, "source_type") == "twitter":
                 out.append(md)
+        elif type_filter == "arxiv":
+            if extract_arxiv_id(url):
+                out.append(md)
+        elif type_filter == "social":
+            host = urllib.parse.urlparse(url).netloc.lower()
+            if host == "news.ycombinator.com" or host.endswith("reddit.com"):
+                out.append(md)
+        elif type_filter == "pdf":
+            if is_pdf_url(url):
+                out.append(md)
     return out
 
 
@@ -356,7 +499,7 @@ def main():
     p.add_argument(
         "--type",
         required=True,
-        choices=["github", "article", "twitter"],
+        choices=["github", "article", "twitter", "arxiv", "social", "pdf"],
         help="Fetcher tier",
     )
     p.add_argument(
@@ -399,6 +542,16 @@ def main():
     elif args.type == "twitter":
         fetcher = lambda url: fetch_twitter(url)
         fetcher_name = "fieldtheory-cache"
+    elif args.type == "arxiv":
+        fetcher = lambda url: fetch_arxiv(url)
+        fetcher_name = "arxiv-api"
+    elif args.type == "social":
+        fetcher = lambda url: fetch_social(url)
+        fetcher_name = "hn-reddit-api"
+    elif args.type == "pdf":
+        jina_token = os.environ.get("JINA_API_KEY")
+        fetcher = lambda url: fetch_article_jina(url, jina_token)
+        fetcher_name = "jina-reader-pdf"
     else:
         sys.exit(f"Unknown type: {args.type}")
 

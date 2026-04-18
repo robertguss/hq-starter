@@ -12,8 +12,14 @@ source_domain: "news.ycombinator.com"
 source_type_raindrop: link
 collection: "Academic & Reference"
 collection_id: 69292905
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: hn-reddit-api
 ---
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via hn-reddit-api -->
+
+**Ask HN: Best resources to learn C programming?**
+
+**By:** dpods  |  **Score:** 18  |  **Comments:** 10
