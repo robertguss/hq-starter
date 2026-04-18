@@ -12,7 +12,9 @@ source_domain: "unwsp.edu"
 source_type_raindrop: article
 collection: "Theology & Faith"
 collection_id: 69284317
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,17 @@ We offer Minnesota's finest Christian education at both the undergraduate and gr
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: Robot Challenge Screen
+
+URL Source: https://www.unwsp.edu/blog/9-bible-study-software-programs-for-college-students/
+
+Warning: This page maybe requiring CAPTCHA, please make sure you are authorized to access this page.
+
+Markdown Content:
+## unwsp.edu
+
+Checking the site connection security
+
+![Image 1: CDN icon](https://d1rozh26tys225.cloudfront.net/loader.svg)

@@ -12,7 +12,9 @@ source_domain: "reactstarter.xyz"
 source_type_raindrop: link
 collection: "Web Dev"
 collection_id: 69284319
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,13 @@ This powerful starter kit is designed to help you launch your SAAS application q
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: AI Friendly SAAS Template
+
+URL Source: https://www.reactstarter.xyz/
+
+Markdown Content:
+AI friendly SAAS template coming soon
+
+follow me on x [@rasmic](https://x.com/rasmic)
