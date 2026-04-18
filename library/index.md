@@ -233,3 +233,111 @@ Synced via [fieldtheory](https://fieldtheory.dev/cli) (local cache at `~/.ft-boo
 **Notable items:**
 
 - [[glass-photography-community]] — Members-run platform for film/analog photographers; craft-community philosophy.
+
+### Stationery & Journals
+
+> [!abstract] Collection overview
+> A deep shelf on analog craft as discipline. Japanese precision (Midori, Hobonichi, MUJI, NOLTY) sits alongside European heritage (Smythson, Clairefontaine) and historical method (Locke's commonplace books, Emerson's notebooks). The unifying conviction: handwriting and paper are load-bearing tools for thinking, journaling, and spiritual formation — not nostalgia, but deliberate practice. Planning systems (Franklin, Full Focus) sit alongside knowledge-capture traditions (commonplace, Zettelkasten) because both are expressions of the same commitment to intentional life.
+
+**Key themes:**
+
+- **Japanese stationery heritage** — Subdued aesthetics, dated planners, and functional minimalism: [[guide-to-nolty-planners-diaries-jetpens]], [[pens-and-pencils-japanese-stationery-muji-usa]]. ^theme-japanese-stationery
+- **Fountain pens & writing culture** — Handwriting with a quality pen as deliberate ritual: [[the-gentleman-stationer]], [[cloth-paper-luxury-aesthetic-planners-dividers-inserts]]. ^theme-fountain-pens
+- **Leather goods & durability** — Heritage makers and handbound journals built to last: [[luxury-leather-goods-stationery-journals-bags-smythson]], [[boss-leather-co]], [[personalised-leather-journals-notebooks]]. ^theme-leather-durability
+- **Knowledge capture & note systems** — Commonplace books, Zettelkasten, and hybrid workflows: [[john-lockes-method-for-common-place-books-1685]], [[the-notecard-system-capture-organize-and-use-everything-you]], [[books-about-personal-knowledge-management-and-zettelkasten]]. ^theme-knowledge-systems
+- **Planning systems & routines** — Planning as values-tied discipline, not task management: [[lead-your-life-with-the-franklin-planner-planning-system]], [[finishers-journal-30]], [[companion-notebooks]]. ^theme-planning-systems
+- **Paper quality & typography** — Substrate matters: [[clairefontaine-stationery-art-crafts-for-school-office-home]], [[emerson-and-his-notebooks]], [[the-lure-of-paper-systems]]. ^theme-paper-quality
+
+**Notable items:**
+
+- [[guide-to-nolty-planners-diaries-jetpens]] — Deep dive into Japanese planning aesthetic and system design.
+- [[luxury-leather-goods-stationery-journals-bags-smythson]] — British heritage brand exemplifying 1887+ craft tradition.
+- [[john-lockes-method-for-common-place-books-1685]] — Historical method grounding contemporary note-capture in disciplined philosophy.
+- [[lead-your-life-with-the-franklin-planner-planning-system]] — Systems-thinking approach to planning tied to life domains.
+- [[clairefontaine-stationery-art-crafts-for-school-office-home]] — Paper standard for fountain-pen writing.
+- [[emerson-and-his-notebooks]] — Literary precedent for notebook-as-thinking-tool.
+- [[the-lure-of-paper-systems]] — Why paper endures for reflection and capture.
+- [[finishers-journal-30]] — Structured journal combining planning with reflection.
+- [[books-about-personal-knowledge-management-and-zettelkasten]] — Canonical PKM reading list bridging analog and digital.
+
+**Cross-references:**
+
+- Overlaps with Writing & Content on practice/craft (routines, tools) and with Productivity on planning systems (Franklin Planner, quarterly rhythms).
+
+### Writing & Content
+
+> [!abstract] Collection overview
+> A working library spanning craft philosophy, publishing infrastructure, and modern writing tools. Timeless principles (Kerouac's spontaneous prose, Kleon's visual thinking) sit alongside contemporary infrastructure (Substack tooling, Amazon KDP, iPad publishing workflows). The thread: serious prose supported by strategic publishing and editorial discipline — content as craft, not content-marketing grind.
+
+**Key themes:**
+
+- **Writing philosophy & craft** — Voice, process, substance: [[kerouac_spontaneous_prosepdf]], [[writing-is-thinking-learning-to-write-with-confidence]], [[austin-kleon-is-a-writer-who-draws]]. ^theme-craft
+- **Publishing infrastructure** — DIY and direct-to-reader stacks: [[home-self-publishing-titans]], [[writestack-substack-1-tool-for-notes]], [[how-to-be-a-youtuber-the-ultimate-guide-thomas-frank]], [[publishing-paperback-novels-with-an-ipad-matt-gemmell]]. ^theme-publishing
+- **Editorial craft & content strategy** — Audience-first frameworks and working routines: [[doing-content-right]], [[the-doing-content-right-directory-notion]], [[home-writing-routines]], [[writing-examples]]. ^theme-editorial
+- **Writers as platforms** — Individual writers building durable ecosystems: [[every]], [[austin-kleon-is-a-writer-who-draws]]. ^theme-writer-platforms
+
+**Notable items:**
+
+- [[writing-is-thinking-learning-to-write-with-confidence]] — Writing as thinking; decouples ideation from drafting.
+- [[austin-kleon-is-a-writer-who-draws]] — Visual-verbal integration; constraint deepens craft.
+- [[doing-content-right]] — Steph Smith's systematic approach to audience, strategy, and execution.
+- [[publishing-paperback-novels-with-an-ipad-matt-gemmell]] — iPad-native workflow for paperback publishing.
+- [[kerouac_spontaneous_prosepdf]] — Kerouac's essay arguing for spontaneity and conviction in prose style.
+- [[writestack-substack-1-tool-for-notes]] — Modern Substack growth, scheduling, and voice tooling.
+- [[home-self-publishing-titans]] — KDP infrastructure and indie-author playbooks.
+
+**Cross-references:**
+
+- Connects to Stationery & Journals on the analog side of writing craft (notebooks, commonplace books) and to Productivity on working routines.
+
+### Productivity
+
+> [!abstract] Collection overview
+> A methodical blend of digital task management (OmniFocus GTD), analog quarterly planning (Full Focus Planner), time-tracking discipline (Toggl), and meeting-centric knowledge graphs (Tana). The shelf prioritizes intentional execution over tool proliferation — systems that connect daily tasks to quarterly and annual outcomes, paired with cognitive tooling (mind-mapping, memory) and practical automation.
+
+**Key themes:**
+
+- **Task management & GTD execution** — Structured capture and clearance: [[learn-omnifocus-omnifocus-video-tutorials-articles-webinars]], [[full-focus-planner-increase-productivity-with-the-1-daily-pl]]. ^theme-gtd-execution
+- **Quarterly & annual planning** — Outcomes over activity: [[annual-review]], [[2025-planning-workshop]], [[full-focus-planner-increase-productivity-with-the-1-daily-pl]]. ^theme-quarterly-strategy
+- **Time measurement & focus** — Intentional time allocation and low-friction workflow: [[toggl-track-time-tracking-software-for-any-workflow]], [[less-chaos-more-focus-raycast-focus]]. ^theme-time-measurement
+- **Meeting capture & knowledge graphs** — Synchronous work made queryable: [[tana]]. ^theme-meeting-capture
+- **Cognitive tools & automation** — Mental performance and data workflow: [[kam-knight]], [[excel-spreadsheet-automation-tricks]]. ^theme-cognitive-tools
+
+**Notable items:**
+
+- [[learn-omnifocus-omnifocus-video-tutorials-articles-webinars]] — Video-first GTD system with sustained-adoption focus.
+- [[full-focus-planner-increase-productivity-with-the-1-daily-pl]] — Quarterly paper planner tying daily tasks to annual goals across 9 life domains.
+- [[toggl-track-time-tracking-software-for-any-workflow]] — Team time-tracking with automated background logging.
+- [[tana]] — Meeting-as-product platform building persistent knowledge graphs.
+- [[annual-review]] — 63-page strategic review workbook.
+- [[kam-knight]] — Speed reading, mind-mapping, and memory ebooks for knowledge retention.
+- [[the-john-macarthur-bible-reading-plan]] — Structured spiritual-discipline reading regimen (lives here because of its planning-rhythm ethos).
+
+**Cross-references:**
+
+- Planning-rhythm items overlap with Stationery & Journals (Franklin Planner appears in both shelves from different angles).
+
+### Unsorted
+
+> [!abstract] Collection overview
+> A catch-all that still clusters tightly: developer platforms, AI tools, and production infrastructure for teams shipping at scale. Background orchestration, mobile dev tooling, AI-driven video/docs, and design-for-builders tooling dominate. Once re-sorted, most items would find homes in `dev-tools-cli/`, `ai-tools-news/`, or `ios-swift/`.
+
+**Key themes:**
+
+- **Background tasks & orchestration** — Durable queues and workflow engines: [[hatchet-devhatchet-run-background-tasks-at-scale]], [[hatchet-the-orchestration-engine-for-teams-who-ship]]. ^theme-async-ops
+- **Mobile & Swift tooling** — Platforms for iOS teams: [[tuisttuist-a-virtual-platform-team-for-mobile-devs-who-ship]], [[twostrawsswiftagents-an-agentsmd-file-for-swift-and-swiftui]]. ^theme-mobile-dev
+- **AI video & content automation** — HTML-to-video and screen-to-docs: [[heygen-comhyperframes-write-html-render-video-built-for-agen]], [[trupeer-ai-powered-product-videos-documentation-in-minutes]], [[prompt-guide-hyperframes]]. ^theme-ai-video
+- **Builder infrastructure** — CI/Mac and plugin integration: [[macstadium-enterprise-mac-solutions-orka-devops-mac-vdi]], [[openaiplugins-openai-plugins]]. ^theme-infra
+
+**Notable items:**
+
+- [[heygen-comhyperframes-write-html-render-video-built-for-agen]] — Agent-first video rendering; write HTML, CLI renders.
+- [[cathrynlaverydiagram-design-thirteen-editorial-diagram-types]] — 13 publication-quality diagram types shipped as a Claude Code skill.
+- [[tuisttuist-a-virtual-platform-team-for-mobile-devs-who-ship]] — Virtual platform for Swift iOS teams; caching, testing, insights.
+- [[hatchet-devhatchet-run-background-tasks-at-scale]] — Durable Postgres-backed task queue with observability.
+- [[trupeer-ai-powered-product-videos-documentation-in-minutes]] — Screen recording to studio video + auto-generated docs.
+- [[every-claude-code-concept-explained-for-normal-people]] — Educational primer on Claude Code fundamentals.
+
+**Cross-references:**
+
+- Most items are temporarily-homed — candidates for rehoming to `dev-tools-cli/` (Hatchet, MacStadium, diagram skills), `ios-swift/` (Tuist, Swift agents), or `ai-tools-news/` (HyperFrames, Trupeer, plugins).
