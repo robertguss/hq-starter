@@ -12,7 +12,9 @@ source_domain: "spotterstudio.com"
 source_type_raindrop: link
 collection: "Marketing & Business"
 collection_id: 69284316
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,15 @@ Try Free Now — Spotter Studio helps Creators brainstorm, research, and plan wi
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: Protected page
+
+URL Source: https://www.spotterstudio.com/redeem
+
+Warning: Target URL returned error 401: Unauthorized
+
+Markdown Content:
+We use essential cookies to make the site work. We also use non-essential cookies and other tracking technologies to improve performance, analyze traffic, and personalize ads. Manage your cookie preferences and opt out rights by clicking on "Cookie and Ad Settings." To learn more, view the following link:
+
+[Privacy Policy](https://spotterstudio.com/privacy-policy)
