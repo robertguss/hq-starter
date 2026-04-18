@@ -12,8 +12,19 @@ source_domain: "wiki.futo.org"
 source_type_raindrop: link
 collection: "Personal & Misc"
 collection_id: 69292906
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: 
+
+URL Source: https://wiki.futo.org/wiki/Introduction_to_a_Self_Managed_Life:_a_13_hour_&_28_minute_presentation_by_FUTO_software
+
+Warning: Target URL returned error 522
+Warning: This page maybe not yet fully loaded, consider explicitly specify a timeout.
+
+Markdown Content:

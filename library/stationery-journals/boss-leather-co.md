@@ -12,7 +12,9 @@ source_domain: "bossleatherco.com"
 source_type_raindrop: link
 collection: "Stationery & Journals"
 collection_id: 69292901
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,12 @@ Boss Leather Co. crafts handmade leather goods such as leather wallets, leather 
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: Just a moment...
+
+URL Source: https://bossleatherco.com/
+
+Warning: Target URL returned error 403: Forbidden
+
+Markdown Content:

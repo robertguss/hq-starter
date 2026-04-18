@@ -12,7 +12,9 @@ source_domain: "shopnoteworthy.com"
 source_type_raindrop: link
 collection: "Stationery & Journals"
 collection_id: 69292901
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,13 @@ Noteworthy Stationery Store offers a hand-picked selection of Unique and Quality
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: Access Denied
+
+URL Source: https://shopnoteworthy.com/
+
+Markdown Content:
+Access Denied
+
+Sorry, you do not currently have the necessary permissions to access this site, or this site may not be available in your region.
