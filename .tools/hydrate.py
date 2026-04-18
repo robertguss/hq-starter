@@ -3,9 +3,16 @@
 HQ vault library/ hydrator — tiered, one URL type at a time.
 
 Usage:
-  # GitHub (v1 — this release)
+  # GitHub
   GITHUB_TOKEN=$(op item get "GitHub - PAT (fine-grained)" --vault=ArvoClaw --fields token --reveal) \\
     python .tools/hydrate.py --type github [--limit N] [--dry-run] [--force]
+
+  # Article (HTML pages via Jina Reader)
+  JINA_API_KEY=$(op read 'op://ArvoClaw/Jina - Reader API Key/api_key') \\
+    python .tools/hydrate.py --type article --limit 100    # recommended: batched
+
+  # Article anonymous (slower, ~10s/item)
+  python .tools/hydrate.py --type article --limit 25
 
 Flags:
   --type     Fetcher tier to run (github now; article/arxiv/pdf/hn later)
@@ -152,6 +159,87 @@ def fetch_github(url: str, token: str | None):
     return body, meta
 
 
+# ---------- Article fetcher (Jina Reader) ----------
+
+ARTICLE_EXCLUDE_HOSTS = {
+    "github.com",
+    "www.github.com",
+    "gist.github.com",
+    "x.com",
+    "twitter.com",
+    "t.co",
+    "youtube.com",
+    "www.youtube.com",
+    "m.youtube.com",
+    "youtu.be",
+    "arxiv.org",
+    "www.arxiv.org",
+    "news.ycombinator.com",
+    "reddit.com",
+    "old.reddit.com",
+    "www.reddit.com",
+    "up.raindrop.io",
+    "api.raindrop.io",
+}
+
+
+def is_article_url(url: str) -> bool:
+    if not url:
+        return False
+    try:
+        u = urllib.parse.urlparse(url)
+    except Exception:
+        return False
+    host = u.netloc.lower()
+    if host in ARTICLE_EXCLUDE_HOSTS:
+        return False
+    if host.endswith(".reddit.com") or host.endswith(".youtube.com"):
+        return False
+    if url.lower().endswith(".pdf"):
+        return False
+    if "application/pdf" in url.lower() or "application%2fpdf" in url.lower():
+        return False
+    if not host:
+        return False
+    return u.scheme in ("http", "https")
+
+
+def fetch_article_jina(url: str, token: str | None, max_retries: int = 3):
+    endpoint = f"https://r.jina.ai/{url}"
+    headers = {
+        "User-Agent": "hq-vault-hydrator/0.1",
+        "Accept": "text/plain",
+    }
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    backoff = 2.0
+    for attempt in range(max_retries + 1):
+        req = urllib.request.Request(endpoint, headers=headers)
+        try:
+            with urllib.request.urlopen(req, timeout=90) as resp:
+                body = resp.read().decode("utf-8", errors="replace")
+                hdrs = resp.headers
+            meta = {
+                "bytes": len(body),
+                "rate_remaining": hdrs.get("X-RateLimit-Remaining", "?"),
+            }
+            return body, meta
+        except urllib.error.HTTPError as e:
+            if e.code == 404:
+                raise FileNotFoundError(f"Jina 404 for {url}")
+            if e.code in (429, 502, 503, 504) and attempt < max_retries:
+                time.sleep(backoff)
+                backoff *= 2
+                continue
+            raise
+        except (TimeoutError, urllib.error.URLError):
+            if attempt < max_retries:
+                time.sleep(backoff)
+                backoff *= 2
+                continue
+            raise
+
+
 # ---------- Hydration loop ----------
 
 
@@ -216,12 +304,23 @@ def collect_candidates(type_filter: str):
         if type_filter == "github":
             if extract_github_repo(url):
                 out.append(md)
+        elif type_filter == "article":
+            # Skip GitHub (handled elsewhere) + excluded hosts
+            if extract_github_repo(url):
+                continue
+            if is_article_url(url):
+                out.append(md)
     return out
 
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--type", required=True, choices=["github"], help="Fetcher tier")
+    p.add_argument(
+        "--type",
+        required=True,
+        choices=["github", "article"],
+        help="Fetcher tier",
+    )
     p.add_argument("--limit", type=int, default=None)
     p.add_argument("--dry-run", action="store_true")
     p.add_argument("--force", action="store_true")
@@ -241,6 +340,19 @@ def main():
             )
         fetcher = lambda url: fetch_github(url, token)
         fetcher_name = "github-api"
+    elif args.type == "article":
+        jina_token = os.environ.get("JINA_API_KEY")
+        if not jina_token:
+            print(
+                "! JINA_API_KEY not set — using anonymous tier (lower rate limits).\n"
+                "  If you hit 429s frequently, get a key from https://jina.ai/reader/"
+            )
+        if not args.limit:
+            print(
+                "! --limit not set for article tier. Recommend --limit 25 for first batch."
+            )
+        fetcher = lambda url: fetch_article_jina(url, jina_token)
+        fetcher_name = "jina-reader"
     else:
         sys.exit(f"Unknown type: {args.type}")
 
@@ -281,17 +393,16 @@ def main():
         if args.limit and wrote >= args.limit:
             break
 
-        # gentle throttle (with token: plenty of headroom; without: essential)
-        if not token_is_set() and status in {"ok", "would-write", "error"}:
-            time.sleep(1.0)
+        # gentle throttle for anonymous tiers
+        if status in {"ok", "would-write", "error"}:
+            if args.type == "github" and not os.environ.get("GITHUB_TOKEN"):
+                time.sleep(1.0)
+            elif args.type == "article" and not os.environ.get("JINA_API_KEY"):
+                time.sleep(1.5)
 
     elapsed = time.time() - t0
     print("---")
     print(f"Done in {elapsed:.1f}s. ok={ok} skipped={skipped} errored={errored}")
-
-
-def token_is_set() -> bool:
-    return bool(os.environ.get("GITHUB_TOKEN"))
 
 
 if __name__ == "__main__":
