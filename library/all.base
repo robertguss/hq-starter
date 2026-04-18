@@ -61,7 +61,6 @@ views:
       - formula.age_days
   - type: table
     name: Recent
-    limit: 100
     order:
       - file.name
       - title
@@ -69,6 +68,7 @@ views:
       - source_type
       - created
       - formula.age_days
+    limit: 100
   - type: table
     name: Twitter archive
     filters: source_type == "twitter"

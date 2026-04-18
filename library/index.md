@@ -20,7 +20,7 @@ Compiled wiki of external signals. Each section synthesizes what the items colle
 
 Raw items live in `library/<collection-slug>/*.md`. Each file has metadata-only frontmatter (`hydrated: false`) until fetched with the hydration script. This index is the synthesis layer — produced by compiling across items, not by listing them.
 
-For a filterable database view of all items (group by collection, filter by hydrated/source/etc.), open [[all|all.base]] in Obsidian. Views: All, Unhydrated, By source type, Recent, Twitter archive, Gallery.
+For a filterable database view of all items (group by collection, filter by hydrated/source/etc.), open [`all.base`](all.base) in Obsidian. Views: All, Unhydrated, By source type, Recent, Twitter archive, Gallery.
 
 ## Imported collections
 
@@ -30,25 +30,26 @@ Status: **Raindrop + X/Twitter imports complete** — 2026-04-17. 1,498 items ac
 
 | Collection             | Folder                  | Items     |
 | ---------------------- | ----------------------- | --------- |
-| AI Tools & News        | `ai-tools-news/`        | 482       |
-| AI Repos & Open Source | `ai-repos-open-source/` | 318       |
+| AI Tools & News        | `ai-tools-news/`        | 485       |
+| AI Repos & Open Source | `ai-repos-open-source/` | 322       |
 | Marketing & Business   | `marketing-business/`   | 100       |
-| Dev Tools & CLI        | `dev-tools-cli/`        | 69        |
+| Dev Tools & CLI        | `dev-tools-cli/`        | 72        |
 | Stationery & Journals  | `stationery-journals/`  | 56        |
 | Theology & Faith       | `theology-faith/`       | 50        |
 | Personal & Misc        | `personal-misc/`        | 41        |
 | Web Dev                | `web-dev/`              | 40        |
 | Academic & Reference   | `academic-reference/`   | 30        |
 | Design & UI            | `design-ui/`            | 18        |
+| Productivity           | `productivity/`         | 15        |
 | Writing & Content      | `writing-content/`      | 15        |
-| Productivity           | `productivity/`         | 14        |
-| Unsorted               | `unsorted/`             | 13        |
 | Cooking                | `cooking/`              | 10        |
+| iOS & Swift            | `ios-swift/`            | 6         |
 | Books & Reading        | `books-reading/`        | 5         |
-| iOS & Swift            | `ios-swift/`            | 4         |
 | Recipes                | `recipes/`              | 3         |
 | Photography            | `photography/`          | 1         |
 | **Raindrop total**     |                         | **1,269** |
+
+_Unsorted folder (13 items at import) was rehomed 2026-04-18 across dev-tools-cli, ai-tools-news, ai-repos-open-source, ios-swift, and productivity._
 
 ### From X/Twitter bookmarks (229 items, 1 folder)
 
@@ -318,31 +319,6 @@ Synced via [fieldtheory](https://fieldtheory.dev/cli) (local cache at `~/.ft-boo
 **Cross-references:**
 
 - Planning-rhythm items overlap with Stationery & Journals (Franklin Planner appears in both shelves from different angles).
-
-### Unsorted
-
-> [!abstract] Collection overview
-> A catch-all that still clusters tightly: developer platforms, AI tools, and production infrastructure for teams shipping at scale. Background orchestration, mobile dev tooling, AI-driven video/docs, and design-for-builders tooling dominate. Once re-sorted, most items would find homes in `dev-tools-cli/`, `ai-tools-news/`, or `ios-swift/`.
-
-**Key themes:**
-
-- **Background tasks & orchestration** — Durable queues and workflow engines: [[hatchet-devhatchet-run-background-tasks-at-scale]], [[hatchet-the-orchestration-engine-for-teams-who-ship]]. ^theme-async-ops
-- **Mobile & Swift tooling** — Platforms for iOS teams: [[tuisttuist-a-virtual-platform-team-for-mobile-devs-who-ship]], [[twostrawsswiftagents-an-agentsmd-file-for-swift-and-swiftui]]. ^theme-mobile-dev
-- **AI video & content automation** — HTML-to-video and screen-to-docs: [[heygen-comhyperframes-write-html-render-video-built-for-agen]], [[trupeer-ai-powered-product-videos-documentation-in-minutes]], [[prompt-guide-hyperframes]]. ^theme-ai-video
-- **Builder infrastructure** — CI/Mac and plugin integration: [[macstadium-enterprise-mac-solutions-orka-devops-mac-vdi]], [[openaiplugins-openai-plugins]]. ^theme-infra
-
-**Notable items:**
-
-- [[heygen-comhyperframes-write-html-render-video-built-for-agen]] — Agent-first video rendering; write HTML, CLI renders.
-- [[cathrynlaverydiagram-design-thirteen-editorial-diagram-types]] — 13 publication-quality diagram types shipped as a Claude Code skill.
-- [[tuisttuist-a-virtual-platform-team-for-mobile-devs-who-ship]] — Virtual platform for Swift iOS teams; caching, testing, insights.
-- [[hatchet-devhatchet-run-background-tasks-at-scale]] — Durable Postgres-backed task queue with observability.
-- [[trupeer-ai-powered-product-videos-documentation-in-minutes]] — Screen recording to studio video + auto-generated docs.
-- [[every-claude-code-concept-explained-for-normal-people]] — Educational primer on Claude Code fundamentals.
-
-**Cross-references:**
-
-- Most items are temporarily-homed — candidates for rehoming to `dev-tools-cli/` (Hatchet, MacStadium, diagram skills), `ios-swift/` (Tuist, Swift agents), or `ai-tools-news/` (HyperFrames, Trupeer, plugins).
 
 ### Personal & Misc
 
