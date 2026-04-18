@@ -12,7 +12,9 @@ source_domain: "chef.convex.dev"
 source_type_raindrop: link
 collection: "AI Tools & News"
 collection_id: 69284314
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,12 @@ Cook up something hot with Chef, the full-stack AI coding agent from Convex
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: Chef by Convex | Generate realtime full‑stack apps
+
+URL Source: https://chef.convex.dev/
+
+Warning: This page maybe not yet fully loaded, consider explicitly specify a timeout.
+
+Markdown Content:

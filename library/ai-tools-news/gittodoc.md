@@ -12,7 +12,9 @@ source_domain: "gittodoc.com"
 source_type_raindrop: link
 collection: "AI Tools & News"
 collection_id: 69284314
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,13 @@ Turn any Git repository into a simple documentation link that LLMs can easily in
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: 
+
+URL Source: https://gittodoc.com/
+
+Warning: Target URL returned error 500: Internal Server Error
+
+Markdown Content:
+Internal Server Error

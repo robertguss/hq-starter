@@ -12,7 +12,9 @@ source_domain: "codewithantonio.com"
 source_type_raindrop: link
 collection: "AI Tools & News"
 collection_id: 69284314
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -26,4 +28,12 @@ Built with Next.js 15, React 19, Tailwind v4, and a fully modern AI-first toolch
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: Not Found
+
+URL Source: https://www.codewithantonio.com/projects/vibe
+
+Warning: Target URL returned error 404: Not Found
+
+Markdown Content:

@@ -12,7 +12,9 @@ source_domain: "anything.com"
 source_type_raindrop: link
 collection: "AI Tools & News"
 collection_id: 69284314
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,12 @@ Anything is your AI agent for turning ideas into apps. Build sites, apps, tools,
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: Anything - AI app builder
+
+URL Source: https://www.anything.com/
+
+Warning: This page maybe not yet fully loaded, consider explicitly specify a timeout.
+
+Markdown Content:

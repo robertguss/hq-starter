@@ -12,7 +12,9 @@ source_domain: "codewithantonio.com"
 source_type_raindrop: link
 collection: "AI Tools & News"
 collection_id: 69284314
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,13 @@ In this tutorial, we're building Nodebase, a complete workflow automation platfo
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: Build and Deploy an AI Automation SaaS
+
+URL Source: https://www.codewithantonio.com/projects/nodebase
+
+Markdown Content:
+Build and Deploy an AI Automation SaaS
+
+## Application error: a client-side exception has occurred (see the browser console for more information).

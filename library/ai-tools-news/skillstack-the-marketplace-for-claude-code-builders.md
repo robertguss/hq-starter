@@ -12,7 +12,9 @@ source_domain: "skillstack.me"
 source_type_raindrop: link
 collection: "AI Tools & News"
 collection_id: 69284314
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,13 @@ Discover, buy, and sell production-ready Claude Code skills, agents, and automat
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: SkillStack — The Marketplace for Claude Code Builders
+
+URL Source: https://www.skillstack.me/
+
+Markdown Content:
+## We're making things better
+
+SkillStack is currently under construction. We'll be back soon with an improved experience.

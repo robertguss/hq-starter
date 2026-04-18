@@ -12,7 +12,9 @@ source_domain: "sybilsolutions.ai"
 source_type_raindrop: article
 collection: "AI Tools & News"
 collection_id: 69284314
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,59 @@ A guide to removing unnwanted content and information of yourself from the web.
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: How to remove unwanted content from the web.
+
+URL Source: https://www.sybilsolutions.ai/blog/remove-unwanted-content
+
+Published Time: 2022-10-16T00:00:00.000Z
+
+Markdown Content:
+## Your content and personal information is very valuable, it is important to learn how to keep it safe.
+
+**Leaked information, copyright infringements and identity theft are issues that online creators, developer, and artists know too well.** But this is a problem anybody could face at some point in their lives or careers- In this guide I will be discussing possible ways to **remove** your personal information and/or protect your content from being used without your consent.
+
+We all use social media, which is why it's the first point at which your information can be **stolen** and used against your will. In fact, the **OSINT FRAMEWORK, an information gathering tool for hackers and law enforcement** can be used by anyone to gather and use information collected from your social media.
+
+Example of information that can be collected from your social accounts: ![Image 1: OSINT intel gathering.](https://i.imgur.com/PPcsN6n.png)
+
+Example: [https://osintframework.com/](https://osintframework.com/)
+
+*   **Watermark all your content.** (Preferably somewhere that would be difficult to crop out.)
+*   Limited posting **personal or identifiable** information online. (Adresses, real names, pet names, numbers etc..)
+*   Use your social media reporting system, it is important to **follow through** with reports until they are resolved.
+*   Report identity theft through platforms Email directly, if the platform is reputable you can send a written request with information they request and infringing account will be taken down. If you are having issues with this contact me: [https://x.com/0xSero](https://x.com/0xSero)
+
+**Do not directly click on links sent by people you don't know, a simple click is all someone needs to get ahold of your IP address.**
+
+### 2- DMCA for copyright infringement:
+
+If you've come across websites, apps or content that directly uses your personal information or content without your consent there are ways to get it removed. All websites that publish content are mandated to have a DCMA Contact form in the footer of their websites.
+
+*   A list of free DMCA takedown notice templates: [https://www.template.net/business/notice-templates/dmca-notice-template/](https://www.template.net/business/notice-templates/dmca-notice-template/)
+
+How to request content takedown:
+
+*   1 - Use this Template takedown notice, add in your information.
+*   2 - Find the DMCA/COPYRIGHT infringement contact form. (This might be difficult but it's definitely there).
+*   3 - Send it and wait for a response. - 0 to 3 weeks response time
+
+If you own the content it will be taken down the majority of the time, but if not then don't worry as we still have more approaches to take.
+
+For the European and British readers, you have an additional solution which ensures you can remain private online.
+
+In European nations there is a law [https://gdpr.eu/what-is-gdpr/](https://gdpr.eu/what-is-gdpr/) which prevents anyone from using your personal information without your consent. Any website or app which holds records of you, or content you've created is mandated to provide you a copy of that information as well as delete any records they have by international law. These laws apply everywhere, regardless of whether the websites are European. To use this approach follow the steps bellow.
+
+*   1 - You can search the website for the GDPR notice link that they are mandated to have. If you don't find it a contact form or email is enough.
+*   2 - Fill out a copy of this form and email it to the website. [https://gdpr.eu/right-to-erasure-request-form/](https://gdpr.eu/right-to-erasure-request-form/)
+*   3 - Follow up, the maximum time they can put it off is 4 weeks, i'd suggest emailing weekly.
+*   4 - If your content is not taken down follow the gdpr website's instructions.
+
+For more on GDPR: [https://termly.io/resources/articles/gdpr-for-dummies/](https://termly.io/resources/articles/gdpr-for-dummies/)
+
+### Conclusions:
+
+If you get your information stolen, or doxxed don't panic. There are tools to navigate finding solutions to these problems. **Remember that your privacy is something worth fighting for.** If you need help feel free to contact me on:
+
+[https://serotonindesigns.com](https://serotonindesigns.com/)

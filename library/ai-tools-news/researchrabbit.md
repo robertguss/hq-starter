@@ -12,7 +12,9 @@ source_domain: "app.researchrabbit.ai"
 source_type_raindrop: link
 collection: "AI Tools & News"
 collection_id: 69284314
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,32 @@ Accelerate your literature reviews with ResearchRabbit – explore, organize, vi
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: ResearchRabbit
+
+URL Source: https://app.researchrabbit.ai/
+
+Warning: This page maybe requiring CAPTCHA, please make sure you are authorized to access this page.
+
+Markdown Content:
+# ResearchRabbit
+
+##### Rabbit Diagnostics
+
+Close
+
+Go
+
+_
+
+Copied to Clipboard ✔️
+
+## Sign in
+
+Sign In Sign Up
+
+Sign In
+Don't have an account? Sign up
+
+Forgot Password

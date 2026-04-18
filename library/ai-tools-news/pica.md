@@ -12,7 +12,9 @@ source_domain: "app.picaos.com"
 source_type_raindrop: link
 collection: "AI Tools & News"
 collection_id: 69284314
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,16 @@ Agentic tooling platform ⚡️
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: One
+
+URL Source: https://app.picaos.com/getting-started
+
+Warning: Target URL returned error 404: Not Found
+Warning: This page contains shadow DOM that are currently hidden, consider enabling shadow DOM processing.
+
+Markdown Content:
+## 404
+
+## This page could not be found.

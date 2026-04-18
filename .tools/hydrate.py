@@ -36,6 +36,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -287,6 +288,25 @@ def hydrate_file(
     return "ok", f"stars={meta.get('stars', '?')} path={meta.get('readme_path', '?')}"
 
 
+def _short_url(url: str, max_len: int = 60) -> str:
+    if not url or url == "?":
+        return "?"
+    if len(url) <= max_len:
+        return url
+    return url[: max_len - 1] + "…"
+
+
+def _is_unhydrated(md: Path) -> bool:
+    try:
+        text = md.read_text("utf-8")
+    except Exception:
+        return False
+    fm, _ = parse_frontmatter(text)
+    if fm is None:
+        return True
+    return get_fm_field(fm, "hydrated") != "true"
+
+
 def collect_candidates(type_filter: str):
     url_pat = re.compile(r'^url:\s*"?([^"\s]+)"?\s*$', re.M)
     out = []
@@ -321,7 +341,12 @@ def main():
         choices=["github", "article"],
         help="Fetcher tier",
     )
-    p.add_argument("--limit", type=int, default=None)
+    p.add_argument(
+        "--limit", type=int, default=None, help="Max new hydrations this run"
+    )
+    p.add_argument(
+        "--concurrency", type=int, default=1, help="Parallel workers (I/O-bound)"
+    )
     p.add_argument("--dry-run", action="store_true")
     p.add_argument("--force", action="store_true")
     args = p.parse_args()
@@ -356,9 +381,20 @@ def main():
     else:
         sys.exit(f"Unknown type: {args.type}")
 
-    cands = collect_candidates(args.type)
+    all_cands = collect_candidates(args.type)
+    # Pre-filter already-hydrated unless --force, so --limit = max NEW hydrations
+    if not args.force:
+        cands = [md for md in all_cands if _is_unhydrated(md)]
+    else:
+        cands = list(all_cands)
+    if args.limit:
+        cands = cands[: args.limit]
+
     print(f"Type: {args.type}")
-    print(f"Candidates: {len(cands)}")
+    print(
+        f"Candidates: {len(all_cands)} total | {len(cands)} to process "
+        f"(concurrency={args.concurrency})"
+    )
     print(
         f"Mode: {'DRY-RUN' if args.dry_run else 'WRITE'}{' (force)' if args.force else ''}"
     )
@@ -367,42 +403,76 @@ def main():
     ok = skipped = errored = 0
     wrote = 0
     t0 = time.time()
-    for md in cands:
-        status, detail = hydrate_file(
-            md, fetcher_name, fetcher, args.force, args.dry_run
-        )
-        rel = md.relative_to(VAULT_ROOT)
-        if status == "ok":
-            ok += 1
-            wrote += 1
-            print(f"  ✓ {rel}  [{detail}]")
-        elif status == "would-write":
-            wrote += 1
-            print(f"  [DRY] {rel}  [{detail}]")
-        elif status == "skip":
-            skipped += 1
-            # quiet unless dry-run
-            if args.dry_run:
-                print(f"  - {rel}  ({detail})")
-        elif status == "error":
-            errored += 1
-            print(f"  ✗ {rel}  ({detail})")
-            # Back off briefly on errors
-            time.sleep(1.0)
+    total = len(cands)
 
-        if args.limit and wrote >= args.limit:
-            break
+    # Track in-flight URLs for visibility
+    in_flight: dict[Path, tuple[str, float]] = {}
+    in_flight_lock = __import__("threading").Lock()
 
-        # gentle throttle for anonymous tiers
-        if status in {"ok", "would-write", "error"}:
-            if args.type == "github" and not os.environ.get("GITHUB_TOKEN"):
-                time.sleep(1.0)
-            elif args.type == "article" and not os.environ.get("JINA_API_KEY"):
-                time.sleep(1.5)
+    def _get_url(md: Path) -> str:
+        try:
+            fm, _ = parse_frontmatter(md.read_text("utf-8", errors="replace"))
+            return get_fm_field(fm or "", "url") or "?"
+        except Exception:
+            return "?"
+
+    def _run_one(md: Path):
+        url = _get_url(md)
+        with in_flight_lock:
+            in_flight[md] = (url, time.time())
+            print(
+                f"  → [start  {len(in_flight):>2} in-flight]  {md.name}  ({_short_url(url)})",
+                flush=True,
+            )
+        t_start = time.time()
+        result = hydrate_file(md, fetcher_name, fetcher, args.force, args.dry_run)
+        dur = time.time() - t_start
+        with in_flight_lock:
+            in_flight.pop(md, None)
+        return md, result, dur
+
+    done = 0
+    with ThreadPoolExecutor(max_workers=max(1, args.concurrency)) as ex:
+        futures = [ex.submit(_run_one, md) for md in cands]
+        for fut in as_completed(futures):
+            md, (status, detail), dur = fut.result()
+            done += 1
+            rel = md.relative_to(VAULT_ROOT)
+            prefix = f"[{done:>3}/{total}  {time.time() - t0:5.1f}s  {dur:4.1f}s/item]"
+            if status == "ok":
+                ok += 1
+                wrote += 1
+                print(f"  ✓ {prefix} {rel}  [{detail}]", flush=True)
+            elif status == "would-write":
+                wrote += 1
+                print(f"  [DRY] {prefix} {rel}  [{detail}]", flush=True)
+            elif status == "skip":
+                skipped += 1
+                if args.dry_run:
+                    print(f"  - {prefix} {rel}  ({detail})", flush=True)
+            elif status == "error":
+                errored += 1
+                print(f"  ✗ {prefix} {rel}  ({detail})", flush=True)
+
+            # Periodic summary every 20 completions
+            if done % 20 == 0 and done < total:
+                elapsed = time.time() - t0
+                rate = done / elapsed if elapsed > 0 else 0
+                remaining = total - done
+                eta = remaining / rate if rate > 0 else 0
+                print(
+                    f"  ── progress: {done}/{total} ({100 * done / total:.0f}%)  "
+                    f"ok={ok} err={errored}  "
+                    f"rate={rate:.2f}/s  ETA ~{eta:.0f}s",
+                    flush=True,
+                )
 
     elapsed = time.time() - t0
     print("---")
-    print(f"Done in {elapsed:.1f}s. ok={ok} skipped={skipped} errored={errored}")
+    print(
+        f"Done in {elapsed:.1f}s. ok={ok} skipped={skipped} errored={errored}  "
+        f"rate={done / elapsed:.2f}/s"
+    )
 
 
 if __name__ == "__main__":

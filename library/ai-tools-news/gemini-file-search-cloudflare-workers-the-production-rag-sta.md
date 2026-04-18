@@ -12,7 +12,9 @@ source_domain: "mksg.lu"
 source_type_raindrop: article
 collection: "AI Tools & News"
 collection_id: 69284314
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,197 @@ Real-world RAG system implementation - wrong turns, 3am debugging, and decisions
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: Gemini File Search + Cloudflare Workers: The Production RAG Stack That Just Works
+
+URL Source: https://mksg.lu/blog/gemini-rag-cloudflare-workers
+
+Published Time: 2026-02-26
+
+Markdown Content:
+How Google's managed RAG and Cloudflare's edge computing solved problems I didn't know I had
+
+I'm Mert Köseoğlu, Senior Software Engineer turned consultant. 12+ years building teams, leading as Tech Lead and EM, shipping products used by millions. Now I run Software Forge: AI-native architectures, RAG pipelines, Cloudflare AI stack. Built the MCP Directory & Hub handling 100K+ daily requests.
+
+This is the story of building a production RAG system. Not a tutorial. The real thing. Wrong turns, 3am debugging, and decisions that actually mattered.
+
+## The Call That Started Everything
+
+A product analytics company called. "Our Customer Success team is drowning."
+
+500+ Zendesk articles. Blog posts. SDK docs for 11 platforms: Android, iOS, Web, Flutter, React Native, Unity, Windows, Node.js, Java, C++, Cordova. Multiple versions each.
+
+CS team answered the same questions daily. "How do I track events in iOS?" "What's new in Android SDK 24.7?" Hours of repetitive work.
+
+Their AI assistant plugin needed a knowledge base. "Can you build it? 1 month."
+
+I said yes. Then started panicking.
+
+## The First Two Weeks (Where I Got Everything Wrong)
+
+Built a "proper" RAG system. Qdrant. Chunking pipeline. Debated chunk sizes. Metadata filtering.
+
+Two weeks later: slow retrieval, complex infrastructure, not even deployed yet.
+
+Someone asked about "iOS SDK 24.11.3" and the system returned iOS SDK 23.01.2 docs. Three days debugging metadata.
+
+There had to be a better way.
+
+## Finding Gemini File Search
+
+Found it at 2am reading Google's docs. Not heavily marketed. The promise:
+
+> Upload your documents. We handle the rest.
+
+No chunking. No vector database. No embedding selection. Google handles:
+
+*   Automatic chunking optimized for retrieval
+*   Embedding with gemini-embedding-001
+*   Semantic vector indexing
+*   Retrieval integrated into generateContent
+
+Skeptical. Tried it anyway. Uploaded test docs. Asked questions. Got accurate answers with source citations.
+
+The code was embarrassingly simple. One API call. fileSearch tool. Done.
+
+Deleted my Qdrant setup. Two weeks of work, gone. Didn't miss it.
+
+## The "Aha" Moment: Grounding Metadata
+
+Gemini returns `groundingChunks`, structured data about which documents were used. Not generated text. Actual metadata from retrieval.
+
+The model can't hallucinate sources. They come from the retrieval layer.
+
+Saved weeks of prompt iteration. No more "please cite your sources" that works 70% of the time.
+
+## Why Cloudflare Workers
+
+I run 100K+ daily requests on Workers. Know the platform.
+
+The reason for this project: **cold starts.**
+
+Lambda: 100-500ms cold starts. Workers: ~0ms. Always warm.
+
+For chat interfaces, users notice. First message feels sluggish on Lambda. On Workers, first request feels like the hundredth.
+
+KV for caching:
+
+*   72-hour cache for GitHub releases (11 SDKs)
+*   API docs index
+*   System prompts
+
+No Redis. No connection pooling. Simple.
+
+## The Regex Disaster
+
+Week 3. Certain queries returned wrong results.
+
+"React Native SDK?" → returned iOS docs.
+
+Why? "React Native" contains "rn". I matched "rn" as abbreviation. "Internal" contains "rn" too. Everything matched everything.
+
+500+ lines of regex. Brittle. Non-English broke it. Typos broke it.
+
+Rewrote three times. New edge cases each time.
+
+Then: what if I used an LLM to classify queries?
+
+Gemini 2.0 Flash. JSON response schema. 5-second timeout.
+
+`"React Native SDK?" → { isSDKQuery: true, platform: 'react-native' }`
+500 lines of regex → 20 lines of LLM call. Works with typos. Works with any language.
+
+Using one LLM to route another. Changed everything.
+
+## The Caching Discovery
+
+Week 3. SDK version questions: 25 seconds. Every query fetched GitHub releases real-time. Eleven repos. Rate limiting.
+
+Fix: 72-hour cache.
+
+SDK releases don't change hourly. Second query of the day? 7 seconds instead of 25.
+
+Results:
+
+*   SDK queries: 25s → 7s (72% faster)
+*   API queries: 10s → 5-6s (40-50% faster)
+*   General: 8s → 6s (25% faster)
+
+Simple pattern. Massive impact.
+
+## The Pricing Surprise
+
+Kept waiting for the catch.
+
+**Gemini File Search:**
+
+*   Indexing: $0.15 / 1M tokens (one-time)
+*   Storage: FREE
+*   Query embeddings: FREE
+*   500+ documents: under $1 total indexing.
+
+**Cloudflare Workers:**
+
+*   $5/month + $0.50/million requests
+*   KV: $0.50/million reads
+
+Running production for under $20/month. No vector DB fees. No Redis.
+
+## MCP: One Endpoint, Many Clients
+
+Week 4. They wanted:
+
+*   Claude Desktop for engineering
+*   Cursor for developers
+*   Internal AI assistant plugin
+
+Four clients. Same knowledge base needed.
+
+Model Context Protocol. One `chat_with_docs` tool. One implementation. Every client connects to same endpoint.
+
+Claude Desktop, Cursor, web UI, internal plugin. All get same answers. Fix a bug, everyone benefits.
+
+Single source of truth.
+
+## After One Month
+
+**Customer Success:**
+
+*   Stopped answering same questions repeatedly
+*   Documentation ticket volume dropped
+*   Focus on complex issues needing human judgment
+
+**Engineering:**
+
+*   Claude Desktop = instant doc access
+*   Accurate SDK version answers
+*   Real-time GitHub release data
+
+**AI Assistant:**
+
+*   Actually knew things
+*   Source citations built trust
+
+**Numbers:**
+
+*   500+ documents queryable
+*   11 SDK platforms with version-specific answers
+*   Sub-10-second response times
+*   Under $20/month
+
+## What I'd Tell My Week-1 Self
+
+1.   **Start with managed RAG.** Wasted two weeks on infrastructure Gemini handles better.
+2.   **Use LLMs for routing.** Intent classification replaced 500 lines of regex.
+3.   **Cache aggressively.** 72-hour TTL solves 90% of latency problems.
+4.   **Edge compute matters.** Cold starts add up. Workers eliminates that.
+5.   **MCP for multi-consumer.** One endpoint, many clients.
+
+The boring choices were the right choices.
+
+Sometimes let Google and Cloudflare handle the hard parts. Focus on making the product work for users.
+
+* * *
+
+_Mert Köseoğlu, Senior Founding Engineer, AI consultant. Runs Software Forge. Built MCP Directory & Hub._ _[x.com/mksglu](https://x.com/mksglu) · [linkedin.com/in/mksglu](https://linkedin.com/in/mksglu) · [mksg.lu](https://mksg.lu/)_

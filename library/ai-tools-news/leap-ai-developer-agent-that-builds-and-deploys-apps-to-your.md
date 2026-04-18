@@ -12,7 +12,9 @@ source_domain: "leap.new"
 source_type_raindrop: link
 collection: "AI Tools & News"
 collection_id: 69284314
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,14 @@ Leap is a full-stack AI that works with you, not instead of you. Build full-stac
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: Leap - Build Production-Ready Fullstack Apps with AI
+
+URL Source: https://leap.new/
+
+Published Time: Fri, 17 Apr 2026 09:27:17 GMT
+
+Warning: This page maybe not yet fully loaded, consider explicitly specify a timeout.
+
+Markdown Content:

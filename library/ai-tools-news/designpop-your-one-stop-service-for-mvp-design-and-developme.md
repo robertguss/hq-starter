@@ -12,7 +12,9 @@ source_domain: "designpop.co"
 source_type_raindrop: link
 collection: "AI Tools & News"
 collection_id: 69284314
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,17 @@ designpop aims to be the best design-engineering + MVP development solution for 
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: Vercel Security Checkpoint
+
+URL Source: https://www.designpop.co/
+
+Warning: Target URL returned error 429: Too Many Requests
+
+Markdown Content:
+Vercel Security Checkpoint
+
+|
+
+iad1::1776529441-6eQ2QyVD6YW97oGDbEEEbqYMYqt13q0C

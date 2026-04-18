@@ -12,7 +12,9 @@ source_domain: "capy.ai"
 source_type_raindrop: link
 collection: "AI Tools & News"
 collection_id: 69284314
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,17 @@ Capy is the AI-native IDE for parallel development. Run 25+ concurrent AI coding
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: Capy
+
+URL Source: https://capy.ai/project/fabbb2f0-7acd-4305-8230-d9580acfffb6
+
+Warning: This page maybe not yet fully loaded, consider explicitly specify a timeout.
+
+Markdown Content:
+# Capy
+
+[](https://capy.ai/)
+
+![Image 1: Capy](https://capy.ai/assets/capy-BjqfcijN.png)
