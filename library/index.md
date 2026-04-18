@@ -341,3 +341,127 @@ Synced via [fieldtheory](https://fieldtheory.dev/cli) (local cache at `~/.ft-boo
 **Cross-references:**
 
 - Most items are temporarily-homed — candidates for rehoming to `dev-tools-cli/` (Hatchet, MacStadium, diagram skills), `ios-swift/` (Tuist, Swift agents), or `ai-tools-news/` (HyperFrames, Trupeer, plugins).
+
+### Personal & Misc
+
+> [!abstract] Collection overview
+> A grab-bag reflecting unusually broad bandwidth: indie game/simulation design, generative music and live coding, modular hardware and privacy-first computing, careercraft concerns, tech-ethics and surveillance, and physical performance tracking. The unifying signal is restless curiosity paired with a bias toward systems and craft — gear chosen deliberately, not by hype.
+
+**Key themes:**
+
+- **Game design & creative systems** — Simulation and spatial mechanics: [[bitcraft]], [[bitcraft-online-on-steam]], [[gdc-vault]]. ^theme-game-design
+- **Music & sound as practice** — Generative composition and live coding: [[für-alina-composition-techniques-any-old-music]], [[getting-started-strudel]]. ^theme-music-practice
+- **Tools & modular hardware** — Deliberate gear and privacy-first computing: [[smart-desk-mat]], [[introducing-the-framework-desktop-and-newest-framework-lapto]], [[futo]]. ^theme-tools-craft
+- **Careercraft & optionality** — Engineering identity, compensation, and agency: [[staff-product-engineer-ghost]], [[ask-hn-who-is-hiring-january-2025-hacker-news]], [[increase-your-optionality]]. ^theme-careercraft
+- **Tech ethics & power** — Surveillance, culture, and developer values: [[going-through-snowden-documents-part-1-librootorg]], [[what-do-i-mean-by-some-software-devs-are-ngmi]], [[stop-avoiding-politics]]. ^theme-tech-ethics
+- **Physical performance** — Quantified training and recovery: [[whoop-unlock-human-performance-healthspan]], [[starting-strength-gyms-stronger-is-better]]. ^theme-health
+
+**Notable items:**
+
+- [[bitcraft]] — Top-down simulation design with deep economic systems.
+- [[futo]] — Privacy-first computing philosophy and self-managed tooling.
+- [[going-through-snowden-documents-part-1-librootorg]] — Serious engagement with surveillance and power.
+- [[stop-avoiding-politics]] — Willingness to engage political philosophy directly.
+- [[smart-desk-mat]] — Taste for attentive physical workspace design.
+- [[brettterpstracom]] — Independent creator systems and macOS tooling.
+- [[welcome-to-the-10k-institute]] — Deliberate-practice framing of skill development.
+- [[starting-strength-gyms-stronger-is-better]] — Barbell-first strength training network.
+
+### Web Dev
+
+> [!abstract] Collection overview
+> A catalog of modern web stacks oriented toward shipping full-stack SaaS quickly: React/TypeScript starters, reactive databases, full-stack BaaS, edge compute, and developer-craft tooling. Taste signals lean toward owning the stack (Convex, Appwrite, self-hosted), type-safe primitives (GraphQL, sqlc-style), and DX-first frameworks over convention-heavy frameworks.
+
+**Key themes:**
+
+- **React & SaaS starters** — Production-ready TypeScript/React boilerplates: [[react-starter-kit-launch-your-saas-quickly]], [[open-saas]], [[react-bits]], [[one-a-react-framework]]. ^theme-react-saas
+- **Real-time databases** — Reactive data layers and local-first alternatives: [[convex-the-reactive-database-for-app-developers]], [[instantdbinstant-instant-is-a-modern-firebase-we-make-you-pr]], [[livestore-local-first-data-layer-for-high-performance-apps]], [[spacetimedb]]. ^theme-realtime-db
+- **Backend & APIs** — Full-stack BaaS and GraphQL-first backends: [[appwrite-build-like-a-team-of-hundreds]], [[graphile-powerful-extensible-and-performant-graphql-apis-rap]], [[build-an-mvp-with-elixir]], [[home-django-rest-framework]]. ^theme-backend-apis
+- **Edge & serverless** — Globally distributed compute: [[cloudflare-workers]]. ^theme-edge-deploy
+- **DX & build tooling** — Git workflows, code search, and docs frameworks: [[gitbutler]], [[code-search-grep-by-vercel]], [[fumadocs]], [[untitled-ui-react-react-component-library]]. ^theme-devtools-craft
+- **Cross-platform & mobile** — React Native/Expo starters: [[obytes-starter-react-nativeexpo-starter]], [[20-starter-templates-to-create-your-react-native-project-wes]]. ^theme-mobile-fullstack
+
+**Notable items:**
+
+- [[convex-the-reactive-database-for-app-developers]] — Reactive database solving state sync for modern apps.
+- [[open-saas]] — Full-stack SaaS foundation emphasizing code ownership.
+- [[appwrite-build-like-a-team-of-hundreds]] — Self-hosted BaaS for teams who want infra ownership.
+- [[cloudflare-workers]] — Edge compute for fast, globally distributed backend logic.
+- [[gitbutler]] — Git branching UI that rethinks developer iteration.
+- [[graphile-powerful-extensible-and-performant-graphql-apis-rap]] — Postgres-native GraphQL for type-safe APIs.
+- [[fumadocs]] — Modern docs framework for shipping knowledge at SaaS velocity.
+- [[instantdbinstant-instant-is-a-modern-firebase-we-make-you-pr]] — Firebase alternative with instant sync primitives.
+- [[react-starter-kit-launch-your-saas-quickly]] — Fast-path React/TypeScript SaaS scaffold.
+
+**Cross-references:**
+
+- Connects to `design-ui/` for component systems (shadcn, Magic UI, Kibo UI) that sit on top of these stacks, and to `dev-tools-cli/` for build tooling (rolldown, bundlers).
+
+### Dev Tools & CLI
+
+> [!abstract] Collection overview
+> A terminal-first toolkit with a clear bias: small, composable binaries, Rust/Go performance, and deep integration with git and AI agents. The shelf covers modernized Unix replacements, next-gen Python (marimo, pyrefly), git-native API clients (Bruno), single-file backends (PocketBase), and LLM-agent scaffolding. Philosophy: serious craft tooling, not toy commands — every item here repays attention with power.
+
+**Key themes:**
+
+- **Terminal & TUI frameworks** — High-performance TUIs and modernized Unix: [[ratatui]], [[charm]], [[eza]]. ^theme-terminal-ui
+- **Editor & language tooling** — Fast analyzers and editor integrations: [[dmtrkovalenkofffnvim-the-fastest-and-the-most-accurate-file]], [[pyrefly-a-fast-python-type-checker-and-language-server-pyref]], [[jendrikseippvulture-find-dead-python-code]]. ^theme-editor-lang
+- **Git-native API & workflow** — API clients that live in version control: [[bruno-the-git-native-api-client]]. ^theme-api-git
+- **CLI frameworks & scaffolding** — Fast, memory-safe CLI generation and templates: [[nashsuautocli-autocli-is-a-blazing-fast-memory-safe-command]], [[cobradev]], [[base]], [[copier]]. ^theme-cli-frameworks
+- **Python ecosystem & reactive notebooks** — Modern Python computing: [[marimo-a-next-generation-python-notebook]], [[how-to-set-up-a-perfect-python-project]]. ^theme-python-ecosystem
+- **Self-hostable backends & deploy** — Minimal, single-binary platforms: [[pocketbase-open-source-backend-in-1-file]], [[shuttle-build-backends-fast]], [[coolify]]. ^theme-backends-deploy
+- **Type-safe codegen** — SQL-to-code and bundler tooling: [[sqlcdev]], [[announcing-rolldown-vite]]. ^theme-codegen
+- **AI-first dev tooling** — LLM-aware CLIs and agent scaffolding: [[introducing-vt-the-val-town-cli]], [[one-cookiecutter-to-build-agents-in-seconds]], [[openagents-orgopenagents-openagents-ai-agent-networks-for-op]]. ^theme-ai-first
+- **Observability & security** — Monitoring and binary analysis: [[better-stack-radically-better-observability-stack]], [[nationalsecurityagencyghidra-ghidra-is-a-software-reverse-en]]. ^theme-observability
+
+**Notable items:**
+
+- [[bruno-the-git-native-api-client]] — Git-native API testing; collections as plain text alongside code.
+- [[ratatui]] — Rust TUI framework powering csvlens, oxker, and other production apps.
+- [[pocketbase-open-source-backend-in-1-file]] — Realtime DB, auth, files, and admin in a single Go binary.
+- [[marimo-a-next-generation-python-notebook]] — Reactive, git-friendly notebook replacing Jupyter.
+- [[shuttle-build-backends-fast]] — Deploy Rust services with one annotation; zero-touch AWS provisioning.
+- [[sqlcdev]] — Compile SQL to type-safe code; catch schema drift before runtime.
+- [[eza]] — Rust `ls` replacement with git awareness and color.
+- [[pyrefly-a-fast-python-type-checker-and-language-server-pyref]] — Fast Python type checker and LSP.
+- [[introducing-vt-the-val-town-cli]] — Val Town CLI with AGENTS.md context for Claude Code / Cursor.
+- [[better-stack-radically-better-observability-stack]] — AI-SRE-flavored observability stack, Datadog alternative.
+- [[announcing-rolldown-vite]] — Rust-native Rollup replacement powering Vite's next generation.
+
+**Cross-references:**
+
+- Overlaps with `ai-tools-news/` and `ai-repos-open-source/` on agent frameworks and LLM dev tooling, and with `web-dev/` on build/bundler tooling.
+
+### Marketing & Business
+
+> [!abstract] Collection overview
+> An indie-bootstrap library that rejects growth-hacking vanity metrics in favor of sustainable revenue, community-driven distribution (Reddit, email, content), and disciplined positioning. Pricing for profitability over scale, digital products over SaaS-only, "boring" businesses with real margins — aligned with Robert's "Kill Your SaaS" ethos and Reformed instinct for craft over hype.
+
+**Key themes:**
+
+- **Indie revenue architecture** — Profitable solo and small-team businesses: [[what-i-learned-from-a-digital-products-expert-who-makes-90-o]], [[building-a-30kmo-portfolio-within-eight-months-of-quitting-h]], [[rosewell-build-a-profitable-saas]], [[the-most-future-proof-job-entrepreneurship]]. ^theme-indie-revenue
+- **Positioning & customer psychology** — Authentic positioning and buyer behavior: [[the-slc-approach-building-products-that-customers-love]], [[why-we-buy]], [[how-to-find-buyer-intent-keywords-and-turn-them-into-leads]]. ^theme-positioning
+- **Content & organic distribution** — Community-first, no-paid-ads: [[reddit-became-my-most-consistent-growth-engine-once-i-stoppe]], [[reddit-marketing-playbook-500-leads-in-15-days]], [[21-highly-effective-content-templates-for-linkedin-by-charle]]. ^theme-content-distribution
+- **Digital products & leverage** — Margin-friendly product shapes: [[24-digital-product-ideas-sorted-by-type-how-to-sell-them-onl]], [[from-0-to-1-million-users-in-6-months-how-i-built-my-viral-a]], [[selling-ebooks-on-amazon-or-your-website-proscons-examples]]. ^theme-digital-products
+- **Community & superfans** — Durable moats through loyalty, not algorithms: [[the-modern-marketing-system-we-make-superfans]], [[how-to-make-10kmonth-from-a-community-jordan-godbey-deep-div]], [[growing-a-community-for-digital-nomads-to-33000mo]]. ^theme-community
+- **Bootstrap SaaS playbooks** — Minimal-viable stacks and pivots: [[1-week-saas-mvp-checklist-notion]], [[pivoting-to-reach-a-wider-audience-and-hitting-a-5-figure-mr]]. ^theme-saas-solo
+- **Boring profitable businesses** — Unsexy niches with predictable revenue: [[discover-boring-businesses-that-quietly-rake-in-the-cash]], [[trustmrr-verified-startup-revenue-database]]. ^theme-boring-profitable
+
+**Notable items:**
+
+- [[from-0-to-1-million-users-in-6-months-how-i-built-my-viral-a]] — 60-page viral playbook: onboarding loops, paywalls, referrals — no paid ads.
+- [[reddit-became-my-most-consistent-growth-engine-once-i-stoppe]] — Precision Reddit targeting over volume; subreddit-matching logic.
+- [[rosewell-build-a-profitable-saas]] — Course on SaaS ideation and solo-founder exits.
+- [[what-i-learned-from-a-digital-products-expert-who-makes-90-o]] — Gumroad-first solopreneur toolkit.
+- [[the-modern-marketing-system-we-make-superfans]] — Loyalty over vanity metrics framework.
+- [[discover-boring-businesses-that-quietly-rake-in-the-cash]] — Database of niche profitable businesses.
+- [[21-highly-effective-content-templates-for-linkedin-by-charle]] — LinkedIn templates from a 300K+ audience.
+- [[1-week-saas-mvp-checklist-notion]] — Next.js + Supabase + Stripe stack shipping in a week.
+- [[the-most-future-proof-job-entrepreneurship]] — Entrepreneurship framed as AI-resilient career path.
+- [[the-slc-approach-building-products-that-customers-love]] — SLC (Simplify, Link, Clarify) product framework.
+- [[why-we-buy]] — Behavioral economics applied to buying decisions.
+- [[trustmrr-verified-startup-revenue-database]] — Verified MRR data across startups for benchmarking.
+
+**Cross-references:**
+
+- Indie-publishing tactics overlap with Writing & Content (Substack, KDP) and with Productivity on execution rhythms.
