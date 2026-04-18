@@ -559,3 +559,49 @@ Synced via [fieldtheory](https://fieldtheory.dev/cli) (local cache at `~/.ft-boo
 - Heavy overlap with `ai-tools-news/` (same agentic ecosystem from a news-and-product angle rather than repo angle) and with `dev-tools-cli/` (Claude Code tooling, terminal-first agents).
 - Obsidian-skills repos connect to `stationery-journals/` PKM cluster (Zettelkasten, commonplace, digital-analog hybrid workflows).
 - Bible-study MCP server connects to Theology & Faith's Bible-software theme.
+
+### AI Tools & News
+
+> [!abstract] Collection overview
+> 482 items — the largest shelf in the library, a working archive of the agentic-AI news/product/essay cycle. Recurring through every slice: agent frameworks, harnesses-as-a-service (HaaS), Claude Code SDK and skill ecosystems, agent-as-backend platforms, RAG/memory as table-stakes infrastructure, and the "dark factory" pattern where humans specify intent and agents autonomously iterate. Developer environments are being reconfigured around agents (Warp, Tembo, sidecar IDEs), not retrofitted. Differentiation has moved from base models to orchestration, skills, and distribution.
+
+**Key themes:**
+
+- **Agent frameworks & orchestration** — Harnesses, multi-agent systems, and workflow engines: [[agent-zero]], [[agentso-the-original-ai-agents-platform]], [[oh-my-openagent-the-best-agent-harness]], [[openfang-the-agent-operating-system]], [[intent-the-developer-workspace-for-agent-orchestration]], [[the-harness-is-the-product-3niac]]. ^theme-tools-agent-frameworks
+- **Claude Code SDK & skills** — The ecosystem anchoring Robert's daily work: [[claude-code-a-highly-agentic-coding-assistant-deeplearningai]], [[the-claude-code-sdk-and-the-birth-of-haas-harness-as-a-servi]], [[the-magic-of-claude-code]], [[the-agent-skills-directory]], [[axiom-claude-code-agents-for-ios-development]], [[highlights-from-the-claude-4-system-prompt]]. ^theme-tools-claude-ecosystem
+- **Agent-as-backend & infrastructure** — Agents treated as first-class services: [[agentuity-the-agent-native-cloud-platform-for-ai-agents]], [[insforge-give-agents-everything-they-need-to-ship-fullstack]], [[instantdb-the-best-backend-for-ai-coded-apps]], [[inngest-ai-and-backend-workflows-orchestrated-at-any-scale]], [[build-ai-agents-that-run-in-production]]. ^theme-tools-agent-backend
+- **Agentic coding platforms** — Agent-native development environments: [[opencode-the-open-source-ai-coding-agent]], [[plandex-open-source-ai-coding-agent-for-large-tasks]], [[qoder-the-agentic-coding-platform]], [[predev-self-driving-agentic-engineering]], [[warp-the-agentic-development-environment]], [[tembo-coding-agents-that-work-where-you-do]], [[you-might-never-open-your-editor-again-sidecar]]. ^theme-tools-agentic-coding
+- **The dark-factory pattern** — Full-autonomy essays and flywheel analysis: [[the-dark-factory-pattern-moving-from-ai-assisted-to-fully-au]], [[the-folder-is-the-agent]], [[the-agentic-coding-flywheel-tldr]], [[building-a-fully-agentic-engineer-and-growing-it-to-500k-arr]]. ^theme-tools-dark-factory
+- **RAG, memory, knowledge graphs** — Persistent context and retrieval infrastructure: [[retaindb-persistent-memory-for-ai-agents-sota-on-longmemeval]], [[building-a-knowledge-graph-with-llamacloud-neo4j-llamaindex]], [[gemini-file-search-cloudflare-workers-the-production-rag-sta]], [[neo4j-llm-knowledge-graph-builder-extract-nodes-and-relation]], [[implementing-advanced-retrieval-rag-strategies-with-neo4j]], [[the-developers-guide-to-graphrag-for-accurate-contextual-gen]]. ^theme-tools-rag-memory
+- **Browser & web automation** — Agents interacting with real web apps: [[browser-use-the-ai-browser-agent]], [[browseros-open-source-ai-browser-privacy-first-alternative-t]], [[apify-full-stack-web-scraping-and-data-extraction-platform]], [[firecrawl]]. ^theme-tools-browser-automation
+- **Prompt engineering & context craft** — Tooling and essays on context mastery: [[promptlayer-the-cleanest-way-to-prompt-engineer-platform-for]], [[promptmetheus-prompt-engineering-ide]], [[16x-prompt-ai-coding-with-advanced-context-management]], [[the-claude-ai-cheat-code-list-from-think-harder-to-xml-magic]], [[how-to-write-a-great-agentsmd-lessons-from-over-2500-reposit]], [[how-to-build-reliable-ai-workflows-with-agentic-primitives-a]]. ^theme-tools-prompt-engineering
+- **Workforce & GTM agents** — Business-process automation via agents: [[relevance-ai-build-your-ai-workforce-ai-for-business]], [[polsia-ai-that-runs-your-company]], [[salesco-ai-first-cold-email-platform-for-b2b-teams]], [[postiz-the-all-in-one-agentic-social-media-scheduling-tool]], [[instasdr-ai-powered-sales-development-platform]]. ^theme-tools-workforce-agents
+- **Multimodal: video, design, UX** — Agentic creative tooling: [[descript-edit-videos-podcasts-like-a-doc-ai-video-editor]], [[calesthioopenmontage-worlds-first-open-source-agentic-video]], [[ux-pilot-superfast-ux-design-with-ai]], [[gamma-best-ai-presentation-maker-website-builder]], [[guiddemagically-create-video-documentation-with-ai]]. ^theme-tools-multimodal
+
+**Notable items:**
+
+- [[claude-code-a-highly-agentic-coding-assistant-deeplearningai]] — DeepLearning.AI's analysis of what makes Claude Code agentic.
+- [[the-claude-code-sdk-and-the-birth-of-haas-harness-as-a-servi]] — HaaS (Harness as a Service) framing for Claude Code's product layer.
+- [[the-dark-factory-pattern-moving-from-ai-assisted-to-fully-au]] — Maps the progression: manual → assisted → fully autonomous development.
+- [[building-effective-ai-agents-anthropic]] — Anthropic's canonical guide on building effective agents.
+- [[building-a-fully-agentic-engineer-and-growing-it-to-500k-arr]] — Case study: autonomous engineering agent scaled to $500k ARR.
+- [[warp-the-agentic-development-environment]] — Next-generation terminal built for agent coordination.
+- [[retaindb-persistent-memory-for-ai-agents-sota-on-longmemeval]] — SOTA on LongMemEval; memory infra for long-running agents.
+- [[how-to-write-a-great-agentsmd-lessons-from-over-2500-reposit]] — AGENTS.md best practices from a 2,500-repo survey.
+- [[browser-use-the-ai-browser-agent]] — Browser automation as a first-class primitive for agents.
+- [[opencode-the-open-source-ai-coding-agent]] — Open-source Claude Code competitor; full agentic workflow under permissive license.
+- [[composio-access-250-apps-in-just-one-line-of-code]] — Integration layer connecting agents to 250+ enterprise tools.
+- [[hermes-agent-documentation-hermes-agent]] — Nous Research's reasoning-focused agent architecture.
+- [[tinfoil-verifiably-private-ai-powered-by-secure-enclaves]] — Privacy-first AI execution via secure enclaves.
+- [[gitagent-your-repository-becomes-your-agent]] — Repository-as-agent-state paradigm for development workflows.
+- [[how-to-build-reliable-ai-workflows-with-agentic-primitives-a]] — Foundational design patterns for reliable agentic workflows.
+- [[zero-to-builder-from-i-cant-code-to-shipping-apps-in-60-days]] — Accelerated skill acquisition via agent leverage.
+- [[the-agent-skills-directory]] — Reusable-capabilities framework for agent composition.
+- [[xcodebuildmcp-ai-powered-xcode-automation]] — iOS development specifics for agentic workflows (connects to `ios-swift/`).
+
+**Cross-references:**
+
+- Heavy overlap with AI Repos & Open Source (same ecosystem viewed from news/product angle vs repo angle); many items are news coverage of repos documented there.
+- Claude Code ecosystem items connect to Dev Tools & CLI (terminal-first agents, Claude Code configs).
+- Workforce-agents theme overlaps with Marketing & Business (agents for sales, outreach, content).
+- iOS-specific agent tools connect to iOS & Swift.
