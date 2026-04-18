@@ -241,6 +241,19 @@ def fetch_article_jina(url: str, token: str | None, max_retries: int = 3):
             raise
 
 
+# ---------- Twitter fetcher (no-op — body already from fieldtheory) ----------
+
+
+def fetch_twitter(url: str, token: str | None = None):
+    """Twitter bookmarks already have their text in the body from fieldtheory.
+    This fetcher just writes a short marker and flips the hydrated flag."""
+    return (
+        "_Tweet text is preserved in the `## Tweet` section above._\n\n"
+        "_External links (if any) are listed in `## Links` and can be fetched separately via `--type article`._",
+        {"source": "fieldtheory-cache"},
+    )
+
+
 # ---------- Hydration loop ----------
 
 
@@ -330,6 +343,11 @@ def collect_candidates(type_filter: str):
                 continue
             if is_article_url(url):
                 out.append(md)
+        elif type_filter == "twitter":
+            # Filter by source_type frontmatter, not URL
+            fm, _ = parse_frontmatter(text)
+            if fm and get_fm_field(fm, "source_type") == "twitter":
+                out.append(md)
     return out
 
 
@@ -338,7 +356,7 @@ def main():
     p.add_argument(
         "--type",
         required=True,
-        choices=["github", "article"],
+        choices=["github", "article", "twitter"],
         help="Fetcher tier",
     )
     p.add_argument(
@@ -378,6 +396,9 @@ def main():
             )
         fetcher = lambda url: fetch_article_jina(url, jina_token)
         fetcher_name = "jina-reader"
+    elif args.type == "twitter":
+        fetcher = lambda url: fetch_twitter(url)
+        fetcher_name = "fieldtheory-cache"
     else:
         sys.exit(f"Unknown type: {args.type}")
 

@@ -11,7 +11,9 @@ tweet_id: "2041616469084270917"
 source_domain: "x.com"
 author: "howdymary"
 author_name: "mary"
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: fieldtheory-cache
 ---
 ## Tweet
 
@@ -41,4 +43,8 @@ hydrated: false
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch thread / linked article. -->
+<!-- Hydrated 2026-04-18 via fieldtheory-cache -->
+
+_Tweet text is preserved in the `## Tweet` section above._
+
+_External links (if any) are listed in `## Links` and can be fetched separately via `--type article`._
