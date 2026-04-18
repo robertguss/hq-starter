@@ -1,0 +1,91 @@
+filters:
+  and:
+    - file.hasTag("library")
+    - file.ext == "md"
+    - file.inFolder("library")
+    - file.name != "index"
+formulas:
+  age_days: if(created, (today() - date(created)).days, "")
+  hydration_age: if(hydrated_at, (today() - date(hydrated_at)).days, "")
+  folder: file.folder.replace("library/", "")
+properties:
+  formula.folder:
+    displayName: Collection
+  formula.age_days:
+    displayName: Age (days)
+  formula.hydration_age:
+    displayName: Hydrated (days ago)
+  source_type:
+    displayName: Source
+  hydrated_via:
+    displayName: Via
+views:
+  - type: table
+    name: All
+    groupBy:
+      property: formula.folder
+      direction: ASC
+    order:
+      - file.name
+      - title
+      - formula.folder
+      - source_type
+      - hydrated
+      - hydrated_via
+      - created
+      - formula.age_days
+  - type: table
+    name: Unhydrated
+    filters: hydrated != true
+    groupBy:
+      property: formula.folder
+      direction: ASC
+    order:
+      - file.name
+      - title
+      - formula.folder
+      - source_type
+      - url
+      - created
+  - type: table
+    name: By source type
+    groupBy:
+      property: source_type
+      direction: ASC
+    order:
+      - file.name
+      - title
+      - formula.folder
+      - hydrated_via
+      - created
+      - formula.age_days
+  - type: table
+    name: Recent
+    limit: 100
+    order:
+      - file.name
+      - title
+      - formula.folder
+      - source_type
+      - created
+      - formula.age_days
+  - type: table
+    name: Twitter archive
+    filters: source_type == "twitter"
+    groupBy:
+      property: author
+      direction: ASC
+    order:
+      - file.name
+      - author
+      - author_name
+      - title
+      - created
+  - type: cards
+    name: Gallery
+    order:
+      - file.name
+      - title
+      - formula.folder
+      - source_type
+      - created

@@ -20,6 +20,8 @@ Compiled wiki of external signals. Each section synthesizes what the items colle
 
 Raw items live in `library/<collection-slug>/*.md`. Each file has metadata-only frontmatter (`hydrated: false`) until fetched with the hydration script. This index is the synthesis layer — produced by compiling across items, not by listing them.
 
+For a filterable database view of all items (group by collection, filter by hydrated/source/etc.), open [[all|all.base]] in Obsidian. Views: All, Unhydrated, By source type, Recent, Twitter archive, Gallery.
+
 ## Imported collections
 
 Status: **Raindrop + X/Twitter imports complete** — 2026-04-17. 1,498 items across 19 folders, all `hydrated: false`.
