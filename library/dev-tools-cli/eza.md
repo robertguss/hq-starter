@@ -12,7 +12,9 @@ source_domain: "eza.rocks"
 source_type_raindrop: link
 collection: "Dev Tools & CLI"
 collection_id: 69292902
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,582 @@ A modern, maintained replacement for ls, written in rust
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: eza
+
+URL Source: https://eza.rocks/
+
+Published Time: Thu, 26 Jun 2025 04:44:50 GMT
+
+Markdown Content:
+# eza | A modern, maintained replacement for ls, written in rust
+[Skip to the content.](https://eza.rocks/#content)
+# eza
+
+## A modern, maintained replacement for ls, written in rust
+
+[View on GitHub](https://github.com/eza-community/eza)
+[![Image 1: Built with Nix](https://img.shields.io/badge/Built_With-Nix-5277C3.svg?logo=nixos&labelColor=73C3D5)](https://nixos.org/)[![Image 2: Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://eza.rocks/CODE_OF_CONDUCT.md)[![Image 3: Unit tests](https://github.com/eza-community/eza/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/eza-community/eza/actions/workflows/unit-tests.yml)![Image 4: Crates.io](https://img.shields.io/crates/v/eza?link=https%3A%2F%2Fcrates.io%2Fcrates%2Feza)![Image 5: Crates.io](https://img.shields.io/crates/l/eza?link=https%3A%2F%2Fgithub.com%2Feza-community%2Feza%2Fblob%2Fmain%2FLICENCE)
+
+[![Image 6: Gitter](https://img.shields.io/gitter/room/eza-community/eza?logo=element&link=https%3A%2F%2Fapp.gitter.im%2F%23%2Froom%2F%23eza%3Agitter.im&link=Gitter%20matrix%20room%20for%20Eza)](https://matrix.to/#/#eza-community:gitter.im)
+
+![Image 7: Demo of EZA](https://eza.rocks/demo.gif)
+
+* * *
+
+**eza** is a modern, maintained replacement for the venerable file-listing command-line program 
+```plaintext
+ls
+```
+ that ships with Unix and Linux operating systems, giving it more features and better defaults. It uses colours to distinguish file types and metadata. It knows about symlinks, extended attributes, and Git. And it’s **small**, **fast**, and just **one single binary**.
+
+By deliberately making some decisions differently, eza attempts to be a more featureful, more user-friendly version of 
+```plaintext
+ls
+```
+.
+
+* * *
+
+**eza** features not in exa (non-exhaustive):
+
+*   Fixes [“The Grid Bug”](https://github.com/eza-community/eza/issues/66#issuecomment-1656758327) introduced in exa 2021.
+*   Hyperlink support.
+*   Mount point details.
+*   Selinux context output.
+*   Git repo status output.
+*   Human readable relative dates.
+*   Several security fixes.
+*   Support for 
+```plaintext
+bright
+```
+ terminal colours.
+*   Many smaller bug fixes/changes!
+
+* * *
+
+# Try it!
+
+### Nix ❄️
+
+If you already have Nix setup with flake support, you can try out eza with the 
+```plaintext
+nix run
+```
+ command:
+
+```
+nix run github:eza-community/eza
+```
+
+Nix will build eza and run it.
+
+If you want to pass arguments this way, use e.g. 
+```plaintext
+nix run github:eza-community/eza -- -ol
+```
+.
+
+# Installation
+
+eza is available for Windows, macOS, Linux, and BSDs.
+
+### Cargo (crates.io)
+
+![Image 8: Crates.io](https://img.shields.io/crates/v/eza?link=https%3A%2F%2Fcrates.io%2Fcrates%2Feza)
+
+If you already have a Rust environment set up, you can use the 
+```plaintext
+cargo install
+```
+ command:
+
+```
+cargo install eza
+```
+
+Cargo will build the 
+```plaintext
+eza
+```
+ binary and place it in 
+```plaintext
+$HOME/.local/share/cargo/bin/eza
+```
+.
+
+### Cargo (git)
+
+If you already have a Rust environment set up, you can use the 
+```plaintext
+cargo install
+```
+ command in your local clone of the repo:
+
+```
+git clone https://github.com/eza-community/eza.git
+cd eza
+cargo install --path .
+```
+
+Cargo will build the 
+```plaintext
+eza
+```
+ binary and place it in 
+```plaintext
+$HOME/.cargo
+```
+.
+
+### Arch Linux
+
+[![Image 9: Arch Linux package](https://repology.org/badge/version-for-repo/arch/eza.svg)](https://repology.org/project/eza/versions)
+
+Eza is available in the [[extra]](https://archlinux.org/packages/extra/x86_64/eza/) repository of Arch Linux.
+
+```
+pacman -S eza
+```
+
+### Debian and Ubuntu
+
+Eza is available from [deb.gierens.de](http://deb.gierens.de/). The GPG public key is in this repo under [deb.asc](https://eza.rocks/deb.asc).
+
+First make sure you have the 
+```plaintext
+gpg
+```
+ command, and otherwise install it via:
+
+```
+sudo apt update
+sudo apt install -y gpg
+```
+
+Then install eza via:
+
+```
+sudo mkdir -p /etc/apt/keyrings
+wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+sudo apt update
+sudo apt install -y eza
+```
+
+### Nix (Linux, MacOS)
+
+[![Image 10: nixpkgs unstable package](https://repology.org/badge/version-for-repo/nix_unstable/eza.svg)](https://repology.org/project/eza/versions)
+
+Eza is available from [Nixpkgs](https://github.com/NixOS/nixpkgs).
+
+For 
+```plaintext
+nix profile
+```
+ users:
+
+```
+nix profile install nixpkgs#eza
+```
+
+For 
+```plaintext
+nix-env
+```
+ users:
+
+```
+nix-env -i eza
+```
+
+### Gentoo
+
+[![Image 11: Gentoo package](https://repology.org/badge/version-for-repo/gentoo/eza.svg)](https://repology.org/project/eza/versions)
+
+On Gentoo, eza is available as a package [```plaintext sys-apps/eza ```](https://packages.gentoo.org/packages/sys-apps/eza):
+
+```
+emerge --ask sys-apps/eza
+```
+
+### openSUSE
+
+Eza is available at [openSUSE:Factory/eza](https://build.opensuse.org/package/show/openSUSE:Factory/eza):
+
+```
+zypper ar https://download.opensuse.org/tumbleweed/repo/oss/ factory-oss
+zypper in eza
+```
+
+The preceding repository also contains the Bash, Fish, and Zsh completions.
+
+### Fedora
+
+[![Image 12: Fedora 40 package](https://repology.org/badge/version-for-repo/fedora_40/eza.svg)](https://repology.org/project/eza/versions)
+
+On Fedora, the [eza](https://packages.fedoraproject.org/pkgs/rust-eza/eza) package provides eza and its shell completions.
+
+```
+sudo dnf install eza
+```
+
+### Void Linux
+
+[![Image 13: Void Linux package](https://repology.org/badge/version-for-repo/void_x86_64/eza.svg)](https://repology.org/project/eza/versions)
+
+Eza is available as the [eza](https://github.com/void-linux/void-packages/tree/master/srcpkgs/eza) package in the official Void Linux repository.
+
+```
+sudo xbps-install eza
+```
+
+### Brew (MacOS)
+
+[![Image 14: Homebrew package](https://repology.org/badge/version-for-repo/homebrew/eza.svg)](https://repology.org/project/eza/versions)
+
+Eza is available from [Homebrew](https://formulae.brew.sh/formula/eza#default).
+
+To install eza, run:
+
+```
+brew install eza
+```
+
+### MacPorts (macOS)
+
+[![Image 15: MacPorts port](https://repology.org/badge/version-for-repo/macports/eza.svg)](https://repology.org/project/eza/versions)
+
+On macOS, eza is also available via [MacPorts](https://ports.macports.org/port/eza/).
+
+To install eza, run:
+
+```
+sudo port install eza
+```
+
+### Winget (Windows)
+
+[![Image 16: Windows package](https://repology.org/badge/version-for-repo/winget/eza.svg)](https://repology.org/project/eza/versions)
+
+Eza is available on Winget.
+
+To install eza, run:
+
+```
+winget install eza-community.eza
+```
+
+### Scoop (Windows)
+
+[![Image 17: Windows package](https://repology.org/badge/version-for-repo/scoop/eza.svg)](https://repology.org/project/eza/versions)
+
+Eza is available from [Scoop](https://scoop.sh/#/apps?q=eza&id=a52070d25f94bbcc884f80bef53eb47ed1268198).
+
+To install eza, run:
+
+```
+scoop install eza
+```
+
+### FreeBSD
+
+Eza is available as a FreeBSD [port](https://www.freshports.org/sysutils/eza/).
+
+To install eza, run (as root):
+
+```
+pkg install eza
+```
+
+### OpenBSD
+
+Eza is available as an OpenBSD [port](https://cvsweb.openbsd.org/cgi-bin/cvsweb/ports/sysutils/eza/).
+
+To install eza, run:
+
+```
+doas pkg_add eza
+```
+
+### Completions
+
+#### For zsh:
+
+> **Note** Change 
+> ```plaintext
+> ~/.zshrc
+> ```
+>  to your preferred zsh config file.
+
+##### Clone the repository:
+
+```
+git clone https://github.com/eza-community/eza.git
+```
+
+##### Add the completion path to your zsh configuration:
+
+Replace 
+```plaintext
+<path_to_eza>
+```
+ with the actual path where you cloned the 
+```plaintext
+eza
+```
+ repository.
+
+```
+echo 'export FPATH="<path_to_eza>/completions/zsh:$FPATH"' >> ~/.zshrc
+```
+
+##### Reload your zsh configuration:
+
+```
+source ~/.zshrc
+```
+
+* * *
+
+Click sections to expand.
+
+# Command-line options
+
+eza’s options are almost, but not quite, entirely unlike 
+```plaintext
+ls
+```
+’s.
+
+### Display options
+
+*   **-1**, **--oneline**: display one entry per line
+*   **-G**, **--grid**: display entries as a grid (default)
+*   **-l**, **--long**: display extended details and attributes
+*   **-R**, **--recurse**: recurse into directories
+*   **-T**, **--tree**: recurse into directories as a tree
+*   **-x**, **--across**: sort the grid across, rather than downwards
+*   **-F**, **--classify**: display type indicator by file names
+*   **--colo[u]r**: when to use terminal colours
+*   **--colo[u]r-scale**: highlight levels of file sizes distinctly
+*   **--icons**: display icons
+*   **--no-icons**: don’t display icons (always overrides –icons)
+*   **--hyperlink**: display entries as hyperlinks
+*   **-w**, **--width=(columns)**: set screen width in columns
+
+### Filtering options
+
+*   **-a**, **--all**: show hidden and ‘dot’ files
+*   **-d**, **--list-dirs**: list directories like regular files
+*   **-L**, **--level=(depth)**: limit the depth of recursion
+*   **-r**, **--reverse**: reverse the sort order
+*   **-s**, **--sort=(field)**: which field to sort by
+*   **--group-directories-first**: list directories before other files
+*   **-D**, **--only-dirs**: list only directories
+*   **--git-ignore**: ignore files mentioned in 
+```plaintext
+.gitignore
+```
+*   **-I**, **--ignore-glob=(globs)**: glob patterns (pipe-separated) of files to ignore
+
+Pass the 
+```plaintext
+--all
+```
+ option twice to also show the 
+```plaintext
+.
+```
+ and 
+```plaintext
+..
+```
+ directories.
+
+### Long view options
+
+These options are available when running with 
+```plaintext
+--long
+```
+ (
+```plaintext
+-l
+```
+):
+
+*   **-b**, **--binary**: list file sizes with binary prefixes
+*   **-B**, **--bytes**: list file sizes in bytes, without any prefixes
+*   **-g**, **--group**: list each file’s group
+*   **-h**, **--header**: add a header row to each column
+*   **-H**, **--links**: list each file’s number of hard links
+*   **-i**, **--inode**: list each file’s inode number
+*   **-m**, **--modified**: use the modified timestamp field
+*   **-M**, **--mounts**: Show mount details (Linux and MacOS only).
+*   **-S**, **--blocksize**: show size of allocated file system blocks
+*   **-t**, **--time=(field)**: which timestamp field to use
+*   **-u**, **--accessed**: use the accessed timestamp field
+*   **-U**, **--created**: use the created timestamp field
+*   **-X**, **--dereference**: dereference symlinks for file information
+*   **-Z**, **--context**: list each file’s security context
+*   **-@**, **--extended**: list each file’s extended attributes and sizes
+*   **--changed**: use the changed timestamp field
+*   **--git**: list each file’s Git status, if tracked or ignored
+*   **--git-repos**: list each directory’s Git status, if tracked
+*   **--git-repos-no-status**: list whether a directory is a Git repository, but not its status (faster)
+*   **--no-git**: suppress Git status (always overrides 
+```plaintext
+--git
+```
+, 
+```plaintext
+--git-repos
+```
+, 
+```plaintext
+--git-repos-no-status
+```
+)
+*   **--time-style**: how to format timestamps
+*   **--no-permissions**: suppress the permissions field
+*   **-o**, **--octal-permissions**: list each file’s permission in octal format
+*   **--no-filesize**: suppress the filesize field
+*   **--no-user**: suppress the user field
+*   **--no-time**: suppress the time field
+
+Some of the options accept parameters:
+
+*   Valid **--color** options are **always**, **automatic**, and **never**.
+*   Valid sort fields are **accessed**, **changed**, **created**, **extension**, **Extension**, **inode**, **modified**, **name**, **Name**, **size**, **type**, and **none**. Fields starting with a capital letter sort uppercase before lowercase. The modified field has the aliases **date**, **time**, and **newest**, while its reverse has the aliases **age** and **oldest**.
+*   Valid time fields are **modified**, **changed**, **accessed**, and **created**.
+*   Valid time styles are **default**, **iso**, **long-iso**, **full-iso**, and **relative**.
+
+# Development[![Image 18: Rust 1.70.0](https://img.shields.io/badge/rustc-1.70.0+-lightgray.svg)](https://blog.rust-lang.org/2023/06/01/Rust-1.70.0.html)
+
+eza is written in [Rust](https://www.rust-lang.org/). You will need rustc version 1.56.1 or higher. The recommended way to install Rust for development is from the [official download page](https://www.rust-lang.org/tools/install), using rustup.
+
+Once Rust is installed, you can compile eza with Cargo:
+
+```
+cargo build
+cargo test
+```
+
+*   The [just](https://github.com/casey/just) command runner can be used to run some helpful development commands, in a manner similar to 
+```plaintext
+make
+```
+. Run 
+```plaintext
+just --list
+```
+ to get an overview of what’s available.
+
+*   If you are compiling a copy for yourself, be sure to run 
+```plaintext
+cargo build --release
+```
+ or 
+```plaintext
+just build-release
+```
+ to benefit from release-mode optimisations. Copy the resulting binary, which will be in the 
+```plaintext
+target/release
+```
+ directory, into a folder in your 
+```plaintext
+$PATH
+```
+. 
+```plaintext
+/usr/local/bin
+```
+ is usually a good choice.
+
+*   To compile and install the manual pages, you will need [pandoc](https://pandoc.org/). The 
+```plaintext
+just man
+```
+ command will compile the Markdown into manual pages, which it will place in the 
+```plaintext
+target/man
+```
+ directory. To use them, copy them into a directory that 
+```plaintext
+man
+```
+ will read. 
+```plaintext
+/usr/local/share/man
+```
+ is usually a good choice.
+
+*   eza depends on [libgit2](https://github.com/rust-lang/git2-rs) for certain features. If you’re unable to compile libgit2, you can opt out of Git support by running 
+```plaintext
+cargo build --no-default-features
+```
+.
+
+*   If you intend to compile for musl, you will need to use the flag 
+```plaintext
+vendored-openssl
+```
+ if you want to get the Git feature working. The full command is 
+```plaintext
+cargo build --release --target=x86_64-unknown-linux-musl --features vendored-openssl,git
+```
+.
+
+### Developing on Nix (experimental) ❄️
+
+If you have a working Nix installation with flake support, you can use nix to manage your dev environment.
+
+```
+nix develop
+```
+
+The Nix Flake has a few features:
+
+*   Run 
+```plaintext
+nix flake check
+```
+ to run 
+```plaintext
+treefmt
+```
+ on the repo.
+*   Run 
+```plaintext
+nix build
+```
+ and manually test 
+```plaintext
+./results/bin/eza -- [arguments]
+```
+ for easy debugging.
+*   Run 
+```plaintext
+nix build .#test
+```
+ to run 
+```plaintext
+cargo test
+```
+ via the flake.
+*   Run 
+```plaintext
+nix build .#clippy
+```
+ to lint with clippy (still work in progress).
+
+## Star History
+
+[![Image 19: Star History Chart](https://api.star-history.com/svg?repos=eza-community/eza&type=Date)](https://star-history.com/#eza-community/eza&Date)
+
+[eza](https://github.com/eza-community/eza) is maintained by [Christina Sørensen](https://github.com/cafkafk) and many other contributors.This page was generated from [eza.rocks](https://github.com/eza-community/eza.rocks) on github.

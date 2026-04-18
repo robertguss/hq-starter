@@ -12,8 +12,21 @@ source_domain: "ghuntley.com"
 source_type_raindrop: link
 collection: "Dev Tools & CLI"
 collection_id: 69292902
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: 404 — Page not found
+
+URL Source: https://ghuntley.com/author/geoffrey/
+
+Warning: Target URL returned error 404: Not Found
+
+Markdown Content:
+## Page not found
+
+[Go to the front page →](https://ghuntley.com/)

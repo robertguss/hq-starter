@@ -12,7 +12,9 @@ source_domain: "affiliatenetwork.com"
 source_type_raindrop: link
 collection: "Marketing & Business"
 collection_id: 69284316
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,10 @@ The world's fastest growing Affiliate Network! Trusted by thousands of creators 
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: AffiliateNetwork.com
+
+URL Source: https://affiliatenetwork.com/
+
+Markdown Content:

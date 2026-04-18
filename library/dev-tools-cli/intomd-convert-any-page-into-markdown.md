@@ -12,7 +12,9 @@ source_domain: "into.md"
 source_type_raindrop: link
 collection: "Dev Tools & CLI"
 collection_id: 69292902
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-18
+hydrated_via: jina-reader
 ---
 ## Excerpt
 
@@ -20,4 +22,23 @@ Convert any webpage to clean markdown format. Prefix any URL with into.md/ for i
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-18 via jina-reader -->
+
+Title: into.md - Convert any page into markdown
+
+URL Source: https://into.md/?cio_id=co_b6fdxytfgtbht#22&utm_content=AI+Dev+Essentials+#22&utm_medium=email_action&utm_source=customer.io
+
+Markdown Content:
+Convert any webpage into LLM-friendly markdown.
+
+## ## Usage
+
+Prefix the URL you want to convert with [into.md/](https://into.md/)
+
+E.g.: [into.md/https://zod.dev/v4/changelog](https://into.md/https://zod.dev/v4/changelog)
+
+         |                 |
+
+      Add this          Your URL
+
+Or paste the URL below:
