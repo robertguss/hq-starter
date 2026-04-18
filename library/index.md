@@ -514,3 +514,48 @@ Synced via [fieldtheory](https://fieldtheory.dev/cli) (local cache at `~/.ft-boo
 - Agent-and-LLM threads overlap with `ai-tools-news/` and `ai-repos-open-source/` (tweets often preview the tools later written up there).
 - Founder/builder tweets overlap with Marketing & Business on distribution and positioning.
 - Developer-craft tweets overlap with Dev Tools & CLI on tooling discipline.
+
+### AI Repos & Open Source
+
+> [!abstract] Collection overview
+> 318 GitHub repos — the largest technical-tools shelf in the library and the densest representation of the agentic era. Dominated by agent frameworks (harnesses, orchestration, multi-agent teams), agent-as-backend patterns (Agno, AgentField, LlamaIndex), Claude Code skill/plugin ecosystems, RAG & vector infrastructure, and production-grade CLI tooling. The repos trend toward serious craft — battle-tested production frameworks over weekend-project toys, and single-file or minimal-infra deployables over microservice sprawl. Memory, sandboxing, and browser/web access show up as first-class primitives, not afterthoughts.
+
+**Key themes:**
+
+- **Agent frameworks & orchestration** — Multi-agent teams, harnesses, and workflow engines: [[microsoftautogen-a-programming-framework-for-agentic-ai]], [[agno-agiagno-full-stack-framework-for-building-multi-agent-s]], [[hkudsopenharness-openharness-open-agent-harness]], [[jackchen-meopen-multi-agent-production-grade-multi-agent-orc]], [[simstudioaisim-sim-is-an-open-source-ai-agent-workflow-build]], [[openaisymphony-symphony-turns-project-work-into-isolated-aut]]. ^theme-repos-agent-frameworks
+- **Agent-as-backend infrastructure** — Agents treated as composable services with identity, audit, state: [[agent-fieldagentfield-framework-for-ai-backend-build-and-run]], [[agent-fieldswe-af-autonomous-software-engineering-fleet-of-a]], [[bytedancedeer-flow-an-open-source-superagent-harness-that-re]]. ^theme-repos-agent-backend
+- **Claude Code ecosystem** — Skills, plugins, configs, curated lists: [[anthropicsclaude-code-claude-code-is-an-agentic-coding-tool]], [[alirezarezvaniclaude-skills-180-production-ready-skills-plug]], [[hesreallyhimawesome-claude-code-agents-a-curated-list-of-awe]], [[affaan-meverything-claude-code-complete-claude-code-configur]], [[kepanoobsidian-skills-agent-skills-for-obsidian-teach-your-a]]. ^theme-repos-claude-ecosystem
+- **RAG, vector search, and memory** — Retrieval infrastructure and long-term context: [[quivrhqquivr-opiniated-rag-for-integrating-genai-in-your-app]], [[run-llamallama_index-llamaindex-is-the-leading-framework-for]], [[milla-jovovichmempalace-the-highest-scoring-ai-memory-system]], [[memodb-ioacontext-agent-skills-as-a-memory-layer]], [[rohitg00agentmemory-1-persistent-memory-for-ai-coding-agents]], [[khoj-aikhoj-your-ai-second-brain-self-hostable-get-answers-f]]. ^theme-repos-rag-memory
+- **Web interaction for agents** — Browser automation and sandboxed environments: [[browser-usebrowser-use-make-websites-accessible-for-ai-agent]], [[agent-infrasandbox-all-in-one-sandbox-for-ai-agents-that-com]], [[d4vinciscrapling-an-adaptive-web-scraping-framework-that-han]], [[panniantongagent-reach-give-your-ai-agent-eyes-to-see-the-en]]. ^theme-repos-web-interaction
+- **Agentic developer tooling** — Terminal-first pair programmers and code agents: [[aider-aiaider-aider-is-ai-pair-programming-in-your-terminal]], [[charmbraceletcrush-the-ai-coding-agent-for-your-favourite-te]], [[stablyaiorca-orca-is-the-next-gen-ide-for-building-with-codi]], [[openaicodex-plugin-cc-use-codex-from-claude-code-to-review-c]]. ^theme-repos-dev-tooling
+- **Semantic search & knowledge** — Local semantic search CLIs, knowledge platforms: [[dennisonbertramlgrep-local-semantic-code-search-cli-with-mul]], [[forloopcodescontextplus-semantic-intelligence-for-large-scal]], [[hilashcabinet-ai-first-knowledge-base-and-startup-os]]. ^theme-repos-semantic-search
+- **Token optimization & cost** — LLM efficiency and throughput: [[rtk-airtk-cli-proxy-that-reduces-llm-token-consumption-by-60]], [[superlinked-the-vector-computer]]. ^theme-repos-cost-perf
+- **Research automation** — Autonomous research and benchmarking pipelines: [[karpathyautoresearch-ai-agents-running-research-on-single-gp]], [[jhochenbaumpi-autoresearch-studio-dashboard-plan-editor-pr-w]], [[orchestra-researchai-research-skills-comprehensive-open-sour]], [[sakanaaitreequest-a-tree-search-library-with-flexible-api-fo]]. ^theme-repos-research
+- **Minimal single-binary backends** — Embedded realtime infra eliminating microservice overhead: [[pocketbasepocketbase-open-source-realtime-backend-in-1-file]]. ^theme-repos-minimal-backends
+
+**Notable items:**
+
+- [[anthropicsclaude-code-claude-code-is-an-agentic-coding-tool]] — Claude Code itself; the agentic coding tool that anchors this entire ecosystem.
+- [[microsoftautogen-a-programming-framework-for-agentic-ai]] — Microsoft's battle-tested multi-agent programming framework.
+- [[run-llamallama_index-llamaindex-is-the-leading-framework-for]] — Dominant data-indexing framework for agentic retrieval.
+- [[quivrhqquivr-opiniated-rag-for-integrating-genai-in-your-app]] — Production-grade opinionated RAG framework.
+- [[agent-fieldagentfield-framework-for-ai-backend-build-and-run]] — Production control plane: cryptographic identity, audit trails, multi-SDK.
+- [[agno-agiagno-full-stack-framework-for-building-multi-agent-s]] — Full-stack multi-agent framework with memory and reasoning built in.
+- [[aider-aiaider-aider-is-ai-pair-programming-in-your-terminal]] — Mature terminal-based pair programmer; works with Claude and GPT.
+- [[browser-usebrowser-use-make-websites-accessible-for-ai-agent]] — Browser automation making web apps directly accessible to agents.
+- [[pocketbasepocketbase-open-source-realtime-backend-in-1-file]] — Realtime DB, auth, files, admin in a single Go binary.
+- [[rtk-airtk-cli-proxy-that-reduces-llm-token-consumption-by-60]] — Transparent token-cost reduction via compression/caching (Robert's own tool).
+- [[khoj-aikhoj-your-ai-second-brain-self-hostable-get-answers-f]] — Self-hostable AI second-brain with semantic retrieval.
+- [[alirezarezvaniclaude-skills-180-production-ready-skills-plug]] — 180-skill Claude Code skill pack; reference for the ecosystem.
+- [[dennisonbertramlgrep-local-semantic-code-search-cli-with-mul]] — Lightweight semantic code-search CLI using embeddings.
+- [[stablyaiorca-orca-is-the-next-gen-ide-for-building-with-codi]] — IDE designed ground-up for AI-native development.
+- [[karpathyautoresearch-ai-agents-running-research-on-single-gp]] — Karpathy's autoresearch: agents doing research on a single GPU.
+- [[keygraphhqshannon-fully-autonomous-ai-hacker-to-find-actual]] — Autonomous vulnerability-research agent with real findings.
+- [[ag-ui-protocolag-ui-ag-ui-the-agent-user-interaction-protoco]] — Standardized protocol for agent ↔ user interaction.
+- [[djayatillakestudybible-mcp-bible-study-mcp-server-with-greek]] — Bible-study MCP server with Greek/Hebrew support; Robert-adjacent niche.
+
+**Cross-references:**
+
+- Heavy overlap with `ai-tools-news/` (same agentic ecosystem from a news-and-product angle rather than repo angle) and with `dev-tools-cli/` (Claude Code tooling, terminal-first agents).
+- Obsidian-skills repos connect to `stationery-journals/` PKM cluster (Zettelkasten, commonplace, digital-analog hybrid workflows).
+- Bible-study MCP server connects to Theology & Faith's Bible-software theme.
