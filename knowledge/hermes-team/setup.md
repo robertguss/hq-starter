@@ -84,7 +84,18 @@ Option B — vault path in her `config.yaml` / `AGENTS.md`. Use this if you want
 cp ~/Projects/vaults/hq-starter/knowledge/hermes-team/team-agents.md ~/.hermes/team-agents.md
 ```
 
-This is the roster + handoffs + policy + cron file. Update it in the vault, not in-place, so edits stay source-controlled.
+This is the roster + policy + cron file. Update it in the vault, not in-place, so edits stay source-controlled.
+
+## Step 5a - Install the handoff contracts
+
+Machine-parseable contracts for every directed profile pair. Canonical location per Nyk's ops runbook is `~/.hermes/team/handoffs/`.
+
+```bash
+mkdir -p ~/.hermes/team/handoffs
+cp ~/Projects/vaults/hq-starter/knowledge/hermes-team/handoffs/*.md ~/.hermes/team/handoffs/
+```
+
+These files are **documentary for now** — the Hermes harness doesn't yet read them to block malformed handoffs. Enforcement lives in Hermes-the-orchestrator's review step until a harness hook is wired up. See [[handoffs/index]] for the schema.
 
 ## Step 6 - Run each profile
 
@@ -113,7 +124,7 @@ Watch for: does Mira's draft sound like Robert? Does Alan cite everything? Does 
 
 Add to your calendar or a cron:
 
-- **Weekly SOUL.md diff** — compare each profile's `SOUL.md` to the vault version. Any drift gets reviewed.
+- **Weekly SOUL.md diff** — run `python3 knowledge/hermes-team/scripts/soul_drift_check.py` from the vault root. Compares each live `~/.hermes/profiles/<name>/SOUL.md` against `knowledge/hermes-team/profiles/<name>/SOUL.day-one.md`. Exits 1 on any drift and prints a unified diff. Any drift requires either (a) logged approval + baseline update, or (b) revert. See script output for the two commands.
 - **Weekly memory-KPI** — run the loop in `team-agents.md`. Schedule a brain-resolve pass if `stale_notes` exceeds 15% for any profile.
 - **Weekly cron audit** — check `team-agents.md` cron schedule against reality. Stagger any new jobs.
 

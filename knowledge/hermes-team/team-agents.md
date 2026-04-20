@@ -33,12 +33,15 @@ See `profiles/<name>/SOUL.md` for each agent's full operating contract.
 
 ## Handoff rules
 
-- **Alan → Mira**: ranked claims with source URLs and confidence tags. No raw transcripts, no draft prose.
-- **Alan → Turing**: specific techniques, libraries, or patterns to evaluate. Enough context to reproduce.
-- **Turing → Hermes**: feature branch + passing tests + diff summary. Never a direct merge to main.
-- **Turing → Mira**: one-paragraph "what changed and why" only when she's writing about it. No surplus.
-- **Mira → Hermes**: drafted piece + change log. Not a finished publication. Hermes runs final QA.
-- **Hermes → any**: scoped task with acceptance criteria and a failure action.
+Summary below. Full machine-parseable contracts with input/output shapes, failure actions, and verification gates live in [[handoffs/index|handoffs/]]. Those files are the source of truth; the list here is a pointer.
+
+- **Alan → Mira**: ranked claims with source URLs and confidence tags. No raw transcripts, no draft prose. → [[handoffs/alan-to-mira]]
+- **Alan → Turing**: specific techniques, libraries, or patterns to evaluate. Enough context to reproduce. → [[handoffs/alan-to-turing]]
+- **Alan → Hermes**: escalation when uncertainty cannot be resolved. Specific, not generic. → [[handoffs/alan-to-hermes]]
+- **Turing → Hermes**: feature branch + passing tests + diff summary. Never a direct merge to main. → [[handoffs/turing-to-hermes]]
+- **Turing → Mira**: one-paragraph "what changed and why" only when she's writing about it. No surplus. → [[handoffs/turing-to-mira]]
+- **Mira → Hermes**: drafted piece + change log. Not a finished publication. Hermes runs final QA. → [[handoffs/mira-to-hermes]]
+- **Hermes → any**: scoped task with acceptance criteria and a failure action. → [[handoffs/hermes-to-specialist]]
 
 ## Good output per profile
 

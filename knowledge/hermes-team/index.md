@@ -21,11 +21,12 @@ The canonical community build (Neo, @NeoAIForecast, 2026-04-12) is four profiles
 
 ## Files in this folder
 
-- [[team-agents]] - the live team contract: roster, handoffs, policy, cron
+- [[team-agents]] - the live team contract: roster, policy, cron
 - [[setup]] - step-by-step CLI runbook to create the profiles and install the SOUL.md files
-- `profiles/alan/SOUL.md` - Alan's operating contract (research)
-- `profiles/turing/SOUL.md` - Turing's operating contract (engineering)
-- `profiles/mira/SOUL.md` - Mira's operating contract (writer; references [[author-profile]])
+- [[handoffs/index|handoffs/]] - machine-parseable contracts for every directed profile pair
+- `profiles/<name>/SOUL.md` - each specialist's operating contract (identity source of truth)
+- `profiles/<name>/SOUL.day-one.md` - frozen day-one snapshot used by the drift check
+- `scripts/soul_drift_check.py` - diffs live SOUL.md against day-one baseline (run weekly; Python stdlib only)
 
 ## Design decisions
 

@@ -11,6 +11,11 @@
       "sourceType": "github",
       "computedHash": "6d29872a4015fcbb4879fe1bddf1919995c477dcf7248885efb85722f50e6c4d"
     },
+    "grill-me": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "computedHash": "784f0dbb7403b0f00324bce9a112f715342777a0daee7bbb7385f9c6f0a170ea"
+    },
     "json-canvas": {
       "source": "git@github.com:kepano/obsidian-skills.git",
       "sourceType": "git",

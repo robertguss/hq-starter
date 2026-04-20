@@ -35,6 +35,10 @@ knowledge/          distillery/content/
 
 - `distillery/channels/` — channel definitions with voice, format, audience, and tactical rules. These instruct the AI agent on how to draft for each channel.
 
+**Research briefs:**
+
+- `distillery/research/` — Alan (research profile) writes ranked claims here. Mira reads from here before drafting. File-based handoff pattern; see [[research/index|research/]].
+
 The agent acts as the compiler: reads knowledge + library context, follows channel instructions, produces drafts. You review and publish manually.
 
 ## Design Principles
