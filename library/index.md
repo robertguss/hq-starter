@@ -24,21 +24,21 @@ For a filterable database view of all items (group by collection, filter by hydr
 
 ## Imported collections
 
-Status: **Raindrop + X/Twitter imports complete** — 2026-04-17. 1,498 items across 19 folders, all `hydrated: false`.
+Status: **Raindrop + X/Twitter imports complete** — last sync 2026-04-20. 1,540 items across 19 folders (most `hydrated: true`; 5 article URLs still blocked — claude.ai/design, nomic.ai, instasdr, schemaflow, w2prisonbreak).
 
-### From Raindrop (1,269 items, 18 folders)
+### From Raindrop (1,311 items, 18 folders)
 
 | Collection             | Folder                  | Items     |
 | ---------------------- | ----------------------- | --------- |
-| AI Tools & News        | `ai-tools-news/`        | 485       |
-| AI Repos & Open Source | `ai-repos-open-source/` | 322       |
+| AI Tools & News        | `ai-tools-news/`        | 494       |
+| AI Repos & Open Source | `ai-repos-open-source/` | 348       |
 | Marketing & Business   | `marketing-business/`   | 100       |
-| Dev Tools & CLI        | `dev-tools-cli/`        | 72        |
+| Dev Tools & CLI        | `dev-tools-cli/`        | 75        |
 | Stationery & Journals  | `stationery-journals/`  | 56        |
 | Theology & Faith       | `theology-faith/`       | 50        |
 | Personal & Misc        | `personal-misc/`        | 41        |
 | Web Dev                | `web-dev/`              | 40        |
-| Academic & Reference   | `academic-reference/`   | 30        |
+| Academic & Reference   | `academic-reference/`   | 34        |
 | Design & UI            | `design-ui/`            | 18        |
 | Productivity           | `productivity/`         | 15        |
 | Writing & Content      | `writing-content/`      | 15        |
@@ -47,9 +47,11 @@ Status: **Raindrop + X/Twitter imports complete** — 2026-04-17. 1,498 items ac
 | Books & Reading        | `books-reading/`        | 5         |
 | Recipes                | `recipes/`              | 3         |
 | Photography            | `photography/`          | 1         |
-| **Raindrop total**     |                         | **1,269** |
+| **Raindrop total**     |                         | **1,311** |
 
 _Unsorted folder (13 items at import) was rehomed 2026-04-18 across dev-tools-cli, ai-tools-news, ai-repos-open-source, ios-swift, and productivity._
+
+_Re-sync 2026-04-20: 39 new raindrops imported (idempotent via `raindrop_id`). 38 landed in `unsorted/` and were re-homed — 25 to `ai-repos-open-source/` (mostly agent-skill repos, Claude-Code plugins), 8 to `ai-tools-news/` (hosted tools + talks), 3 to `academic-reference/` (arxiv, SSRN), 2 to `dev-tools-cli/` (Kaku terminal, LazyPi). Hydration: 26 GitHub READMEs (github-api), 23 articles (defuddle CLI — Jina replaced due to credit exhaustion), 2 arxiv abstracts._
 
 ### From X/Twitter bookmarks (229 items, 1 folder)
 
@@ -126,6 +128,8 @@ Synced via [fieldtheory](https://fieldtheory.dev/cli) (local cache at `~/.ft-boo
 
 - Classical primary sources overlap with Theology & Faith's patristic theme (Perseus and Christian Classics Ethereal Library both serve canonical-text scholarship).
 - Life-of-the-mind items connect to Books & Reading below (Hamming, Hamerton, Waterfield work in the same intellectual-formation register).
+
+**2026-04-20 additions (+3)** — Two arxiv papers and SSRN: [[bilevel-autoresearch-meta-autoresearching-itself]] (meta-autoresearch — agents optimizing their own research pipelines; connects to the AI Repos autoresearch theme), [[httpsarxivorgpdf251224601v1]], [[ssrn-home-page]].
 
 ### Design & UI
 
@@ -406,6 +410,8 @@ Synced via [fieldtheory](https://fieldtheory.dev/cli) (local cache at `~/.ft-boo
 - [[better-stack-radically-better-observability-stack]] — AI-SRE-flavored observability stack, Datadog alternative.
 - [[announcing-rolldown-vite]] — Rust-native Rollup replacement powering Vite's next generation.
 
+**2026-04-20 additions (+2)** — [[tw93kaku-a-fast-out-of-the-box-terminal-built-for-ai-coding]] (Kaku — fast out-of-the-box terminal purpose-built for AI coding; joins the agent-native terminal trend alongside Warp), [[lazypi-the-fastest-way-to-fall-in-love-with-pi]] (Pi coding-agent setup for the lazy).
+
 **Cross-references:**
 
 - Overlaps with `ai-tools-news/` and `ai-repos-open-source/` on agent frameworks and LLM dev tooling, and with `web-dev/` on build/bundler tooling.
@@ -496,7 +502,7 @@ Synced via [fieldtheory](https://fieldtheory.dev/cli) (local cache at `~/.ft-boo
 ### AI Repos & Open Source
 
 > [!abstract] Collection overview
-> 318 GitHub repos — the largest technical-tools shelf in the library and the densest representation of the agentic era. Dominated by agent frameworks (harnesses, orchestration, multi-agent teams), agent-as-backend patterns (Agno, AgentField, LlamaIndex), Claude Code skill/plugin ecosystems, RAG & vector infrastructure, and production-grade CLI tooling. The repos trend toward serious craft — battle-tested production frameworks over weekend-project toys, and single-file or minimal-infra deployables over microservice sprawl. Memory, sandboxing, and browser/web access show up as first-class primitives, not afterthoughts.
+> 347 GitHub repos — the largest technical-tools shelf in the library and the densest representation of the agentic era. Dominated by agent frameworks (harnesses, orchestration, multi-agent teams), agent-as-backend patterns (Agno, AgentField, LlamaIndex), Claude Code skill/plugin ecosystems, RAG & vector infrastructure, and production-grade CLI tooling. The repos trend toward serious craft — battle-tested production frameworks over weekend-project toys, and single-file or minimal-infra deployables over microservice sprawl. Memory, sandboxing, and browser/web access show up as first-class primitives, not afterthoughts.
 
 **Key themes:**
 
@@ -538,10 +544,19 @@ Synced via [fieldtheory](https://fieldtheory.dev/cli) (local cache at `~/.ft-boo
 - Obsidian-skills repos connect to `stationery-journals/` PKM cluster (Zettelkasten, commonplace, digital-analog hybrid workflows).
 - Bible-study MCP server connects to Theology & Faith's Bible-software theme.
 
+**2026-04-20 additions (+25)** — Dominated by the skill-pack explosion: curated libraries of portable, composable agent skills are now the first-order artifact of the Claude Code ecosystem.
+
+- **Skill packs & curated collections** — [[jeffallanclaude-skills-66-specialized-skills-for-full-stack]] (66 full-stack skills), [[mxyhiok-skills-curated-ai-coding-agent-skills-and-agentsmd-p]] (curated playbooks across Claude Code/Codex/Cursor/OpenClaw), [[rohitg00skillkit-supercharge-ai-coding-agents-with-portable]] (portable skill translator across 40+ tools), [[honnibalclaude-skills-claude-skills-im-experimenting-with-pl]] (spaCy author's experiments), [[jimliubaoyu-skills]], [[androidskills]] (official Android team skills), [[omer-metinskills-for-antigravity]], [[intertwinedspy-agent-skills-dspy-31x-agent-skills-validated]] (DSPy-validated with GEPA optimization on free OpenRouter models).
+- **Specialized single-domain skills** — [[meodaiskillcolor-expert-agent-skill-for-color-science-expert]] (color science, APCA/WCAG accessibility), [[leonxlnxtaste-skill-taste-skill-high-agency-frontend-gives-y]] (frontend taste — anti-slop visual judgment), [[conorbronsdonavoid-ai-writing-skill-that-audits-and-rewrites]] (audits and rewrites AI-patterned prose).
+- **Agent loops, memory, and always-on runtime** — [[lnikellloopndroll-keep-codex-running-forever]] (continuous-Codex loop), [[kunchenguidgnhf-before-i-go-to-bed-i-tell-my-agents-good-nig]] (overnight agent handoff workflow), [[tschonleberbrainctl-a-cognitive-memory-system-for-ai-agents]] (SQLite-single-file cognitive memory + MCP).
+- **Browser and app surface automation** — [[browser-usebrowser-harness-self-healing-browser-harness-that]] (self-healing harness for arbitrary task completion), [[hacker-valley-mediainterceptor-agent-driven-chrome-extension]] (Chrome-extension CLI control), [[revylaiapp-explorer-map-every-screen-and-user-path-in-a-mobi]] (mobile-app navigation mapping).
+- **Voice, UX, productivity fronts** — [[jamiepinevoicebox-the-open-source-voice-synthesis-studio]] (open voice-synthesis studio), [[dennisonbertramux-toolkit-claude-code-plugin-ux-story-genera]] (Claude Code UX-story + browser-test plugin), [[gradio-apptrackio-a-lightweight-local-first-and-experiment-t]] (local-first HuggingFace experiment tracker).
+- **Curriculum, pair-programming stacks** — [[rohitg00ai-engineering-from-scratch-learn-it-build-it-ship-i]] (build-and-ship curriculum, 4.3k stars), [[ykdojoclaude-code-tips-45-tips-for-getting-the-most-out-of-c]] (45 Claude Code tips — status lines, system-prompt trimming, Gemini-CLI as minion, self-containerization), [[alexzhang13rlm-general-plug-and-play-inference-library-for-r]] (Recursive Language Models inference lib), [[edxethpi-subagents]], [[robzolkoslazypi-pi-coding-agent-setup-for-the-lazy]].
+
 ### AI Tools & News
 
 > [!abstract] Collection overview
-> 482 items — the largest shelf in the library, a working archive of the agentic-AI news/product/essay cycle. Recurring through every slice: agent frameworks, harnesses-as-a-service (HaaS), Claude Code SDK and skill ecosystems, agent-as-backend platforms, RAG/memory as table-stakes infrastructure, and the "dark factory" pattern where humans specify intent and agents autonomously iterate. Developer environments are being reconfigured around agents (Warp, Tembo, sidecar IDEs), not retrofitted. Differentiation has moved from base models to orchestration, skills, and distribution.
+> 494 items — the largest shelf in the library, a working archive of the agentic-AI news/product/essay cycle. Recurring through every slice: agent frameworks, harnesses-as-a-service (HaaS), Claude Code SDK and skill ecosystems, agent-as-backend platforms, RAG/memory as table-stakes infrastructure, and the "dark factory" pattern where humans specify intent and agents autonomously iterate. Developer environments are being reconfigured around agents (Warp, Tembo, sidecar IDEs), not retrofitted. Differentiation has moved from base models to orchestration, skills, and distribution.
 
 **Key themes:**
 
@@ -583,3 +598,15 @@ Synced via [fieldtheory](https://fieldtheory.dev/cli) (local cache at `~/.ft-boo
 - Claude Code ecosystem items connect to Dev Tools & CLI (terminal-first agents, Claude Code configs).
 - Workforce-agents theme overlaps with Marketing & Business (agents for sales, outreach, content).
 - iOS-specific agent tools connect to iOS & Swift.
+
+**2026-04-20 additions (+9)** — Hosted-tool surface continues to thicken around agentic memory, knowledge, and education:
+
+- [[cabinet-free-open-source-ai-first-knowledge-base]] — Open-source AI-first knowledge base; complements [[hilashcabinet-ai-first-knowledge-base-and-startup-os]].
+- [[deepwiki-ai-documentation-you-can-talk-to-for-every-repo]] — Talkable AI documentation layer over any GitHub repo.
+- [[agent-flywheel-ai-agents-coding-for-you]] — Hosted agentic-coding service; extends the "dark factory" pattern toward SaaS.
+- [[how-i-created-openclaw-the-breakthrough-ai-agent]] — Peter Steinberger TED talk on the OpenClaw origin story (reframes the solo-builder → agent-team narrative).
+- [[introduction20to20codex]] — OpenAI Academy's formal Codex intro; signals education-layer maturing beyond blog posts.
+- [[ykdojoclaude-code-tips-45-tips-for-getting-the-most-out-of-c]] (filed under repos) and [[unslopify-workflwow-for-repoprompt]] — Tips/workflow literature proliferating around Claude Code and RepoPrompt.
+- [[rlm-dspy]] — DSPy's RLM (Recursive Language Models) module docs; signals RLM pattern entering mainstream frameworks.
+- [[index-1088468798]] — "Building with LLMs" PyCon 2025 session (Simon Willison's tutorial).
+- [[claude-design]] — Claude Design reference (currently gated, hydration blocked).

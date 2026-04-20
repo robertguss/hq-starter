@@ -241,6 +241,35 @@ def fetch_article_jina(url: str, token: str | None, max_retries: int = 3):
             raise
 
 
+# ---------- Article fetcher (Defuddle CLI) ----------
+
+
+def fetch_article_defuddle(url: str, token: str | None = None, timeout: int = 120):
+    import subprocess
+
+    try:
+        r = subprocess.run(
+            ["defuddle", "parse", url, "--md"],
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+        )
+    except FileNotFoundError:
+        raise RuntimeError(
+            "defuddle CLI not installed. Run: npm install -g defuddle-cli"
+        )
+    except subprocess.TimeoutExpired:
+        raise TimeoutError(f"defuddle timed out for {url}")
+    if r.returncode != 0:
+        err = (r.stderr or r.stdout or "").strip().splitlines()
+        tail = " | ".join(err[-3:]) if err else "no output"
+        raise RuntimeError(f"defuddle rc={r.returncode}: {tail}")
+    body = (r.stdout or "").strip()
+    if not body:
+        raise RuntimeError("defuddle returned empty output")
+    return body, {"bytes": len(body)}
+
+
 # ---------- arxiv fetcher (native API) ----------
 
 ARXIV_ID_PAT = re.compile(r"(\d{4}\.\d{4,5})(v\d+)?")
@@ -470,7 +499,7 @@ def collect_candidates(type_filter: str):
         if type_filter == "github":
             if extract_github_repo(url):
                 out.append(md)
-        elif type_filter == "article":
+        elif type_filter == "article" or type_filter == "defuddle":
             # Skip GitHub (handled elsewhere) + excluded hosts
             if extract_github_repo(url):
                 continue
@@ -499,7 +528,7 @@ def main():
     p.add_argument(
         "--type",
         required=True,
-        choices=["github", "article", "twitter", "arxiv", "social", "pdf"],
+        choices=["github", "article", "defuddle", "twitter", "arxiv", "social", "pdf"],
         help="Fetcher tier",
     )
     p.add_argument(
@@ -539,6 +568,9 @@ def main():
             )
         fetcher = lambda url: fetch_article_jina(url, jina_token)
         fetcher_name = "jina-reader"
+    elif args.type == "defuddle":
+        fetcher = lambda url: fetch_article_defuddle(url)
+        fetcher_name = "defuddle"
     elif args.type == "twitter":
         fetcher = lambda url: fetch_twitter(url)
         fetcher_name = "fieldtheory-cache"
