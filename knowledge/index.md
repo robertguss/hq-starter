@@ -21,4 +21,8 @@ title: Knowledge
 - [[sentinel]] — Premium iOS ad blocker on NEURLFilter API (iOS 26+). Core differentiator: coexists with active VPN.
 - [[pyloop]] — Python-native coding agent harness. AST-editing, TDD-enforced, OSS-model optimized. White space vs Ralph/Ralphy.
 
+## AI Agents
+
+- [[hermes-team/index|Hermes Team]] — Three-specialist Hermes setup (Alan/Turing/Mira) for research, engineering, and writing. Main Hermes stays as orchestrator.
+
 <!-- Add knowledge articles here grouped by topic as you accumulate them. -->
