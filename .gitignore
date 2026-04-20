@@ -6,3 +6,7 @@ __pycache__/
 *.pyc
 .tools/.raindrop.env
 
+
+# MemPalace per-project files (issue #185)
+mempalace.yaml
+entities.json

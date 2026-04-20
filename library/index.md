@@ -24,7 +24,7 @@ For a filterable database view of all items (group by collection, filter by hydr
 
 ## Imported collections
 
-Status: **Raindrop + X/Twitter imports complete** — last sync 2026-04-20. 1,535 items across 19 folders. All remaining items hydrated (5 site-blocked items deleted 2026-04-20).
+Status: **Raindrop + X/Twitter imports complete** — last sync 2026-04-20. 1,565 items across 19 folders. All remaining items hydrated (5 site-blocked items deleted 2026-04-20).
 
 ### From Raindrop (1,306 items, 18 folders)
 
@@ -53,14 +53,16 @@ _Unsorted folder (13 items at import) was rehomed 2026-04-18 across dev-tools-cl
 
 _Re-sync 2026-04-20: 39 new raindrops imported (idempotent via `raindrop_id`). 38 landed in `unsorted/` and were re-homed — 25 to `ai-repos-open-source/` (mostly agent-skill repos, Claude-Code plugins), 8 to `ai-tools-news/` (hosted tools + talks), 3 to `academic-reference/` (arxiv, SSRN), 2 to `dev-tools-cli/` (Kaku terminal, LazyPi). Hydration: 26 GitHub READMEs (github-api), 23 articles (defuddle CLI — Jina replaced due to credit exhaustion), 2 arxiv abstracts. Post-hydration cleanup: deleted 5 items whose URLs couldn't be fetched by any scraper (JS-heavy SPAs or aggressive bot-blocking) — claude-design, nomic-ai, instasdr, schemaflow, brian-oneill._
 
-### From X/Twitter bookmarks (229 items, 1 folder)
+### From X/Twitter bookmarks (259 items, 1 folder)
 
 Synced via [fieldtheory](https://fieldtheory.dev/cli) (local cache at `~/.ft-bookmarks/bookmarks.jsonl`). Re-sync with `fieldtheory sync --yes` then re-run `python .tools/x_import.py` — importer is idempotent on `tweet_id`.
 
 | Collection  | Folder         | Items   |
 | ----------- | -------------- | ------- |
-| X/Twitter   | `x-bookmarks/` | 229     |
-| **X total** |                | **229** |
+| X/Twitter   | `x-bookmarks/` | 259     |
+| **X total** |                | **259** |
+
+_Re-sync 2026-04-20 (afternoon): 30 new X bookmarks imported (7 fresh from `ft sync`, 23 backlog). All hydrated via `hydrate.py --type twitter` (fieldtheory-cache). Dominant themes in the batch: coding-agent workflows (Codex, Claude Code, Hermes/OpenClaw autoresearch), Claude Design + video generation (Hyperframes), terminal tooling (zoxide, fff, skills), and a cybersecurity cluster (Google Workspace compromise forensics, DeepMind cyber paper). Outliers: at-home genome sequencing, ASO playbook, Mac cleaner utilities._
 
 ## Synthesis
 
@@ -453,7 +455,7 @@ Synced via [fieldtheory](https://fieldtheory.dev/cli) (local cache at `~/.ft-boo
 ### X/Twitter Bookmarks
 
 > [!abstract] Collection overview
-> 229 saved tweets forming a working reference archive — not ephemera. Dominated by AI agents, LLM capabilities, and developer craft, with recurring founder/solo-builder voices on distribution-in-the-agentic-era. Robert uses X bookmarks deliberately: the saved tweets are the ones that clarified a hard problem (agent design, prompt engineering, system architecture) or captured a sharp piece of founder reasoning worth returning to. High signal-to-noise compared to a typical bookmark dump.
+> 259 saved tweets forming a working reference archive — not ephemera. Dominated by AI agents, LLM capabilities, and developer craft, with recurring founder/solo-builder voices on distribution-in-the-agentic-era. Robert uses X bookmarks deliberately: the saved tweets are the ones that clarified a hard problem (agent design, prompt engineering, system architecture) or captured a sharp piece of founder reasoning worth returning to. High signal-to-noise compared to a typical bookmark dump.
 
 **Key themes:**
 
@@ -493,11 +495,20 @@ Synced via [fieldtheory](https://fieldtheory.dev/cli) (local cache at `~/.ft-boo
 - [[cqwww-the-best-book-for-2026-is-available-as-an-open-sou]] — Open-source reference worth bookmarking.
 - [[agentwrapper-85733945]] — Agent framework and architecture reference.
 
+**2026-04-20 addition (+30 items):** The afternoon batch deepens existing themes and surfaces two adjacencies worth naming:
+
+- **Claude Design + video generation** — [[viktoroddy-claude-design-is-insane-just-recorded-a-18-min-tut]], [[nateherk-been-getting-some-crazy-good-video-outputs-lately]], [[liu8in-this-is-insane-in-a-good-way-now-claudeais-got-des]] — Claude Design lands as a serious creative surface; pairs with Hyperframes for animated outputs. New sub-theme under AI agents.
+- **Agentic coding workflows mature** — [[iruletheworldmo-a-masterclass-in-coding-agents-from-the-head-of-an]] (Anthropic masterclass), [[rileybrown-my-codex-setup-cannot-be-beat-gt-codex-54-xhigh-fo]] (Codex 5.4 xhigh + Opus 4.7 split), [[joeldeteves-not-enough-of-you-are-using-autoresearch-in-your-o]] (autoresearch in Hermes/OpenClaw), [[benburtenshaw-heres-a-hands-on-guide-to-setup-multi-agent-autore]] (Karpathy-style multi-agent autoresearch), [[nousresearch-the-hermes-agent-creative-hackathon-starts-now-16]] (Hermes hackathon). Extends `^theme-x-agents` — the playbooks are now specific (which model for which task) rather than aspirational.
+- **Cybersecurity enters the archive** — [[brendanfalk-to-check-if-your-google-workspace-has-been-comprom]] (Workspace compromise forensics), [[howtoai-google-deepmind-just-dropped-the-most-terrifying-c]] (DeepMind cyber paper). New theme; may warrant its own ^theme-x-security anchor if the cluster grows.
+- **Terminal + dev-craft adjacency** — [[heynavtoor-10-terminal-tools-that-make-you-10x-faster-in-2026]], [[emilpriver-alright-my-go-to-extensions-are-pi-fff-uses-fff-by]], [[jakubkrehel-make-interfaces-feel-better-npx-skills-add-jakubkr]] — extends `^theme-x-dev-craft` and cross-references `ai-repos-open-source/` skill-pack economy.
+- **Knowledge-workflow tooling** — [[omarsar0-yt-podcast-llm-artifact-this-is-now-my-favorite-wa]] (YT → LLM artifact). Reinforces `^theme-x-llm-capabilities`.
+
 **Cross-references:**
 
 - Agent-and-LLM threads overlap with `ai-tools-news/` and `ai-repos-open-source/` (tweets often preview the tools later written up there).
 - Founder/builder tweets overlap with Marketing & Business on distribution and positioning.
 - Developer-craft tweets overlap with Dev Tools & CLI on tooling discipline.
+- Claude Design / video-generation items cross-reference the Claude Code ecosystem cluster in `ai-repos-open-source/`.
 
 ### AI Repos & Open Source
 
