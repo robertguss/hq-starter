@@ -24,15 +24,15 @@ For a filterable database view of all items (group by collection, filter by hydr
 
 ## Imported collections
 
-Status: **Raindrop + X/Twitter imports complete** — last sync 2026-04-20. 1,540 items across 19 folders (most `hydrated: true`; 5 article URLs still blocked — claude.ai/design, nomic.ai, instasdr, schemaflow, w2prisonbreak).
+Status: **Raindrop + X/Twitter imports complete** — last sync 2026-04-20. 1,535 items across 19 folders. All remaining items hydrated (5 site-blocked items deleted 2026-04-20).
 
-### From Raindrop (1,311 items, 18 folders)
+### From Raindrop (1,306 items, 18 folders)
 
 | Collection             | Folder                  | Items     |
 | ---------------------- | ----------------------- | --------- |
-| AI Tools & News        | `ai-tools-news/`        | 494       |
+| AI Tools & News        | `ai-tools-news/`        | 490       |
 | AI Repos & Open Source | `ai-repos-open-source/` | 348       |
-| Marketing & Business   | `marketing-business/`   | 100       |
+| Marketing & Business   | `marketing-business/`   | 99        |
 | Dev Tools & CLI        | `dev-tools-cli/`        | 75        |
 | Stationery & Journals  | `stationery-journals/`  | 56        |
 | Theology & Faith       | `theology-faith/`       | 50        |
@@ -47,11 +47,11 @@ Status: **Raindrop + X/Twitter imports complete** — last sync 2026-04-20. 1,54
 | Books & Reading        | `books-reading/`        | 5         |
 | Recipes                | `recipes/`              | 3         |
 | Photography            | `photography/`          | 1         |
-| **Raindrop total**     |                         | **1,311** |
+| **Raindrop total**     |                         | **1,306** |
 
 _Unsorted folder (13 items at import) was rehomed 2026-04-18 across dev-tools-cli, ai-tools-news, ai-repos-open-source, ios-swift, and productivity._
 
-_Re-sync 2026-04-20: 39 new raindrops imported (idempotent via `raindrop_id`). 38 landed in `unsorted/` and were re-homed — 25 to `ai-repos-open-source/` (mostly agent-skill repos, Claude-Code plugins), 8 to `ai-tools-news/` (hosted tools + talks), 3 to `academic-reference/` (arxiv, SSRN), 2 to `dev-tools-cli/` (Kaku terminal, LazyPi). Hydration: 26 GitHub READMEs (github-api), 23 articles (defuddle CLI — Jina replaced due to credit exhaustion), 2 arxiv abstracts._
+_Re-sync 2026-04-20: 39 new raindrops imported (idempotent via `raindrop_id`). 38 landed in `unsorted/` and were re-homed — 25 to `ai-repos-open-source/` (mostly agent-skill repos, Claude-Code plugins), 8 to `ai-tools-news/` (hosted tools + talks), 3 to `academic-reference/` (arxiv, SSRN), 2 to `dev-tools-cli/` (Kaku terminal, LazyPi). Hydration: 26 GitHub READMEs (github-api), 23 articles (defuddle CLI — Jina replaced due to credit exhaustion), 2 arxiv abstracts. Post-hydration cleanup: deleted 5 items whose URLs couldn't be fetched by any scraper (JS-heavy SPAs or aggressive bot-blocking) — claude-design, nomic-ai, instasdr, schemaflow, brian-oneill._
 
 ### From X/Twitter bookmarks (229 items, 1 folder)
 
@@ -599,7 +599,7 @@ Synced via [fieldtheory](https://fieldtheory.dev/cli) (local cache at `~/.ft-boo
 - Workforce-agents theme overlaps with Marketing & Business (agents for sales, outreach, content).
 - iOS-specific agent tools connect to iOS & Swift.
 
-**2026-04-20 additions (+9)** — Hosted-tool surface continues to thicken around agentic memory, knowledge, and education:
+**2026-04-20 additions (+8)** — Hosted-tool surface continues to thicken around agentic memory, knowledge, and education:
 
 - [[cabinet-free-open-source-ai-first-knowledge-base]] — Open-source AI-first knowledge base; complements [[hilashcabinet-ai-first-knowledge-base-and-startup-os]].
 - [[deepwiki-ai-documentation-you-can-talk-to-for-every-repo]] — Talkable AI documentation layer over any GitHub repo.
@@ -609,4 +609,3 @@ Synced via [fieldtheory](https://fieldtheory.dev/cli) (local cache at `~/.ft-boo
 - [[ykdojoclaude-code-tips-45-tips-for-getting-the-most-out-of-c]] (filed under repos) and [[unslopify-workflwow-for-repoprompt]] — Tips/workflow literature proliferating around Claude Code and RepoPrompt.
 - [[rlm-dspy]] — DSPy's RLM (Recursive Language Models) module docs; signals RLM pattern entering mainstream frameworks.
 - [[index-1088468798]] — "Building with LLMs" PyCon 2025 session (Simon Willison's tutorial).
-- [[claude-design]] — Claude Design reference (currently gated, hydration blocked).
