@@ -11,8 +11,8 @@ title: Log
 <!-- - [[2026-03-23-business-model]] — description of decision -->
 
 ## Observations
-<!-- Notable observations, e.g.: -->
-<!-- - [[2026-04-01-market-shift]] — description -->
+- [[2026-04-20-repo-audit]] — one-page audit of the HQ vault: strengths, gaps, risks, and recommended next steps
+- [[2026-04-20-repo-audit-action-checklist]] — prioritized checklist to turn the audit into concrete execution
 
 ## Meeting Notes
 <!-- Meeting summaries, e.g.: -->
