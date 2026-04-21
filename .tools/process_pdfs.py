@@ -179,6 +179,16 @@ def build_marker_cmd(
     return cmd, redacted
 
 
+# Patterns in marker's stderr that indicate silent LLM degradation
+# (marker exits 0 and produces output, but the LLM enhancement didn't happen).
+LLM_FAILURE_PAT = re.compile(
+    r"(Ollama inference failed|LLM inference failed|"
+    r"LLM did not return a valid response|Gemini inference failed|"
+    r"Claude inference failed|OpenAI inference failed)",
+    re.IGNORECASE,
+)
+
+
 def run_marker(
     pdf_path: Path,
     work_dir: Path,
@@ -186,7 +196,13 @@ def run_marker(
     llm_service: str | None = None,
     ollama_model: str | None = None,
     ollama_url: str | None = None,
-) -> Path:
+) -> tuple[Path, bool]:
+    """Run marker and return (md_path, llm_failed).
+
+    llm_failed is True when use_llm was requested but marker's stderr
+    reported LLM/inference failures — meaning the extraction silently fell
+    back to non-LLM processing and the caller should label output accordingly.
+    """
     cmd, redacted = build_marker_cmd(
         pdf_path, work_dir, use_llm, llm_service, ollama_model, ollama_url
     )
@@ -195,26 +211,45 @@ def run_marker(
     logger.info("─" * 60)
 
     t0 = time.monotonic()
-    # Inherit stdout/stderr so marker's tqdm progress bars render live.
-    result = subprocess.run(cmd)
+    # Tee combined stdout+stderr: live to our stderr (so tqdm bars render)
+    # while also capturing bytes for post-run pattern scanning.
+    proc = subprocess.Popen(
+        cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=0
+    )
+    captured = bytearray()
+    assert proc.stdout is not None
+    while True:
+        chunk = proc.stdout.read(1)
+        if not chunk:
+            break
+        sys.stderr.buffer.write(chunk)
+        sys.stderr.buffer.flush()
+        captured.extend(chunk)
+    rc = proc.wait()
     elapsed = time.monotonic() - t0
 
+    log_text = captured.decode("utf-8", errors="replace")
+    llm_failed = bool(use_llm and LLM_FAILURE_PAT.search(log_text))
+
     logger.info("─" * 60)
-    if result.returncode != 0:
-        logger.error(
-            f"marker_single exited with code {result.returncode} after {elapsed:.1f}s"
-        )
-        raise RuntimeError(f"marker_single failed (exit {result.returncode})")
+    if rc != 0:
+        logger.error(f"marker_single exited with code {rc} after {elapsed:.1f}s")
+        raise RuntimeError(f"marker_single failed (exit {rc})")
     logger.success(f"marker finished in {elapsed:.1f}s")
+    if llm_failed:
+        logger.warning(
+            "LLM inference failures detected in marker output — "
+            "output reflects non-LLM fallback; hydrated_via will record this."
+        )
 
     stem = pdf_path.stem
     candidate = work_dir / stem / f"{stem}.md"
     if candidate.exists():
         logger.debug(f"Found marker output: {candidate}")
-        return candidate
+        return candidate, llm_failed
     for md in work_dir.rglob("*.md"):
         logger.debug(f"Found marker output (fallback): {md}")
-        return md
+        return md, llm_failed
     raise RuntimeError(f"marker produced no .md in {work_dir}")
 
 
@@ -279,6 +314,8 @@ def extract_title(body: str, fallback: str) -> str:
 def build_frontmatter(*, title: str, source_pdf: str, via: str) -> str:
     today = date.today().isoformat()
     safe_title = title.replace('"', "'")
+    # Quote via since it may contain colons/spaces/parens (e.g. "... (LLM-failed)")
+    safe_via = via.replace('"', "'")
     return (
         "---\n"
         "tags:\n"
@@ -293,7 +330,7 @@ def build_frontmatter(*, title: str, source_pdf: str, via: str) -> str:
         'devonthink_url: ""\n'
         "hydrated: true\n"
         f"hydrated_at: {today}\n"
-        f"hydrated_via: {via}\n"
+        f'hydrated_via: "{safe_via}"\n'
         "---\n\n"
     )
 
@@ -331,7 +368,7 @@ def process_pdf(
         work = Path(td)
         logger.debug(f"Work dir: {work}")
         if extractor == "marker":
-            md_path = run_marker(
+            md_path, llm_failed = run_marker(
                 pdf,
                 work,
                 use_llm=use_llm,
@@ -361,6 +398,9 @@ def process_pdf(
             via = f"{extractor}+llm-ollama-{ollama_model}"
         else:
             via = f"{extractor}+llm-{service}"
+        if llm_failed:
+            via = f"{via} (LLM-failed; marker fell back to non-LLM processing)"
+            info["llm_failed"] = True
     fm = build_frontmatter(title=title, source_pdf=pdf.name, via=via)
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -465,7 +505,7 @@ def main() -> None:
     logger.info(f"Found {len(pdfs)} PDF(s) in {INBOX.relative_to(VAULT_ROOT)}/")
 
     t_total = time.monotonic()
-    processed = skipped = errored = 0
+    processed = skipped = errored = llm_failed_count = 0
     for i, pdf in enumerate(pdfs, start=1):
         logger.info("")
         logger.info(f"═══ [{i}/{len(pdfs)}] {pdf.name} ═══")
@@ -483,6 +523,8 @@ def main() -> None:
             )
             if info["status"] == "processed":
                 processed += 1
+                if info.get("llm_failed"):
+                    llm_failed_count += 1
             elif info["status"] == "skipped_exists":
                 skipped += 1
         except Exception as e:
@@ -492,10 +534,13 @@ def main() -> None:
     elapsed = time.monotonic() - t_total
     logger.info("")
     logger.info("═" * 60)
-    logger.success(
+    summary = (
         f"Done in {elapsed:.1f}s — {processed} processed, "
         f"{skipped} skipped, {errored} errored"
     )
+    if llm_failed_count:
+        summary += f" ({llm_failed_count} with LLM-failed fallback)"
+    logger.success(summary)
 
 
 if __name__ == "__main__":
