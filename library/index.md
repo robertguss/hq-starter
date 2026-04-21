@@ -112,7 +112,7 @@ _Re-sync 2026-04-20 (afternoon): 30 new X bookmarks imported (7 fresh from `ft s
 - **Computational thinking as craft** — Language design and type theory as disciplines: [[contents-build-your-own-lisp]], [[parse-dont-validate]], [[notes-on-data-structures-and-programming-techniques-cpsc-223]], [[how-to-c-as-of-2016]], [[ask-hn-best-resources-to-learn-c-programming-hacker-news]]. ^theme-computation
 - **Learning & cognition** — Metacognition and study technique: [[mental-models-how-understanding-the-mind-can-transform-how-y]], [[learn-how-to-learn]], [[the-overnight-student-third-revision-dr-michael-l-jones]], [[uncommon-sense-teaching-teaching-online]]. ^theme-learning-science
 - **Philosophy of thought** — Principles of clear thinking: [[chestertons-fence-a-lesson-in-thinking]], [[einstein-combinatory-play-is-the-essential-feature-of-though]], [[the-w-edward-deming-institut]]. ^theme-philosophy-thinking
-- **AI & data literacy** — Modern technical literacy grounded in the broader scholarly toolkit: [[foundations-of-generative-ai]], [[data-science-harvard-university]], [[bilevel-autoresearch-meta-autoresearching-itself]] (arxiv — meta-autoresearch: agents optimizing their own research pipelines), [[httpsarxivorgpdf251224601v1]]. ^theme-ai-data
+- **AI & data literacy** — Modern technical literacy grounded in the broader scholarly toolkit, increasingly weighted toward primary-source agent-architecture research: [[foundations-of-generative-ai]], [[data-science-harvard-university]], [[bilevel-autoresearch-meta-autoresearching-itself]] (arxiv — meta-autoresearch: agents optimizing their own research pipelines), [[2604-17091v1]] (arxiv — GenericAgent's case for **contextual information density** as the governing constraint on long-horizon agents, operationalized as four interlocking mechanisms: minimal atomic tools, hierarchical on-demand memory, self-evolution of trajectories into reusable SOPs and code, and active context truncation+compression), [[httpsarxivorgpdf251224601v1]]. ^theme-ai-data
 - **Scholarly infrastructure portals** — Gateway services to research networks: [[ssrn-home-page]] (Social Science Research Network's preprint archive — extends the citation/research-tools theme into social sciences and economics). ^theme-scholarly-portals
 
 **Notable items:**
@@ -126,12 +126,14 @@ _Re-sync 2026-04-20 (afternoon): 30 new X bookmarks imported (7 fresh from `ft s
 - [[httpsorbisstanfordedu]] — Stanford's ORBIS geospatial model of Roman networks — premodern logistics as scholarship.
 - [[mark-bernstein]] — Hypertext theorist and writer bridging classical rhetoric to digital narrative.
 - [[the-w-edward-deming-institut]] — Quality improvement and systems thinking applied across disciplines.
+- [[2604-17091v1]] — GenericAgent paper: argues long-horizon agent performance is governed not by context length but by **contextual information density** — how much decision-relevant signal a finite context actually carries. Frames completeness vs conciseness as the primary architectural tension and proposes self-evolution (distilling verified trajectories into SOPs and executable code) as the mechanism that compounds capability across sessions rather than discarding it with each context expiration.
 
 **Cross-references:**
 
 - Classical primary sources overlap with Theology & Faith's patristic theme (Perseus and Christian Classics Ethereal Library both serve canonical-text scholarship).
 - Life-of-the-mind items connect to Books & Reading below (Hamming, Hamerton, Waterfield work in the same intellectual-formation register).
 - Autonomous-research arxiv items link to the research-automation theme in AI Repos & Open Source (`karpathy/autoresearch`, `jhochenbaum/pi-autoresearch-studio`, `alexzhang13/rlm`) and to `knowledge/autoresearch/` project state — the academic lineage behind the agent-harness research-infra work.
+- [[2604-17091v1]] anchors a cluster connecting Academic & Reference to three practitioner-side threads elsewhere in the library: agent frameworks and orchestration in AI Repos & Open Source, persistent agent memory ([[retaindb-persistent-memory-for-ai-agents-sota-on-longmemeval]], [[tschonleberbrainctl-a-cognitive-memory-system-for-ai-agents]], [[milla-jovovichmempalace-the-highest-scoring-ai-memory-system]]), and the skill-pack economy. Its "self-evolution of trajectories into reusable SOPs and code" formalizes what the skill-pack market is already shipping in product form. Its "contextual information density" thesis gives the context-engineering essays in AI Tools & News and the context-optimization tweets in X/Twitter Bookmarks a primary-source paper to anchor to.
 
 ### Design & UI
 

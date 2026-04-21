@@ -6,6 +6,10 @@ __pycache__/
 *.pyc
 .tools/.raindrop.env
 
+# PDFs in inbox — processed via .tools/process_pdfs.py then archived to DEVONthink
+inbox/*.pdf
+inbox/_processed/*.pdf
+
 
 # MemPalace per-project files (issue #185)
 mempalace.yaml
