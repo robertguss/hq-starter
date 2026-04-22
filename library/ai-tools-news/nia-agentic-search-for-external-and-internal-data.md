@@ -12,7 +12,9 @@ source_domain: "trynia.ai"
 source_type_raindrop: link
 collection: "unsorted"
 collection_id: -1
-hydrated: false
+hydrated: true
+hydrated_at: 2026-04-22
+hydrated_via: playwright+trafilatura
 ---
 ## Excerpt
 
@@ -20,4 +22,8 @@ Nia is the index and search layer for AI agents. Index any source — code, docs
 
 ## Raw Content
 
-<!-- Not yet hydrated. Run the hydrate script to fetch the full article body. -->
+<!-- Hydrated 2026-04-22 via playwright+trafilatura -->
+
+We're verifying your browser
+
+We're verifying your browser

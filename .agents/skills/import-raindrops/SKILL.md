@@ -35,6 +35,10 @@ uv run .tools/hydrate.py --type defuddle --limit 50
 # Retry defuddle's failures with a different extraction algorithm
 uv run --with trafilatura .tools/hydrate.py --type trafilatura --limit 50
 
+# Last-resort for JS-SPAs (headless Chromium renders, then trafilatura extracts)
+# First-time only: uv run --with playwright playwright install chromium
+uv run --with playwright --with trafilatura .tools/hydrate.py --type playwright --limit 25
+
 uv run .tools/hydrate.py --type social --limit 25
 
 # Optional: only when Jina credits are topped up
@@ -63,6 +67,7 @@ Each tier is idempotent (skips items already `hydrated: true` unless `--force`).
 - [ ] `--type pdf` — downloads and extracts inline PDF links.
 - [ ] `--type defuddle` — **default HTML fetcher** (local `defuddle` CLI, no API, no credits).
 - [ ] `--type trafilatura` — **fallback** for items defuddle can't extract. Different algorithm, pure-Python, installed ad-hoc via `uv run --with trafilatura`.
+- [ ] `--type playwright` — **last-resort for JS-SPAs.** Launches headless Chromium, lets the page render, then runs trafilatura over the rendered HTML. Use when defuddle and trafilatura both return empty-shell errors because the content is client-rendered (claude.ai/design, trynia.ai, agentsearch.sh, etc.). Invoke via `uv run --with playwright --with trafilatura .tools/hydrate.py --type playwright`. First-time setup: `uv run --with playwright playwright install chromium` (~170 MB one-time browser download). Slower than other tiers (2–10s per URL). Does **not** solve paywalls, 403s, or 429s.
 - [ ] `--type social` — Hacker News and Reddit threads.
 - [ ] `--type article` (needs `JINA_API_KEY` with credits) — **opt-in only.** Jina Reader is fast and clean when paid, but the account can run out of credits and return 402 on every call. Do **not** run this tier unless the user explicitly asks or confirms credits are available.
 
@@ -70,11 +75,13 @@ Each tier is idempotent (skips items already `hydrated: true` unless `--force`).
 
 ### 3. Handle the long tail
 
-After defuddle + trafilatura, some items still won't hydrate. The common classes, with resolutions:
+After defuddle + trafilatura + playwright, some items still won't hydrate. The common classes, with resolutions:
 
-- **JS-SPAs** (product landing pages like `*.ai/`, `*.dev/` where content is client-rendered) — defuddle sees an empty shell, trafilatura returns nothing. HTML extractors can't solve this; use a headless browser (the `defuddle` skill via Playwright MCP, or manual copy-paste) or skip.
-- **403 / 429 / fetch failed / timeout** — the site is blocking or flaky. Retry later, use Wayback Machine, or skip.
+- **JS-SPAs** — use `--type playwright` (above). If that still fails, the page may have additional render gates (login, Cloudflare challenge) — skip or manual copy-paste.
+- **403 / 429 / fetch failed / timeout** — the site is blocking or flaky. Retry later, use Wayback Machine, or skip. Playwright can sometimes help here because it presents as a real browser, but site-level blocks (Cloudflare bot mode) often defeat it too.
 - **Paywalls** — no extractor will bypass. Skip or manually paste an excerpt.
+
+If the user decides an item isn't worth hydrating, the right move is (a) delete the `library/<slug>.md` file, then (b) add its `raindrop_id` to `.tools/raindrop_deleted.txt` so the next import doesn't re-create it.
 
 List the remaining `hydrated: false` files and surface them to the user; do **not** keep re-running tiers in a loop.
 

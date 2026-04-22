@@ -297,6 +297,79 @@ def fetch_article_trafilatura(url: str, token: str | None = None):
     return body, {"bytes": len(body)}
 
 
+# ---------- Article fetcher (Playwright headless Chromium + trafilatura) ----------
+
+
+def fetch_article_playwright(url: str, token: str | None = None, timeout: int = 30_000):
+    """Headless-browser HTML fetch for JS-SPAs. Renders the page via
+    Chromium, then feeds the fully-rendered HTML into trafilatura for
+    main-content extraction. Useful when `defuddle` and `trafilatura`'s
+    raw-HTML fetch both return empty shells because the content is
+    client-rendered.
+
+    Requires:
+      uv run --with playwright --with trafilatura .tools/hydrate.py --type playwright
+    On first run, also:
+      uv run --with playwright playwright install chromium
+    """
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        raise RuntimeError(
+            "playwright not installed. Invoke via:\n"
+            "  uv run --with playwright --with trafilatura .tools/hydrate.py --type playwright\n"
+            "On first run also: uv run --with playwright playwright install chromium"
+        )
+    try:
+        import trafilatura
+    except ImportError:
+        raise RuntimeError("trafilatura not installed (needed for extraction)")
+
+    html = None
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            try:
+                context = browser.new_context(
+                    user_agent=(
+                        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                        "AppleWebKit/537.36 (KHTML, like Gecko) "
+                        "Chrome/122.0.0.0 Safari/537.36"
+                    )
+                )
+                page = context.new_page()
+                page.goto(url, timeout=timeout, wait_until="domcontentloaded")
+                try:
+                    page.wait_for_load_state("networkidle", timeout=timeout // 2)
+                except Exception:
+                    pass  # networkidle can fail on sites with constant polling
+                html = page.content()
+            finally:
+                browser.close()
+    except Exception as e:
+        msg = str(e).splitlines()[0] if str(e) else type(e).__name__
+        raise RuntimeError(f"playwright: {msg}")
+
+    if not html or len(html) < 500:
+        raise RuntimeError(
+            f"playwright: rendered HTML empty or too small ({len(html or '')} bytes)"
+        )
+
+    body = trafilatura.extract(
+        html,
+        output_format="markdown",
+        include_links=True,
+        include_tables=True,
+        favor_precision=True,
+    )
+    if not body:
+        raise RuntimeError(
+            "playwright+trafilatura: no extractable content after render"
+        )
+    body = body.strip()
+    return body, {"bytes": len(body)}
+
+
 # ---------- arxiv fetcher (native API) ----------
 
 ARXIV_ID_PAT = re.compile(r"(\d{4}\.\d{4,5})(v\d+)?")
@@ -526,7 +599,7 @@ def collect_candidates(type_filter: str):
         if type_filter == "github":
             if extract_github_repo(url):
                 out.append(md)
-        elif type_filter in ("article", "defuddle", "trafilatura"):
+        elif type_filter in ("article", "defuddle", "trafilatura", "playwright"):
             # Skip GitHub (handled elsewhere) + excluded hosts
             if extract_github_repo(url):
                 continue
@@ -560,6 +633,7 @@ def main():
             "article",
             "defuddle",
             "trafilatura",
+            "playwright",
             "twitter",
             "arxiv",
             "social",
@@ -610,6 +684,9 @@ def main():
     elif args.type == "trafilatura":
         fetcher = lambda url: fetch_article_trafilatura(url)
         fetcher_name = "trafilatura"
+    elif args.type == "playwright":
+        fetcher = lambda url: fetch_article_playwright(url)
+        fetcher_name = "playwright+trafilatura"
     elif args.type == "twitter":
         fetcher = lambda url: fetch_twitter(url)
         fetcher_name = "fieldtheory-cache"
