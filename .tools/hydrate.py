@@ -270,6 +270,33 @@ def fetch_article_defuddle(url: str, token: str | None = None, timeout: int = 12
     return body, {"bytes": len(body)}
 
 
+# ---------- Article fetcher (trafilatura, pure-Python) ----------
+
+
+def fetch_article_trafilatura(url: str, token: str | None = None):
+    try:
+        import trafilatura
+    except ImportError:
+        raise RuntimeError(
+            "trafilatura not installed. Invoke via:\n"
+            "  uv run --with trafilatura .tools/hydrate.py --type trafilatura"
+        )
+    downloaded = trafilatura.fetch_url(url)
+    if not downloaded:
+        raise RuntimeError(f"trafilatura: fetch returned nothing for {url}")
+    body = trafilatura.extract(
+        downloaded,
+        output_format="markdown",
+        include_links=True,
+        include_tables=True,
+        favor_precision=True,
+    )
+    if not body:
+        raise RuntimeError("trafilatura: no extractable content")
+    body = body.strip()
+    return body, {"bytes": len(body)}
+
+
 # ---------- arxiv fetcher (native API) ----------
 
 ARXIV_ID_PAT = re.compile(r"(\d{4}\.\d{4,5})(v\d+)?")
@@ -499,7 +526,7 @@ def collect_candidates(type_filter: str):
         if type_filter == "github":
             if extract_github_repo(url):
                 out.append(md)
-        elif type_filter == "article" or type_filter == "defuddle":
+        elif type_filter in ("article", "defuddle", "trafilatura"):
             # Skip GitHub (handled elsewhere) + excluded hosts
             if extract_github_repo(url):
                 continue
@@ -528,7 +555,16 @@ def main():
     p.add_argument(
         "--type",
         required=True,
-        choices=["github", "article", "defuddle", "twitter", "arxiv", "social", "pdf"],
+        choices=[
+            "github",
+            "article",
+            "defuddle",
+            "trafilatura",
+            "twitter",
+            "arxiv",
+            "social",
+            "pdf",
+        ],
         help="Fetcher tier",
     )
     p.add_argument(
@@ -571,6 +607,9 @@ def main():
     elif args.type == "defuddle":
         fetcher = lambda url: fetch_article_defuddle(url)
         fetcher_name = "defuddle"
+    elif args.type == "trafilatura":
+        fetcher = lambda url: fetch_article_trafilatura(url)
+        fetcher_name = "trafilatura"
     elif args.type == "twitter":
         fetcher = lambda url: fetch_twitter(url)
         fetcher_name = "fieldtheory-cache"
