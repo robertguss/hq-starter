@@ -1,0 +1,24 @@
+# Raindrop deletion ledger — tombstone file.
+#
+# One raindrop_id per line. Anything after `#` is a comment; blank lines
+# are ignored. `raindrop_import.py` reads this on every run and skips
+# listed IDs alongside raindrops already present in library/.
+#
+# Use case: you delete a library/<...>.md file because the bookmark isn't
+# worth keeping, but the raindrop still exists in your Raindrop.io account.
+# Without this ledger, the next `raindrop_import.py` run would re-create
+# the file. Add the raindrop_id here to make the deletion permanent on
+# the vault side without also having to delete the raindrop upstream.
+#
+# To find a raindrop_id: grep the (now-deleted) file, or look in the
+# Raindrop web UI URL when viewing the bookmark.
+#
+# Example:
+#   1641398064  # InstaSDR — SPA, content not scrapable
+#   937833116   # Nomic AI — SPA, content not scrapable
+
+# --- Duplicates deleted 2026-04-22 (same URL/paper already in library/ under a different raindrop) ---
+1689554451  # bilevel-autoresearch (arxiv raindrop — PDF version already in academic-reference/)
+1434098407  # deepwiki.com — earlier duplicate of the 2026-03 deepwiki bookmark
+1691378175  # Yeachan-Heo/oh-my-codex — earlier duplicate of the existing ai-repos entry
+1691375217  # LeWorldModel (arxiv 2603.19312) — duplicate of academic-reference/2603-19312v2.md

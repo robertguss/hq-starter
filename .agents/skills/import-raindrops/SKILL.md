@@ -50,7 +50,9 @@ Full flag reference lives in the script docstrings: `.tools/raindrop_import.py` 
 
 - Confirm `RAINDROP_TOKEN` is resolved via `op read` — never hardcode.
 - Default `--collection 0` pulls all collections. Filter with `--collection <ID>` if the user names one.
-- Report: count created, count skipped (already present), and which collection slugs gained new files.
+- Report: count created, count skipped (already present), count tombstoned (in `raindrop_deleted.txt`), and which collection slugs gained new files.
+
+**Deletions don't persist by default.** If the user deletes a `library/<slug>.md` without also removing the raindrop from Raindrop.io, the next import will re-create it. To make a deletion permanent on the vault side, add the `raindrop_id` to `.tools/raindrop_deleted.txt` (one per line, `#` for comments). The importer skips any id in that ledger.
 
 ### 2. Hydrate — tier order
 

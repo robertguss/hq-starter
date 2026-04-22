@@ -100,6 +100,25 @@ def existing_ids(lib: Path):
     return ids
 
 
+def deleted_ids(ledger: Path):
+    """Read .tools/raindrop_deleted.txt — one raindrop_id per line.
+    `#` begins a comment. Blank lines ignored. Returns a set of ints.
+    Intentionally-deleted raindrops go here so re-imports skip them
+    instead of re-creating the file."""
+    ids = set()
+    if not ledger.exists():
+        return ids
+    for line in ledger.read_text("utf-8").splitlines():
+        line = line.split("#", 1)[0].strip()
+        if not line:
+            continue
+        try:
+            ids.add(int(line))
+        except ValueError:
+            pass
+    return ids
+
+
 def fmt_tags(tags):
     out = []
     for t in tags or []:
@@ -185,8 +204,12 @@ def main():
 
     LIBRARY_DIR.mkdir(exist_ok=True)
     existing = existing_ids(LIBRARY_DIR)
+    deleted = deleted_ids(Path(__file__).resolve().parent / "raindrop_deleted.txt")
+    skip_ids = existing | deleted
     collections = fetch_collections(token)
     print(f"Existing raindrop imports in library/: {len(existing)}")
+    if deleted:
+        print(f"Tombstoned in raindrop_deleted.txt: {len(deleted)}")
     print(f"Collections resolved: {len(collections)}")
     print(f"Mode: {'DRY-RUN' if args.dry_run else 'WRITE'}")
     if args.limit:
@@ -197,9 +220,12 @@ def main():
         )
     print("---")
 
-    created = skipped = 0
+    created = skipped = tombstoned = 0
     for bm in fetch_raindrops(token, args.collection, args.limit):
         rid = bm.get("_id")
+        if rid in deleted:
+            tombstoned += 1
+            continue
         if rid in existing:
             skipped += 1
             continue
@@ -221,9 +247,10 @@ def main():
         created += 1
 
     print("---")
-    print(
-        f"Done. {'Would create' if args.dry_run else 'Created'}: {created}  Skipped: {skipped}"
-    )
+    msg = f"Done. {'Would create' if args.dry_run else 'Created'}: {created}  Skipped: {skipped}"
+    if tombstoned:
+        msg += f"  Tombstoned: {tombstoned}"
+    print(msg)
 
 
 if __name__ == "__main__":
