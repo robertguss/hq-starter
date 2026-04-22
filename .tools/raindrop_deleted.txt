@@ -22,3 +22,9 @@
 1434098407  # deepwiki.com — earlier duplicate of the 2026-03 deepwiki bookmark
 1691378175  # Yeachan-Heo/oh-my-codex — earlier duplicate of the existing ai-repos entry
 1691375217  # LeWorldModel (arxiv 2603.19312) — duplicate of academic-reference/2603-19312v2.md
+
+# --- Dead-URL items tombstoned 2026-04-22 (domain no longer resolves; Playwright confirmed) ---
+1641398064  # instasdr.ai — ERR_NAME_NOT_RESOLVED
+937833116   # home.nomic.ai — ERR_CONNECTION_CLOSED
+1139203550  # schemaflow.dev — ERR_NAME_NOT_RESOLVED
+1494110415  # w2prisonbreak.com (brian-oneill) — ERR_NAME_NOT_RESOLVED

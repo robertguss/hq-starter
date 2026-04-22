@@ -24,15 +24,15 @@ For a filterable database view of all items (group by collection, filter by hydr
 
 ## Imported collections
 
-Status: **Raindrop + X/Twitter imports complete** — last sync 2026-04-22. 1,626 items across 19 folders. 7 items site-blocked pending manual handling.
+Status: **Raindrop + X/Twitter imports complete** — last sync 2026-04-22. 1,622 items across 19 folders. 3 items render-blocked (Cloudflare/auth-gate) pending manual handling; 4 dead-URL items tombstoned.
 
-### From Raindrop (1,367 items, 18 folders)
+### From Raindrop (1,363 items, 18 folders)
 
 | Collection             | Folder                  | Items     |
 | ---------------------- | ----------------------- | --------- |
-| AI Tools & News        | `ai-tools-news/`        | 513       |
+| AI Tools & News        | `ai-tools-news/`        | 510       |
 | AI Repos & Open Source | `ai-repos-open-source/` | 383       |
-| Marketing & Business   | `marketing-business/`   | 101       |
+| Marketing & Business   | `marketing-business/`   | 100       |
 | Dev Tools & CLI        | `dev-tools-cli/`        | 75        |
 | Stationery & Journals  | `stationery-journals/`  | 56        |
 | Theology & Faith       | `theology-faith/`       | 50        |
@@ -47,13 +47,13 @@ Status: **Raindrop + X/Twitter imports complete** — last sync 2026-04-22. 1,62
 | Books & Reading        | `books-reading/`        | 5         |
 | Recipes                | `recipes/`              | 3         |
 | Photography            | `photography/`          | 1         |
-| **Raindrop total**     |                         | **1,367** |
+| **Raindrop total**     |                         | **1,363** |
 
 _Unsorted folder (13 items at import) was rehomed 2026-04-18 across dev-tools-cli, ai-tools-news, ai-repos-open-source, ios-swift, and productivity._
 
 _Re-sync 2026-04-20: 39 new raindrops imported; 38 rehomed out of `unsorted/` (25 → ai-repos-open-source, 8 → ai-tools-news, 3 → academic-reference, 2 → dev-tools-cli). Hydration via github-api, defuddle, arxiv. Note: the 5 SPA-blocked items deleted in that pass (claude-design, nomic-ai, instasdr, schemaflow, brian-oneill) were **re-created** by the 2026-04-22 re-sync — see below. Deletions don't persist unless the raindrop is also removed from the Raindrop.io account._
 
-_Re-sync 2026-04-22 (**+65 items** net, 69 gross minus 4 duplicate raindrops of existing PDFs / bookmarks). First run of the new **`import-raindrops` skill** (SKILL.md in `.agents/skills/`) which codifies the full Raindrop → vault pipeline. Routing: **35 → ai-repos-open-source/** (all github-api hydrated — heavy agent-skills + agent-harness cluster), **23 → ai-tools-news/** (20 defuddle + 3 SPA-blocked re-runs), **3 → academic-reference/** (DSPy, Externalization, Corpus2Skill — see below), **2 → marketing-business/**, **1 → ios-swift/**, **1 → personal-misc/**. Hydration: defuddle replaces Jina Reader as the default HTML tier (Jina account depleted — all article-tier calls returned HTTP 402); a new **trafilatura** tier was added to `.tools/hydrate.py` as algorithm-diversity fallback. 7 items still `hydrated: false` (same JS-SPA pattern as before: agentsearch, claude-design, nia, instasdr, nomic-ai, schemaflow, brian-oneill) — these need a headless-browser tier or manual hydration._
+_Re-sync 2026-04-22 (**+61 items** net, 69 gross minus 4 duplicate raindrops and 4 dead-URL raindrops tombstoned post-sync). First run of the new **`import-raindrops` skill** (SKILL.md in `.agents/skills/`) which codifies the full Raindrop → vault pipeline. Routing: **35 → ai-repos-open-source/** (all github-api hydrated — heavy agent-skills + agent-harness cluster), **19 → ai-tools-news/** (defuddle + Playwright), **3 → academic-reference/** (DSPy, Externalization, Corpus2Skill — see below), **1 → marketing-business/**, **1 → ios-swift/**, **1 → personal-misc/**. Hydration stack: defuddle replaces Jina Reader as the default HTML tier (Jina account depleted — every article-tier call returned HTTP 402); new **trafilatura** tier added for algorithm diversity; new **playwright+trafilatura** tier added as JS-SPA fallback (headless Chromium renders, then trafilatura extracts). Playwright pass resolved the question on the 7 previous stragglers: agentsearch rendered real content; claude.ai/design and trynia.ai rendered but caught only auth-gate / Cloudflare-challenge text; the other 4 (instasdr.ai, home.nomic.ai, schemaflow.dev, w2prisonbreak.com) failed with ERR_NAME_NOT_RESOLVED / ERR_CONNECTION_CLOSED — **the domains no longer exist**. Dead-URL files deleted and their raindrop_ids tombstoned in `.tools/raindrop_deleted.txt` so they don't resurrect. Residual: 2 items (claude-design, nia) are technically hydrated but the body is render-gate text — kept for the record; true content would require login + paid Cloudflare bypass._
 
 ### From X/Twitter bookmarks (259 items, 1 folder)
 
@@ -465,7 +465,7 @@ _Re-sync 2026-04-20 (afternoon): 30 new X bookmarks imported (7 fresh from `ft s
 - [[why-we-buy]] — Behavioral economics applied to buying decisions.
 - [[trustmrr-verified-startup-revenue-database]] — Verified MRR data across startups for benchmarking.
 
-**2026-04-22 addition (+2):** [[speedrun-a16z-apply]] — a16z Speedrun accelerator application page; first explicit VC/accelerator artifact in the shelf. Signals a slight broadening from pure indie-bootstrap toward the accelerator-as-option adjacency, though it doesn't yet reshape the shelf's indie-first posture. [[brian-oneill]] — Brian O'Neill's independent-consultant landing page (unhydrated, SPA-blocked); pairs with the existing positioning-and-customer-psychology theme once manually hydrated.
+**2026-04-22 addition (+1):** [[speedrun-a16z-apply]] — a16z Speedrun accelerator application page; first explicit VC/accelerator artifact in the shelf. Signals a slight broadening from pure indie-bootstrap toward the accelerator-as-option adjacency, though it doesn't yet reshape the shelf's indie-first posture. (A second 2026-04-22 candidate, Brian O'Neill's independent-consultant landing page, was tombstoned after the Playwright pass confirmed `w2prisonbreak.com` no longer resolves.)
 
 **Cross-references:**
 
