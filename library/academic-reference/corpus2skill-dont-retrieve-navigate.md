@@ -1,7 +1,7 @@
 ---
 tags:
   - library
-title: "(untitled)"
+title: "Corpus2Skill: Dont Retrieve, Navigate — Distilling Enterprise Knowledge into Navigable Agent Skills for QA and RAG"
 url: "https://arxiv.org/pdf/2604.14572"
 company: [personal]
 topics: []

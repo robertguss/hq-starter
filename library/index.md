@@ -24,34 +24,36 @@ For a filterable database view of all items (group by collection, filter by hydr
 
 ## Imported collections
 
-Status: **Raindrop + X/Twitter imports complete** — last sync 2026-04-20. 1,565 items across 19 folders. All remaining items hydrated (5 site-blocked items deleted 2026-04-20).
+Status: **Raindrop + X/Twitter imports complete** — last sync 2026-04-22. 1,626 items across 19 folders. 7 items site-blocked pending manual handling.
 
-### From Raindrop (1,306 items, 18 folders)
+### From Raindrop (1,367 items, 18 folders)
 
 | Collection             | Folder                  | Items     |
 | ---------------------- | ----------------------- | --------- |
-| AI Tools & News        | `ai-tools-news/`        | 490       |
-| AI Repos & Open Source | `ai-repos-open-source/` | 348       |
-| Marketing & Business   | `marketing-business/`   | 99        |
+| AI Tools & News        | `ai-tools-news/`        | 513       |
+| AI Repos & Open Source | `ai-repos-open-source/` | 383       |
+| Marketing & Business   | `marketing-business/`   | 101       |
 | Dev Tools & CLI        | `dev-tools-cli/`        | 75        |
 | Stationery & Journals  | `stationery-journals/`  | 56        |
 | Theology & Faith       | `theology-faith/`       | 50        |
-| Personal & Misc        | `personal-misc/`        | 41        |
+| Personal & Misc        | `personal-misc/`        | 42        |
 | Web Dev                | `web-dev/`              | 40        |
-| Academic & Reference   | `academic-reference/`   | 34        |
+| Academic & Reference   | `academic-reference/`   | 37        |
 | Design & UI            | `design-ui/`            | 18        |
 | Productivity           | `productivity/`         | 15        |
 | Writing & Content      | `writing-content/`      | 15        |
 | Cooking                | `cooking/`              | 10        |
-| iOS & Swift            | `ios-swift/`            | 6         |
+| iOS & Swift            | `ios-swift/`            | 7         |
 | Books & Reading        | `books-reading/`        | 5         |
 | Recipes                | `recipes/`              | 3         |
 | Photography            | `photography/`          | 1         |
-| **Raindrop total**     |                         | **1,306** |
+| **Raindrop total**     |                         | **1,367** |
 
 _Unsorted folder (13 items at import) was rehomed 2026-04-18 across dev-tools-cli, ai-tools-news, ai-repos-open-source, ios-swift, and productivity._
 
-_Re-sync 2026-04-20: 39 new raindrops imported (idempotent via `raindrop_id`). 38 landed in `unsorted/` and were re-homed — 25 to `ai-repos-open-source/` (mostly agent-skill repos, Claude-Code plugins), 8 to `ai-tools-news/` (hosted tools + talks), 3 to `academic-reference/` (arxiv, SSRN), 2 to `dev-tools-cli/` (Kaku terminal, LazyPi). Hydration: 26 GitHub READMEs (github-api), 23 articles (defuddle CLI — Jina replaced due to credit exhaustion), 2 arxiv abstracts. Post-hydration cleanup: deleted 5 items whose URLs couldn't be fetched by any scraper (JS-heavy SPAs or aggressive bot-blocking) — claude-design, nomic-ai, instasdr, schemaflow, brian-oneill._
+_Re-sync 2026-04-20: 39 new raindrops imported; 38 rehomed out of `unsorted/` (25 → ai-repos-open-source, 8 → ai-tools-news, 3 → academic-reference, 2 → dev-tools-cli). Hydration via github-api, defuddle, arxiv. Note: the 5 SPA-blocked items deleted in that pass (claude-design, nomic-ai, instasdr, schemaflow, brian-oneill) were **re-created** by the 2026-04-22 re-sync — see below. Deletions don't persist unless the raindrop is also removed from the Raindrop.io account._
+
+_Re-sync 2026-04-22 (**+65 items** net, 69 gross minus 4 duplicate raindrops of existing PDFs / bookmarks). First run of the new **`import-raindrops` skill** (SKILL.md in `.agents/skills/`) which codifies the full Raindrop → vault pipeline. Routing: **35 → ai-repos-open-source/** (all github-api hydrated — heavy agent-skills + agent-harness cluster), **23 → ai-tools-news/** (20 defuddle + 3 SPA-blocked re-runs), **3 → academic-reference/** (DSPy, Externalization, Corpus2Skill — see below), **2 → marketing-business/**, **1 → ios-swift/**, **1 → personal-misc/**. Hydration: defuddle replaces Jina Reader as the default HTML tier (Jina account depleted — all article-tier calls returned HTTP 402); a new **trafilatura** tier was added to `.tools/hydrate.py` as algorithm-diversity fallback. 7 items still `hydrated: false` (same JS-SPA pattern as before: agentsearch, claude-design, nia, instasdr, nomic-ai, schemaflow, brian-oneill) — these need a headless-browser tier or manual hydration._
 
 ### From X/Twitter bookmarks (259 items, 1 folder)
 
@@ -130,6 +132,12 @@ _Re-sync 2026-04-20 (afternoon): 30 new X bookmarks imported (7 fresh from `ft s
 - [[bilevel-autoresearch-meta-autoresearching-itself]] — Bilevel Autoresearch paper: formalizes autoresearch as bilevel optimization where the outer loop reads the inner loop's code and writes new search mechanisms as runtime Python — Tabu Search, Bandit, Orthogonal Exploration — to escape directions the LLM's default search systematically avoids. The 5× empirical gain on Karpathy's GPT benchmark lands the punchline: _if autoresearch can meta-autoresearch itself, it can in principle meta-autoresearch anything with a measurable objective._
 - [[2603-19312v2]] — LeWorldModel paper: argues the usual JEPA stack (EMA target encoders, stop-gradient, six-term losses, frozen foundation encoders) is architectural apology for a representation-collapse problem you can just _regularize away_. Replaces all of it with **one** anti-collapse term — SIGReg, which projects latent embeddings onto random 1D directions and minimizes an Epps–Pulley normality test statistic — on top of a plain next-embedding prediction loss. The payoff: a 15M-parameter world model trainable end-to-end from pixels on a single GPU, planning in under a second, beating DINO-WM on pixel-only manipulation tasks, and exhibiting _emergent temporal path straightening_ in latent space with no explicit term encouraging it. The LeJEPA ([25]) provenance is load-bearing: the same SIGReg regularizer that anchors this paper was originally published by Balestriero + LeCun as a general JEPA stability result.
 
+**2026-04-22 addition (+3 papers):** The re-sync added three papers that sharpen the shelf's agent-era coverage:
+
+- [[corpus2skill-dont-retrieve-navigate]] — **Corpus2Skill** (arxiv 2604.14572, Sun/Wei/Hsieh, Apr 2026): reframes RAG from _retrieval_ to _navigation_. Compiles a document corpus offline into a hierarchical tree of LLM-written summary skill files, then lets the agent walk the tree at serve time with a bird's-eye view — drilling into topic branches, backtracking from dead ends, combining evidence across branches. Outperforms dense retrieval + RAPTOR + agentic RAG on WixQA enterprise support. Directly primary-sources the skill-pack economy's central claim: _skills are a better abstraction than embeddings for organizing corpus knowledge that agents need to traverse_. Pairs with [[2604-17091v1]]'s "self-evolution into reusable SOPs and code" — both papers formalize skill-as-memory from different angles.
+- [[externalization-in-llm-agents-a-unified-review-of-memory-ski]] — **Externalization in LLM Agents** (arxiv 2604.08224): the bridging survey this shelf needed. Unifies memory, skills, tools, and world models under one framework of _externalized cognition_ — what the agent offloads from its weights into manipulable artifacts. Makes explicit what the practitioner side has been converging on: persistent memory stores ([[retaindb-persistent-memory-for-ai-agents-sota-on-longmemeval]], [[tschonleberbrainctl-a-cognitive-memory-system-for-ai-agents]], [[milla-jovovichmempalace-the-highest-scoring-ai-memory-system]]), portable skill packs ([[alirezarezvaniclaude-skills-180-production-ready-skills-plug]], [[jeffallanclaude-skills-66-specialized-skills-for-full-stack]]), and navigable knowledge ([[corpus2skill-dont-retrieve-navigate]]) are instances of the same architectural commitment.
+- [[dspy-compiling-declarative-language-model-calls-into]] — **DSPy** (arxiv 2310.03714, Khattab et al., Oct 2023): the foundational paper behind the declarative-LLM-calls paradigm that GEPA, LongRA, and the entire "optimize-your-prompts" tooling lineage extends. Older than the rest of this cluster, included now as the primary reference for DSPy work appearing across the library ([[intertwinedspy-agent-skills-dspy-31x-agent-skills-validated]], [[rlm-dspy]], [[gepa-aigepa-optimize-prompts-code-and-more-with-ai-powered-r]], [[why-i-built-dspy-agent-skills]]).
+
 **Cross-references:**
 
 - Classical primary sources overlap with Theology & Faith's patristic theme (Perseus and Christian Classics Ethereal Library both serve canonical-text scholarship).
@@ -138,6 +146,7 @@ _Re-sync 2026-04-20 (afternoon): 30 new X bookmarks imported (7 fresh from `ft s
 - [[2604-17091v1]] anchors a cluster connecting Academic & Reference to three practitioner-side threads elsewhere in the library: agent frameworks and orchestration in AI Repos & Open Source, persistent agent memory ([[retaindb-persistent-memory-for-ai-agents-sota-on-longmemeval]], [[tschonleberbrainctl-a-cognitive-memory-system-for-ai-agents]], [[milla-jovovichmempalace-the-highest-scoring-ai-memory-system]]), and the skill-pack economy. Its "self-evolution of trajectories into reusable SOPs and code" formalizes what the skill-pack market is already shipping in product form. Its "contextual information density" thesis gives the context-engineering essays in AI Tools & News and the context-optimization tweets in X/Twitter Bookmarks a primary-source paper to anchor to.
 - [[bilevel-autoresearch-meta-autoresearching-itself]] and [[2604-17091v1]] are the academic-side pair for agent self-improvement: GenericAgent formalizes it at the _architecture_ level (evolving the agent), Bilevel Autoresearch formalizes it at the _research-pipeline_ level (evolving the search mechanism). Together they bracket the self-evolution theme that the autoresearch repos in AI Repos & Open Source ([[karpathyautoresearch-ai-agents-running-research-on-single-gp]], [[jhochenbaumpi-autoresearch-studio-dashboard-plan-editor-pr-w]], [[alexzhang13rlm-general-plug-and-play-inference-library-for-r]]) and the autoresearch discussion in X/Twitter ([[ericosiu-karpathys-autoresearch-isnt-just-for-ai-research-y]], [[joeldeteves-not-enough-of-you-are-using-autoresearch-in-your-o]], [[benburtenshaw-heres-a-hands-on-guide-to-setup-multi-agent-autore]]) are building in practitioner form.
 - [[2603-19312v2]] opens a distinct sub-cluster inside AI & data literacy: **self-supervised representation learning for control**. Where [[2604-17091v1]] and [[bilevel-autoresearch-meta-autoresearching-itself]] treat the LLM as the atomic unit and iterate on the harness around it, LeWorldModel treats the encoder–predictor pair as the atomic unit and iterates on the _regularizer_. Same LeCun-adjacent academic lineage — Balestriero co-authors both LeJEPA (the SIGReg source) and LeWM, LeCun co-authors LeWM — but a different engineering discipline: MPC planning in a compact latent space rather than token-space planning with tools. The common thread linking all three papers: _reduce the number of tunable knobs_ (LeWM from six hyperparameters to one, GenericAgent from context-length heuristics to a single density budget, Bilevel Autoresearch from hand-written search mechanisms to runtime-generated ones), _let the thing run, publish the win_.
+- [[corpus2skill-dont-retrieve-navigate]] and [[externalization-in-llm-agents-a-unified-review-of-memory-ski]] together form the **skill-as-primitive** cluster on the paper side — the academic counterpart to AI Repos & Open Source's `^theme-repos-skill-packs-generalist` and `^theme-repos-skill-packs-specialist`. Corpus2Skill is the constructive result (how to distill skills from a corpus); Externalization is the framing result (why skills are the right abstraction). Together with [[2604-17091v1]] they establish: a skill pack is not _just_ a prompt library, it is externalized cognition with navigable structure and measurable impact on task performance.
 
 ### Design & UI
 
@@ -224,6 +233,7 @@ _Re-sync 2026-04-20 (afternoon): 30 new X bookmarks imported (7 fresh from `ft s
 - [[whisky-a-modern-wine-wrapper-for-macos-built-with-swiftui]] — Modern SwiftUI macOS app; demo-worthy codebase for Wine-wrapping on Apple Silicon.
 - [[shipswift-ship-full-stack-ios-apps-with-ai]] — Framework for shipping full-stack iOS apps with AI tooling.
 - [[parthjadhavios-marketing-capture-automate-multi-locale-asset]] — Multi-locale App Store asset automation.
+- [[xcode-instruments-time-profiler-improve-performance-with-ai]] — Antoine van der Lee's guide on driving Xcode's Time Profiler with AI assistance to diagnose performance regressions. Extends `^theme-ai-ios-dev`: the AI-assisted iOS story now includes profiling and optimization, not just green-field app shipping.
 
 ### Recipes
 
@@ -356,6 +366,7 @@ _Re-sync 2026-04-20 (afternoon): 30 new X bookmarks imported (7 fresh from `ft s
 - [[brettterpstracom]] — Independent creator systems and macOS tooling.
 - [[welcome-to-the-10k-institute]] — Deliberate-practice framing of skill development.
 - [[starting-strength-gyms-stronger-is-better]] — Barbell-first strength training network.
+- [[twaldin-portfolio]] — Tim Waldin's personal site; paired with his agentic-tooling repos ([[twaldinhone-cli-text-optimizer-built-on-gepa-uses-agentic-co]]) in AI Repos & Open Source. Independent-builder archetype with an agent-tooling emphasis.
 
 ### Web Dev
 
@@ -453,6 +464,8 @@ _Re-sync 2026-04-20 (afternoon): 30 new X bookmarks imported (7 fresh from `ft s
 - [[the-slc-approach-building-products-that-customers-love]] — SLC (Simplify, Link, Clarify) product framework.
 - [[why-we-buy]] — Behavioral economics applied to buying decisions.
 - [[trustmrr-verified-startup-revenue-database]] — Verified MRR data across startups for benchmarking.
+
+**2026-04-22 addition (+2):** [[speedrun-a16z-apply]] — a16z Speedrun accelerator application page; first explicit VC/accelerator artifact in the shelf. Signals a slight broadening from pure indie-bootstrap toward the accelerator-as-option adjacency, though it doesn't yet reshape the shelf's indie-first posture. [[brian-oneill]] — Brian O'Neill's independent-consultant landing page (unhydrated, SPA-blocked); pairs with the existing positioning-and-customer-psychology theme once manually hydrated.
 
 **Cross-references:**
 
@@ -568,14 +581,36 @@ _Re-sync 2026-04-20 (afternoon): 30 new X bookmarks imported (7 fresh from `ft s
 - [[browser-usebrowser-harness-self-healing-browser-harness-that]] — Self-healing browser harness; completes arbitrary tasks without breaking on DOM churn.
 - [[rohitg00ai-engineering-from-scratch-learn-it-build-it-ship-i]] — 4.3k-star end-to-end curriculum; the shelf's flagship learning path for agent-era engineering.
 
+**2026-04-22 addition (+35 repos):** The largest single-session addition yet. Sharpens five existing themes and opens two new sub-clusters:
+
+- **Paper ↔ reference-impl pairing surfaces directly** — [[lsdefinegenericagent-self-evolving-agent-grows-skill-tree-fr]] is the first-party reference implementation of the [[2604-17091v1]] paper already anchored in Academic & Reference. The repo description — _grows a skill tree from a 3.3k-line seed, full system control with 6× less token consumption_ — is the paper's architecture made executable. Same author, same thesis: skill externalization compounds across sessions. Similarly [[lambda-calculus-llmlambda-rlm-method-for-long-context-rlms-u]] extends [[alexzhang13rlm-general-plug-and-play-inference-library-for-r]] into verifiable lambda-calculus territory, tightening the RLM (Recursive Language Model) cluster.
+- **Agent-ergonomic CLI primitives — a new `^theme-repos-agent-ergonomics` sub-cluster.** Kun Chen's five-repo drop ([[kunchenguidaxi-design-principles-for-agent-ergonomics-higher]], [[kunchenguidchrome-devtools-axi-the-most-agent-ergonomic-brow]], [[kunchenguidgsh-a-battery-included-posix-compatible-generativ]], [[kunchenguidno-mistakes-git-push-no-mistakes]], [[kunchenguidtreehouse-manage-worktrees-without-managing-workt]]) articulates a coherent design thesis: rebuild CLI primitives (shell, browser devtools, git push, worktrees) around _agent_ ergonomics — higher accuracy at lower token cost than MCP or raw CLI. This is the first time in the library that a single contributor has published a full agent-tool suite organized around explicit design principles (axi is the README; the others are exemplars). Sibling trajectory to Claude Code's SDK but for the Codex/GPT lineage.
+- **GEPA as a standalone cluster** — [[gepa-aigepa-optimize-prompts-code-and-more-with-ai-powered-r]] is the canonical GEPA repo (Reflective Text Evolution for prompt/code optimization), with [[twaldinhone-cli-text-optimizer-built-on-gepa-uses-agentic-co]] as a downstream user — GEPA-powered CLI text optimizer that uses agentic coding CLIs themselves as mutator + observer, eliminating API-key dependency. Together with the new [[dspy-compiling-declarative-language-model-calls-into]] paper and existing [[intertwinedspy-agent-skills-dspy-31x-agent-skills-validated]], GEPA anchors the declarative-LLM-calls lineage on the repo side. Adds a `^theme-repos-prompt-optimization` cluster.
+- **Skill-pack economy extends into standalone plugin format** — [[vercel-labsskills-the-open-agent-skills-tool-npx-skills]] (Vercel's `npx skills` — skills as npm-style packages), [[addyosmaniagent-skills-production-grade-engineering-skills-f]] (Addy Osmani production skills), [[therealseandonahoeagents-md-drop-in-agentsmd-that-makes-ever]] (drop-in AGENTS.md), [[alchaincyfhuashu-design-huashu-design-html-native-design-ski]] (Claude Code HTML-native design), [[dennisonbertramclaude-mac-guardian-macos-health-security-and]] (macOS health plugin), [[ehmocode-overhaul-skill-opinionated-interactive-health-audit]] (codebase audit skill), [[chezmoi-dotfilesdot_claudeskillsempirical-prompt-tuningskill]] (mizchi's empirical prompt-tuning skill in dotfiles), [[michaelschadecodex-goodies]] (codex configs), [[codejunkie99agentic-stack-one-brain-many-harnesses-portable]] (portable `.agent/` folder across harnesses), [[cortexkitopencode-magic-context-opencode-plugin-for-magic-co]] (OpenCode plugin for magic context / cross-session memory). The distribution format is stabilizing — npm/drop-in AGENTS.md/portable-folder are starting to look like the three viable shapes. The `^theme-repos-skill-packs-generalist` and `^theme-repos-claude-ecosystem` themes now span curated libraries, single-domain specialists, translation layers, _and_ standalone distributable plugins.
+- **Claude Design as a first-party design surface** — [[rohitg00awesome-claude-design-claude-design-designmd-prompts]] catalogs DESIGN.md prompts, remix recipes, skills, and video teardowns for Claude Design, giving the X/Twitter Claude Design cluster ([[viktoroddy-claude-design-is-insane-just-recorded-a-18-min-tut]], [[nateherk-been-getting-some-crazy-good-video-outputs-lately]], [[liu8in-this-is-insane-in-a-good-way-now-claudeais-got-des]]) a repo-level artifact to point at. Cross-references Design & UI.
+- **Always-on / overnight runtime cluster grows** — [[dicklesworthstoneagentic_coding_flywheel_setup-bootstraps-a]] (30-minute Ubuntu VPS bootstrap to multi-agent AI dev env), [[marcusquinnaidevops-vibe-coding-is-easy-devops-is-hard-openc]] (OpenCode + Git agent automation for apps + business + personal), [[yeachan-heooh-my-codex-omx-oh-my-codex-your-codex-is-not-alo]] (OmX: Codex plugin with hooks/HUDs/agent teams — already indexed), [[q00ouroboros]] (Robert's own self-referential loop framework). Extends `^theme-repos-always-on` with the VPS-bootstrap tier that eliminates the last manual setup step.
+- **Agent-native task queue** — [[barnum-circusbarnum-task-queue-orchestrator-for-ai-agents]] fills a real gap: a task queue _designed for_ agents rather than retrofitted from Celery/Sidekiq. Joins `^theme-repos-agent-frameworks`.
+- **Swarm / multi-agent** — [[unclebobswarm-forge]] (Uncle Bob's swarm repo) and [[tinyhumansaiopenhuman-your-personal-ai-super-intelligence-pr]] (private personal superintelligence) extend multi-agent coordination and self-hosted agent stacks.
+- **New adjacency: `^theme-repos-security`** — [[gitleaksgitleaks-find-secrets-with-gitleaks]] (secrets scanner). First explicit security tooling in the shelf beyond `keygraphhqshannon` (vuln-finding agent); pairs with the new [[crabtrap-secure-agents-in-production]] essay in AI Tools & News as the operational + tooling halves of the same emerging concern.
+- **New adjacency: data extraction from agent environments** — [[0xseroai-data-extraction-extract-all-your-personal-data-hist]] pulls user data/history out of Cursor, Codex, Claude Code, Windsurf, and Trae. Frames the agent-IDE as a data source worth querying, not just a UI.
+- **Document intelligence without vectors** — [[vectorlessflowvectorless-reasoning-native-document-intellige]] is the "reasoning-native, no-embeddings" counter-position to the RAG/vector cluster — aligned in spirit with [[corpus2skill-dont-retrieve-navigate]]'s "navigate, don't retrieve" thesis.
+- **ML-engineer-as-agent** — [[huggingfaceml-intern-ml-intern-an-open-source-ml-engineer-th]] (HuggingFace's open-source ML engineer that reads papers, trains, ships) joins `^theme-repos-research` as the production-ML sibling of `karpathy/autoresearch`.
+- **Decision-support agent** — [[harshilmathurautodecision-a-decision-operating-system-for-hi]] — a decision OS that simulates disagreement and stress-tests high-stakes choices. New angle on agents: deliberation as a primitive, not just task execution.
+- **Pipeline glue** — [[timf34arxiv2md-convert-arxiv-papers-to-markdown]] is the same class of tool as Robert's `.tools/process_pdfs.py` + `.tools/hybrid_arxiv_marker.py`, worth referencing when iterating on the process-pdfs skill.
+- **Thematic outlier worth noting** — [[tw93kami-good-content-deserves-good-paper]] (tw93's Kami — "good content deserves good paper") is the stationery/print-mindset crossover with the agentic-tooling ecosystem; pairs with Stationery & Journals.
+- **pi extension** — [[shpetimapi-fff-a-helpful-pi-extension-to-improve-file-search]] extends the pi coding-agent family ([[robzolkoslazypi-pi-coding-agent-setup-for-the-lazy]], [[edxethpi-subagents]]) with fff-integrated file search, matching Robert's own use of fff.
+
 **Cross-references:**
 
 - Heavy overlap with `ai-tools-news/` (same agentic ecosystem from a news-and-product angle rather than repo angle) and with `dev-tools-cli/` (Claude Code tooling, terminal-first agents).
 - Obsidian-skills repos connect to `stationery-journals/` PKM cluster (Zettelkasten, commonplace, digital-analog hybrid workflows).
 - Skill-pack themes link to AI Tools & News' Claude Code SDK & skills cluster (product framing of the same ecosystem).
 - Single-domain skill specialists (color, taste, anti-slop prose) connect to Writing & Content and Design & UI as craft enforcement primitives.
-- Autonomous-research items cross-reference `academic-reference/` (bilevel-autoresearch paper) and `knowledge/autoresearch/` project state.
+- Autonomous-research items cross-reference `academic-reference/` ([[bilevel-autoresearch-meta-autoresearching-itself]], [[2604-17091v1]]) and `knowledge/autoresearch/` project state. GenericAgent's repo ([[lsdefinegenericagent-self-evolving-agent-grows-skill-tree-fr]]) is the 2604-17091v1 paper's reference implementation — direct paper ↔ code pairing.
 - Bible-study MCP server connects to Theology & Faith's Bible-software theme.
+- GEPA cluster ([[gepa-aigepa-optimize-prompts-code-and-more-with-ai-powered-r]], [[twaldinhone-cli-text-optimizer-built-on-gepa-uses-agentic-co]]) pairs with `academic-reference/` DSPy paper ([[dspy-compiling-declarative-language-model-calls-into]]) as the declarative-LLM-calls lineage on repo + paper sides.
+- Corpus2Skill paper ([[corpus2skill-dont-retrieve-navigate]]) primary-sources the skill-pack economy; [[vectorlessflowvectorless-reasoning-native-document-intellige]] is its repo-side cousin.
+- Kun Chen's agent-ergonomics suite (`kunchenguid/*`) anchors a new repo-level design-principles cluster; cross-references Dev Tools & CLI on terminal-first craft and AI Tools & News on the Claude Code / Codex ergonomics debate.
 
 ### AI Tools & News
 
@@ -624,6 +659,14 @@ _Re-sync 2026-04-20 (afternoon): 30 new X bookmarks imported (7 fresh from `ft s
 - [[introduction20to20codex]] — OpenAI Academy's formal Codex intro; signals education layer maturing beyond ad-hoc blog posts.
 - [[rlm-dspy]] — DSPy's Recursive Language Models module; RLM pattern entering mainstream frameworks.
 
+**2026-04-22 addition (+23 items):** The re-sync clusters cleanly into four moves:
+
+- **Agent memory / knowledge infra as productized surface** — [[agentmemory]] (agent-memory.dev product page) and [[brainctl-persistent-memory-for-ai-agents]] (brainctl.org landing page for [[tschonleberbrainctl-a-cognitive-memory-system-for-ai-agents]]) join [[retaindb-persistent-memory-for-ai-agents-sota-on-longmemeval]] and [[cabinet-free-open-source-ai-first-knowledge-base]] as the products-layer of `^theme-tools-rag-memory`. Memory infrastructure has stabilized enough to have marketing sites, not just repos.
+- **Agent platforms + frameworks, continued proliferation** — [[hyperagent]], [[hermes-agent-the-complete-beginners-guide-apr-2026]] (tutorial layer around Nous Research's Hermes), [[herdr-tmux-for-agents]] (tmux-as-harness), [[nia-agentic-search-for-external-and-internal-data]] (agentic search across internal + external data — still unhydrated, SPA). Each extends `^theme-tools-agent-frameworks` but none individually reshapes the space; the signal is _quantity_ — the agent-platform market is saturating without clear winners yet.
+- **Essays sharpen the meta-commentary** — four essays worth reading as a set: [[fuck-you-show-me-the-prompt]] (Hamel Husain's canonical piece on why opaque LLM frameworks fail — prompt transparency as a non-negotiable), [[crabtrap-secure-agents-in-production]] (Brex on operationalizing agent security — pairs with the new [[gitleaksgitleaks-find-secrets-with-gitleaks]] repo), [[what-if-you-dont-need-mcp-at-all]] (Mario Zechner's counter-position to MCP — frames the protocol as overfitted ceremony), [[why-i-built-dspy-agent-skills]] (justification essay for `intertwine/dspy-agent-skills` — DSPy + skills as the same abstraction from two sides). Plus [[ai-harness-engineering-compatibility-matrix]] (Cody Lindley) — a working compatibility matrix across harnesses, the first attempt in the library at a cross-vendor comparison artifact. Together they signal: the ecosystem is mature enough for _principled disagreement_, not just product announcements.
+- **Models, formats, infra** — [[kimi-k26-tech-blog-advancing-open-source-coding]] (Kimi K2.6 release note; open-source Chinese coding model advancing), [[recursive-language-models]] (Alex Zhang's blog post on RLMs — pairs with [[rlm-dspy]] and [[alexzhang13rlm-general-plug-and-play-inference-library-for-r]] as the third RLM reference), [[toon]] (TOON format — token-efficient data representation; `^theme-repos-cost-perf` adjacency on the tools side), [[environments-hub-a-community-hub-to-scale-rl-to-open-agi]] (Prime Intellect's community RL environments hub — the "gym for open AGI" pitch), [[vllm-recipes]] (vLLM's official recipes book, serving docs). Infra and formats getting documented enough to teach from.
+- **Grab-bag** — [[claude-design]], [[agentsearch-by-nozomio-labs-browse-any-docs-using-bash]], [[nia-agentic-search-for-external-and-internal-data]] are the three SPA-blocked stragglers; frontmatter + URL preserved for future manual hydration. [[rawworks]] and [[savings-kill-dumb-subscriptions-with-alive]] are lighter saves (creative-tooling studio, subscription-killer utility) — included for completeness, probably don't carry their weight.
+
 **Cross-references:**
 
 - Heavy overlap with AI Repos & Open Source (same ecosystem viewed from news/product angle vs repo angle); many items are news coverage of repos documented there.
@@ -631,5 +674,7 @@ _Re-sync 2026-04-20 (afternoon): 30 new X bookmarks imported (7 fresh from `ft s
 - Workforce-agents theme overlaps with Marketing & Business (agents for sales, outreach, content).
 - iOS-specific agent tools connect to iOS & Swift.
 - AI-first knowledge-base items (Cabinet, DeepWiki) cross-reference the semantic-search cluster in AI Repos & Open Source and the RAG/memory theme here — same capability staged as product vs primitive.
-- Recursive Language Models (RLM) link to [[alexzhang13rlm-general-plug-and-play-inference-library-for-r]] in AI Repos & Open Source (research-infra counterpart to the DSPy docs).
+- Recursive Language Models (RLM) link to [[alexzhang13rlm-general-plug-and-play-inference-library-for-r]] in AI Repos & Open Source (research-infra counterpart to the DSPy docs) and to [[lambda-calculus-llmlambda-rlm-method-for-long-context-rlms-u]] (lambda-calculus extension).
 - Education-layer items pair with curriculum repos (`rohitg00/ai-engineering-from-scratch`) as matched formal/informal learning paths.
+- Security essays ([[crabtrap-secure-agents-in-production]]) + security repos ([[gitleaksgitleaks-find-secrets-with-gitleaks]]) form the beginnings of a cross-shelf `security` adjacency; also connects to the X/Twitter 2026-04-20 cybersec cluster.
+- Memory-product pages ([[agentmemory]], [[brainctl-persistent-memory-for-ai-agents]]) cross-reference [[externalization-in-llm-agents-a-unified-review-of-memory-ski]] in `academic-reference/` as the survey that frames what these products instantiate.
