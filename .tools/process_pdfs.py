@@ -144,6 +144,8 @@ def build_marker_cmd(
     llm_service: str | None,
     ollama_model: str | None,
     ollama_url: str | None,
+    openai_model: str | None = None,
+    openai_base_url: str | None = None,
 ) -> tuple[list[str], list[str]]:
     """Build the marker command. Returns (cmd, redacted_cmd_for_logging)."""
     cmd = [
@@ -176,6 +178,13 @@ def build_marker_cmd(
             if ollama_url:
                 cmd.extend(["--ollama_base_url", ollama_url])
                 redacted.extend(["--ollama_base_url", ollama_url])
+        if service == "openai":
+            if openai_model:
+                cmd.extend(["--openai_model", openai_model])
+                redacted.extend(["--openai_model", openai_model])
+            if openai_base_url:
+                cmd.extend(["--openai_base_url", openai_base_url])
+                redacted.extend(["--openai_base_url", openai_base_url])
     return cmd, redacted
 
 
@@ -196,6 +205,8 @@ def run_marker(
     llm_service: str | None = None,
     ollama_model: str | None = None,
     ollama_url: str | None = None,
+    openai_model: str | None = None,
+    openai_base_url: str | None = None,
 ) -> tuple[Path, bool]:
     """Run marker and return (md_path, llm_failed).
 
@@ -204,7 +215,14 @@ def run_marker(
     back to non-LLM processing and the caller should label output accordingly.
     """
     cmd, redacted = build_marker_cmd(
-        pdf_path, work_dir, use_llm, llm_service, ollama_model, ollama_url
+        pdf_path,
+        work_dir,
+        use_llm,
+        llm_service,
+        ollama_model,
+        ollama_url,
+        openai_model=openai_model,
+        openai_base_url=openai_base_url,
     )
     logger.debug(f"marker cmd: {' '.join(redacted)}")
     logger.info(f"→ Running marker on {pdf_path.name} (output streams below)")
@@ -345,6 +363,8 @@ def process_pdf(
     llm_service: str | None = None,
     ollama_model: str | None = None,
     ollama_url: str | None = None,
+    openai_model: str | None = None,
+    openai_base_url: str | None = None,
 ) -> dict:
     slug = slugify(pdf.name)
     out_path = dest_dir / f"{slug}.md"
@@ -375,6 +395,8 @@ def process_pdf(
                 llm_service=llm_service,
                 ollama_model=ollama_model,
                 ollama_url=ollama_url,
+                openai_model=openai_model,
+                openai_base_url=openai_base_url,
             )
         else:
             raise RuntimeError(f"unknown extractor: {extractor}")
@@ -396,6 +418,8 @@ def process_pdf(
         service = llm_service or "google"
         if service == "ollama" and ollama_model:
             via = f"{extractor}+llm-ollama-{ollama_model}"
+        elif service == "openai" and openai_model:
+            via = f"{extractor}+llm-openai-{openai_model}"
         else:
             via = f"{extractor}+llm-{service}"
         if llm_failed:
@@ -465,6 +489,18 @@ def main() -> None:
         help="Ollama base URL (default: http://localhost:11434)",
     )
     p.add_argument(
+        "--openai-model",
+        default=None,
+        help="OpenAI-compatible model name (e.g. gpt-4o-mini, or the model "
+        "identifier loaded in LM Studio). Used with --llm-service openai.",
+    )
+    p.add_argument(
+        "--openai-base-url",
+        default=None,
+        help="OpenAI-compatible base URL (e.g. http://localhost:1234/v1 for "
+        "LM Studio). Used with --llm-service openai.",
+    )
+    p.add_argument(
         "-v",
         "--verbose",
         action="store_true",
@@ -497,6 +533,8 @@ def main() -> None:
         service = args.llm_service or "google"
         if service == "ollama" and args.ollama_model:
             mode = f"{args.extractor}+llm-ollama-{args.ollama_model}"
+        elif service == "openai" and args.openai_model:
+            mode = f"{args.extractor}+llm-openai-{args.openai_model}"
         else:
             mode = f"{args.extractor}+llm-{service}"
 
@@ -520,6 +558,8 @@ def main() -> None:
                 llm_service=args.llm_service,
                 ollama_model=args.ollama_model,
                 ollama_url=args.ollama_url,
+                openai_model=args.openai_model,
+                openai_base_url=args.openai_base_url,
             )
             if info["status"] == "processed":
                 processed += 1
