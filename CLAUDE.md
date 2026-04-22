@@ -53,3 +53,7 @@ Knowledge files are append-only by default. When new information arrives, **add 
 - Links: `[[wikilinks]]` for internal, markdown links for external
 - Company: single slug (`company: personal`). Switch to list syntax (`company: [personal, acme]`) only when actually sharing work across multiple companies.
 - Status enums only — never free text
+
+## Tools
+
+There are various scripts in the @.tools/ directory for working with pdf's, importing raindrop.io bookmarks, and also importing bookmars from Twitter/X
