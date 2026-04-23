@@ -28,3 +28,7 @@
 937833116   # home.nomic.ai — ERR_CONNECTION_CLOSED
 1139203550  # schemaflow.dev — ERR_NAME_NOT_RESOLVED
 1494110415  # w2prisonbreak.com (brian-oneill) — ERR_NAME_NOT_RESOLVED
+
+# --- Dedupe tombstones 2026-04-22 ---
+1044593395  # dup of rid=1650163451 (AI Tools & News)
+1029131407  # dup of rid=1670679549 (Dev Tools & CLI)
