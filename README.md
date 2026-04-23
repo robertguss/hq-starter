@@ -7,7 +7,7 @@ Robert Guss's second brain — operational hub for personal projects, content, a
 - [[initiatives/index|Initiatives]] — strategic efforts across projects
 - [[tasks/index|Tasks]] — active work items rolled up by initiative
 - [[knowledge/index|Knowledge]] — accumulated domain knowledge and references
-- [[library/index|Library]] — curated external resources (articles, tools, repos)
+- [[library/_index|Library]] — curated external resources (articles, tools, repos)
 - [[log/index|Log]] — decisions, meeting notes, reviews
 - `inbox/` — unprocessed items awaiting weekly triage
 - `distillery/` — content production: channels, content pipeline, draft generation
