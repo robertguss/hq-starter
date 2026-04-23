@@ -24,36 +24,38 @@ For a filterable database view of all items (group by collection, filter by hydr
 
 ## Imported collections
 
-Status: **Raindrop + X/Twitter imports complete** — last sync 2026-04-22. 1,622 items across 19 folders. 3 items render-blocked (Cloudflare/auth-gate) pending manual handling; 4 dead-URL items tombstoned.
+Status: **Raindrop + X/Twitter imports complete** — last sync 2026-04-23. 1,631 items across 19 folders. 3 items render-blocked (Cloudflare/auth-gate) pending manual handling; 4 dead-URL items tombstoned.
 
-### From Raindrop (1,363 items, 18 folders)
+### From Raindrop (1,372 items, 18 folders)
 
 | Collection             | Folder                  | Items     |
 | ---------------------- | ----------------------- | --------- |
-| AI Tools & News        | `ai-tools-news/`        | 510       |
-| AI Repos & Open Source | `ai-repos-open-source/` | 383       |
+| AI Tools & News        | `ai-tools-news/`        | 513       |
+| AI Repos & Open Source | `ai-repos-open-source/` | 385       |
 | Marketing & Business   | `marketing-business/`   | 100       |
-| Dev Tools & CLI        | `dev-tools-cli/`        | 75        |
+| Dev Tools & CLI        | `dev-tools-cli/`        | 77        |
 | Stationery & Journals  | `stationery-journals/`  | 56        |
 | Theology & Faith       | `theology-faith/`       | 50        |
 | Personal & Misc        | `personal-misc/`        | 42        |
 | Web Dev                | `web-dev/`              | 40        |
-| Academic & Reference   | `academic-reference/`   | 37        |
+| Academic & Reference   | `academic-reference/`   | 38        |
 | Design & UI            | `design-ui/`            | 18        |
-| Productivity           | `productivity/`         | 15        |
+| Productivity           | `productivity/`         | 16        |
 | Writing & Content      | `writing-content/`      | 15        |
 | Cooking                | `cooking/`              | 10        |
 | iOS & Swift            | `ios-swift/`            | 7         |
 | Books & Reading        | `books-reading/`        | 5         |
 | Recipes                | `recipes/`              | 3         |
 | Photography            | `photography/`          | 1         |
-| **Raindrop total**     |                         | **1,363** |
+| **Raindrop total**     |                         | **1,372** |
 
 _Unsorted folder (13 items at import) was rehomed 2026-04-18 across dev-tools-cli, ai-tools-news, ai-repos-open-source, ios-swift, and productivity._
 
 _Re-sync 2026-04-20: 39 new raindrops imported; 38 rehomed out of `unsorted/` (25 → ai-repos-open-source, 8 → ai-tools-news, 3 → academic-reference, 2 → dev-tools-cli). Hydration via github-api, defuddle, arxiv. Note: the 5 SPA-blocked items deleted in that pass (claude-design, nomic-ai, instasdr, schemaflow, brian-oneill) were **re-created** by the 2026-04-22 re-sync — see below. Deletions don't persist unless the raindrop is also removed from the Raindrop.io account._
 
 _Re-sync 2026-04-22 (**+61 items** net, 69 gross minus 4 duplicate raindrops and 4 dead-URL raindrops tombstoned post-sync). First run of the new **`import-raindrops` skill** (SKILL.md in `.agents/skills/`) which codifies the full Raindrop → vault pipeline. Routing: **35 → ai-repos-open-source/** (all github-api hydrated — heavy agent-skills + agent-harness cluster), **19 → ai-tools-news/** (defuddle + Playwright), **3 → academic-reference/** (DSPy, Externalization, Corpus2Skill — see below), **1 → marketing-business/**, **1 → ios-swift/**, **1 → personal-misc/**. Hydration stack: defuddle replaces Jina Reader as the default HTML tier (Jina account depleted — every article-tier call returned HTTP 402); new **trafilatura** tier added for algorithm diversity; new **playwright+trafilatura** tier added as JS-SPA fallback (headless Chromium renders, then trafilatura extracts). Playwright pass resolved the question on the 7 previous stragglers: agentsearch rendered real content; claude.ai/design and trynia.ai rendered but caught only auth-gate / Cloudflare-challenge text; the other 4 (instasdr.ai, home.nomic.ai, schemaflow.dev, w2prisonbreak.com) failed with ERR_NAME_NOT_RESOLVED / ERR_CONNECTION_CLOSED — **the domains no longer exist**. Dead-URL files deleted and their raindrop_ids tombstoned in `.tools/raindrop_deleted.txt` so they don't resurrect. Residual: 2 items (claude-design, nia) are technically hydrated but the body is render-gate text — kept for the record; true content would require login + paid Cloudflare bypass._
+
+_Re-sync 2026-04-23 (**+9 items**, zero tombstones, zero errors — clean pass). Routing: **3 → ai-tools-news/** ([[a-complete-guide-to-agentsmd]], [[hermes-atlas-the-community-map-for-hermes-agent]], [[qwen36-how-to-run-locally-unsloth-documentation]]), **2 → ai-repos-open-source/** ([[k-dense-aimimeo]], [[ton-anywheremy-favorite-prompts-open-source-prompts]]), **2 → dev-tools-cli/** ([[bpinheiromsmy-setup]], [[fallow-rsfallow-find-unused-code-code-duplication-circular-d]]), **1 → academic-reference/** ([[laws-of-software-engineering]]), **1 → productivity/** ([[refactoringhqtolaria]]). Hydration: 5 github-api (all OK), 4 defuddle (all OK — no fallback needed). Thematic signal: the AGENTS.md/SKILL.md convention continues to dominate — three of the nine items (agentsmd guide, mimeo, my-favorite-prompts) are directly about authoring or auto-generating agent instruction files. Cross-cutting second theme is the move toward **markdown-first personal operating systems** ([[refactoringhqtolaria]] as a Mac app, [[bpinheiromsmy-setup]] as a dotfiles-shaped workspace)._
 
 ### From X/Twitter bookmarks (259 items, 1 folder)
 
@@ -137,6 +139,8 @@ _Re-sync 2026-04-20 (afternoon): 30 new X bookmarks imported (7 fresh from `ft s
 - [[corpus2skill-dont-retrieve-navigate]] — **Corpus2Skill** (arxiv 2604.14572, Sun/Wei/Hsieh, Apr 2026): reframes RAG from _retrieval_ to _navigation_. Compiles a document corpus offline into a hierarchical tree of LLM-written summary skill files, then lets the agent walk the tree at serve time with a bird's-eye view — drilling into topic branches, backtracking from dead ends, combining evidence across branches. Outperforms dense retrieval + RAPTOR + agentic RAG on WixQA enterprise support. Directly primary-sources the skill-pack economy's central claim: _skills are a better abstraction than embeddings for organizing corpus knowledge that agents need to traverse_. Pairs with [[2604-17091v1]]'s "self-evolution into reusable SOPs and code" — both papers formalize skill-as-memory from different angles.
 - [[externalization-in-llm-agents-a-unified-review-of-memory-ski]] — **Externalization in LLM Agents** (arxiv 2604.08224): the bridging survey this shelf needed. Unifies memory, skills, tools, and world models under one framework of _externalized cognition_ — what the agent offloads from its weights into manipulable artifacts. Makes explicit what the practitioner side has been converging on: persistent memory stores ([[retaindb-persistent-memory-for-ai-agents-sota-on-longmemeval]], [[tschonleberbrainctl-a-cognitive-memory-system-for-ai-agents]], [[milla-jovovichmempalace-the-highest-scoring-ai-memory-system]]), portable skill packs ([[alirezarezvaniclaude-skills-180-production-ready-skills-plug]], [[jeffallanclaude-skills-66-specialized-skills-for-full-stack]]), and navigable knowledge ([[corpus2skill-dont-retrieve-navigate]]) are instances of the same architectural commitment.
 - [[dspy-compiling-declarative-language-model-calls-into]] — **DSPy** (arxiv 2310.03714, Khattab et al., Oct 2023): the foundational paper behind the declarative-LLM-calls paradigm that GEPA, LongRA, and the entire "optimize-your-prompts" tooling lineage extends. Older than the rest of this cluster, included now as the primary reference for DSPy work appearing across the library ([[intertwinedspy-agent-skills-dspy-31x-agent-skills-validated]], [[rlm-dspy]], [[gepa-aigepa-optimize-prompts-code-and-more-with-ai-powered-r]], [[why-i-built-dspy-agent-skills]]).
+
+**2026-04-23 addition (+1 item):** [[laws-of-software-engineering]] — a curated collection of software-engineering laws and principles (think: Chesterton's Fence, Conway's Law, Brooks's Law). Fits squarely into `^theme-philosophy-thinking` alongside [[chestertons-fence-a-lesson-in-thinking]]; also serves as a quick-reference index the way [[mental-models-how-understanding-the-mind-can-transform-how-y]] does for general cognition.
 
 **Cross-references:**
 
@@ -338,9 +342,12 @@ _Re-sync 2026-04-20 (afternoon): 30 new X bookmarks imported (7 fresh from `ft s
 - [[kam-knight]] — Speed reading, mind-mapping, and memory ebooks for knowledge retention.
 - [[the-john-macarthur-bible-reading-plan]] — Structured spiritual-discipline reading regimen (lives here because of its planning-rhythm ethos).
 
+**2026-04-23 addition (+1 item):** [[refactoringhqtolaria]] — Tolaria, a Mac desktop app for managing markdown knowledge bases (1.3k stars). Positioned for second-brains, company docs as AI context, and storing OpenClaw/assistants memory and procedures. First first-party markdown-KB **native app** in the library — the productized counterpart to Obsidian (which Robert uses for this vault) and the Claude Code/skills-side tools in AI Repos & Open Source. Suggests a cross-cutting "markdown-first personal OS" thread that now spans a native app (Tolaria), a plugin ecosystem (Obsidian skills — [[kepanoobsidian-skills-agent-skills-for-obsidian-teach-your-a]]), and a web KB ([[cabinet-free-open-source-ai-first-knowledge-base]]).
+
 **Cross-references:**
 
 - Planning-rhythm items overlap with Stationery & Journals (Franklin Planner appears in both shelves from different angles).
+- Tolaria connects to AI Repos & Open Source's Claude Code / Obsidian-skills cluster and to AI Tools & News's [[cabinet-free-open-source-ai-first-knowledge-base]] as the three shapes of a markdown-first personal OS (native app, plugin ecosystem, web KB).
 
 ### Personal & Misc
 
@@ -430,6 +437,8 @@ _Re-sync 2026-04-20 (afternoon): 30 new X bookmarks imported (7 fresh from `ft s
 - [[better-stack-radically-better-observability-stack]] — AI-SRE-flavored observability stack, Datadog alternative.
 - [[announcing-rolldown-vite]] — Rust-native Rollup replacement powering Vite's next generation.
 - [[tw93kaku-a-fast-out-of-the-box-terminal-built-for-ai-coding]] — Kaku: fast, agent-native terminal; closest peer to Warp in this shelf.
+
+**2026-04-23 addition (+2 repos):** [[fallow-rsfallow-find-unused-code-code-duplication-circular-d]] — Rust CLI that finds unused code, code duplication, circular dependencies, and complexity hotspots in TypeScript/JavaScript projects (900+ stars). Sibling to the Python [[jendrikseippvulture-find-dead-python-code]] already on this shelf, extending the dead-code-finder theme to TS/JS. [[bpinheiromsmy-setup]] — a single-dev setup repo (dotfiles + machine-specific configuration following AGENTS.md/skill-creator conventions). Notable because it treats developer setup itself as agent-readable context — an instance of the broader pattern of turning personal workflows into agent-consumable artifacts.
 
 **Cross-references:**
 
@@ -581,6 +590,8 @@ _Re-sync 2026-04-20 (afternoon): 30 new X bookmarks imported (7 fresh from `ft s
 - [[browser-usebrowser-harness-self-healing-browser-harness-that]] — Self-healing browser harness; completes arbitrary tasks without breaking on DOM churn.
 - [[rohitg00ai-engineering-from-scratch-learn-it-build-it-ship-i]] — 4.3k-star end-to-end curriculum; the shelf's flagship learning path for agent-era engineering.
 
+**2026-04-23 addition (+2 repos):** Two small, thematically tight items. [[k-dense-aimimeo]] — "clone an expert's way of thinking into your coding agent." Point mimeo at a name (Feynman, Darwin, Curie, Turing…) and it reads the internet on your behalf: pulls canonical sources, YouTube transcripts, articles/PDFs; distills each with a frontier model via OpenRouter (default Gemini 3.1 Pro); clusters recurring ideas; emits a production-ready `SKILL.md` or `AGENTS.md`. This is the **auto-authoring** move for the skill-pack economy — one step up the meta-ladder from [[alirezarezvaniclaude-skills-180-production-ready-skills-plug]] and [[jeffallanclaude-skills-66-specialized-skills-for-full-stack]]. Pairs directly with [[corpus2skill-dont-retrieve-navigate]] (academic side) and [[externalization-in-llm-agents-a-unified-review-of-memory-ski]] as the "if skills are externalized cognition, mimeo is the factory." [[ton-anywheremy-favorite-prompts-open-source-prompts]] — small open-source prompt library; extends `^theme-repos-claude-ecosystem` on the hand-curated end of the spectrum (contrast with mimeo's generated approach and alirezarezvani's 180-skill scale).
+
 **2026-04-22 addition (+35 repos):** The largest single-session addition yet. Sharpens five existing themes and opens two new sub-clusters:
 
 - **Paper ↔ reference-impl pairing surfaces directly** — [[lsdefinegenericagent-self-evolving-agent-grows-skill-tree-fr]] is the first-party reference implementation of the [[2604-17091v1]] paper already anchored in Academic & Reference. The repo description — _grows a skill tree from a 3.3k-line seed, full system control with 6× less token consumption_ — is the paper's architecture made executable. Same author, same thesis: skill externalization compounds across sessions. Similarly [[lambda-calculus-llmlambda-rlm-method-for-long-context-rlms-u]] extends [[alexzhang13rlm-general-plug-and-play-inference-library-for-r]] into verifiable lambda-calculus territory, tightening the RLM (Recursive Language Model) cluster.
@@ -658,6 +669,8 @@ _Re-sync 2026-04-20 (afternoon): 30 new X bookmarks imported (7 fresh from `ft s
 - [[how-i-created-openclaw-the-breakthrough-ai-agent]] — Peter Steinberger TED talk; canonical founder-origin story for the solo-builder → agent-team transition.
 - [[introduction20to20codex]] — OpenAI Academy's formal Codex intro; signals education layer maturing beyond ad-hoc blog posts.
 - [[rlm-dspy]] — DSPy's Recursive Language Models module; RLM pattern entering mainstream frameworks.
+
+**2026-04-23 addition (+3 items):** [[a-complete-guide-to-agentsmd]] (aihero.dev deep-dive on AGENTS.md conventions — joins [[how-to-write-a-great-agentsmd-lessons-from-over-2500-reposit]] and [[therealseandonahoeagents-md-drop-in-agentsmd-that-makes-ever]] as the third AGENTS.md anchor; the genre now has a canonical beginner guide, a 2,500-repo survey, and a drop-in repo). [[hermes-atlas-the-community-map-for-hermes-agent]] is the community hub for Nous Research's Hermes Agent — 93 repos across 12 categories, 6 curated lists — the ecosystem-level view complementing [[hermes-agent-documentation-hermes-agent]] and [[hermes-agent-the-complete-beginners-guide-apr-2026]]; all three Hermes items now form a product→docs→community triangle. [[qwen36-how-to-run-locally-unsloth-documentation]] is Unsloth's official Qwen3.6 local-run guide (Unsloth-Dynamic-2 quants, Unsloth-Studio instructions) — continues the local-inference thread alongside [[recursive-language-models]] and the Ollama-centric items in `ai-repos-open-source/`.
 
 **2026-04-22 addition (+23 items):** The re-sync clusters cleanly into four moves:
 
