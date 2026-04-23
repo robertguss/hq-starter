@@ -3,7 +3,7 @@ filters:
     - file.hasTag("library")
     - file.ext == "md"
     - file.inFolder("library")
-    - file.name != "index"
+    - '!file.hasTag("index")'
 formulas:
   age_days: if(created, (today() - date(created)).days, "")
   hydration_age: if(hydrated_at, (today() - date(hydrated_at)).days, "")
