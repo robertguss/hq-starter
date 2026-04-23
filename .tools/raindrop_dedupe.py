@@ -127,16 +127,19 @@ def vault_rid_to_path():
 
 def index_wikilink_stems():
     """Return a set of basenames (without .md) referenced as [[wikilinks]]
-    in library/index.md. Used to prefer files that have been woven into
-    the synthesis wiki when picking dedupe winners."""
-    idx = LIBRARY_DIR / "index.md"
-    if not idx.exists():
-        return set()
-    try:
-        text = idx.read_text("utf-8")
-    except Exception:
-        return set()
-    return set(re.findall(r"\[\[([^\[\]|#\n]+?)\]\]", text))
+    in library/_index.md and every library/<slug>/_index.md. Used to prefer
+    files that have been woven into the synthesis wiki when picking dedupe
+    winners."""
+    stems = set()
+    for idx in [LIBRARY_DIR / "_index.md", *LIBRARY_DIR.glob("*/_index.md")]:
+        if not idx.exists():
+            continue
+        try:
+            text = idx.read_text("utf-8")
+        except Exception:
+            continue
+        stems.update(re.findall(r"\[\[([^\[\]|#\n]+?)\]\]", text))
+    return stems
 
 
 def append_to_ledger(rids_with_reasons):
@@ -220,7 +223,7 @@ def main():
         #   0 vault files: oldest rid wins (Raindrop-side only)
         #   1 vault file:  that rid wins (preserve hydration work)
         #   2+ vault files:
-        #     (a) prefer one whose basename is wikilinked in library/index.md
+        #     (a) prefer one whose basename is wikilinked in any library/_index.md
         #     (b) else prefer CLEAN slug (no `-<rid>` suffix)
         #     (c) else oldest rid wins
         with_vault = [r for r in rps if r.get("_id") in vault_map]

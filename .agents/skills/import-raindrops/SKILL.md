@@ -91,9 +91,9 @@ On unfamiliar tiers start with `--limit 25`, spot-check 2–3 outputs, then bump
 
 The `pdf` tier writes markdown into `library/` but the canonical PDF belongs in DEVONthink. After a `--type pdf` run, remind the user to archive the PDFs into DEVONthink and (optionally) paste the item URL into each note's `devonthink_url:` frontmatter for round-trip.
 
-### 5. Update `library/index.md`
+### 5. Update the library indexes
 
-Newly hydrated items should be woven into `library/index.md` — the compiled wiki, not a file listing (see `distillery/index.md` and the project `CLAUDE.md`). Use wikilinks to connect new items to existing themes; don't just append a one-liner.
+Newly hydrated items should be woven into the relevant `library/<slug>/_index.md` (per-collection synthesis) and a summary note added to `library/_CHANGELOG.md`. The top-level `library/_index.md` only needs touching if the batch introduces a genuinely cross-shelf pattern. These index files together form the compiled wiki, not a file listing (see `distillery/index.md` and the project `CLAUDE.md`). Use wikilinks to connect new items to existing themes; don't just append a one-liner.
 
 ### 6. Commit
 
@@ -106,4 +106,4 @@ Do **not** auto-commit. Run the project `CLAUDE.md` pre-commit checklist (indexe
 - X/Twitter pipeline (separate): `.tools/x_import.py` + `fieldtheory` skill
 - 1Password env template: `.tools/.raindrop.env.tpl`
 - Frontmatter spec: `knowledge/hq-vault-design.md`
-- Library synthesis structure: `library/index.md`
+- Library synthesis structure: `library/_index.md` (top-level) + `library/<slug>/_index.md` (per-collection) + `library/_CHANGELOG.md` (resync log)

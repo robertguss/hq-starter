@@ -143,9 +143,9 @@ created: 2026-03-24
 ---
 ```
 
-Body contains raw content under `## Raw Content` (full text, transcript, or key quotes). Library files store raw data only — synthesis and "why it matters" context belongs in `library/index.md` (the compiled wiki), not in individual files. The vault must be self-contained for content generation without fetching external URLs.
+Body contains raw content under `## Raw Content` (full text, transcript, or key quotes). Library files store raw data only — synthesis and "why it matters" context belongs in the library index files (`library/_index.md` top-level, `library/<slug>/_index.md` per collection) — the compiled wiki — not in individual files. The vault must be self-contained for content generation without fetching external URLs.
 
-**Library index (`library/index.md`) is a compiled wiki, not a file listing.** Bot maintains it as a living synthesis document:
+**Library index (`library/_index.md` plus `library/<slug>/_index.md` per collection) is a compiled wiki, not a file listing.** Bot maintains it as a living synthesis document:
 
 - Each concept category includes a summary paragraph synthesizing what the items collectively tell us
 - Individual items listed with multi-sentence summaries, not just one-liners
@@ -212,7 +212,7 @@ All index files are maintained by Bot as part of create/update operations:
 - `initiatives/index.md` — updated when initiatives are added/changed
 - `tasks/index.md` — updated when tasks are added/changed
 - `knowledge/index.md` — updated when knowledge articles are added
-- `library/index.md` — updated when library resources are added
+- `library/_index.md` + `library/<slug>/_index.md` — updated when library resources are added
 - `log/index.md` — updated when log entries are added
 
 ### Content (Distillery)

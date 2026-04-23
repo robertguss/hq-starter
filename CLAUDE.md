@@ -36,7 +36,7 @@ Knowledge files are append-only by default. When new information arrives, **add 
 ## Distillery
 
 - Content architecture is documented in `distillery/index.md` — read it before any content work
-- When adding library items: create the file with full raw content in body, then update `library/index.md` as a compiled wiki (category summaries, cross-references, patterns — not just a file listing)
+- When adding library items: create the file with full raw content in body, then update the relevant `library/<slug>/_index.md` (per-collection synthesis) and `library/_index.md` (top-level cross-shelf view) as a compiled wiki (category summaries, cross-references, patterns — not just a file listing)
 - Raw content sources by type:
   - **Web pages/blog posts**: fetch with your preferred URL-to-markdown tool
   - **YouTube videos**: fetch transcript with `youtube-transcript-api` (Python). Usage: `YouTubeTranscriptApi().fetch(video_id, languages=['en'])`, join snippet texts into full transcript.

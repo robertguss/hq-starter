@@ -14,7 +14,7 @@ Content marketing system. Compiles company knowledge and external signals into p
 library/ items  (raw signals)
        |
        v
-library/index.md  (compiled wiki — synthesis, concepts, connections)
+library/_index.md + library/<slug>/_index.md  (compiled wiki — synthesis, concepts, connections)
        |
        |------------------+
        v                  v
@@ -25,7 +25,7 @@ knowledge/          distillery/content/
 **Inputs:**
 
 - `knowledge/` — company strategy, competitive research, market positioning, team context, domain expertise. What makes your company unique and what you know about your space.
-- `library/` — external signals: articles, blog posts, social media posts, conference talks, meeting transcripts, conversations. Raw material with full content stored in the body. The `library/index.md` serves as a compiled wiki — a synthesized, categorized, cross-linked summary of everything in the library. This is the intermediate "understanding" layer between raw signals and published content.
+- `library/` — external signals: articles, blog posts, social media posts, conference talks, meeting transcripts, conversations. Raw material with full content stored in the body. The library index files (`library/_index.md` top-level + `library/<slug>/_index.md` per collection) serve as a compiled wiki — a synthesized, categorized, cross-linked summary of everything in the library. This is the intermediate "understanding" layer between raw signals and published content.
 
 **Outputs:**
 
@@ -62,9 +62,9 @@ This avoids duplicating data between folders and keeps a clean separation: knowl
 
 ### Library index as compiled wiki (Karpathy model)
 
-Following Karpathy's LLM knowledge base pattern: raw data goes into `library/` items, then Bot compiles `library/index.md` as a wiki — summarizing all items, categorizing by concept, surfacing connections and patterns, and maintaining cross-references. This is the intermediate "understanding" layer between raw signals and published content.
+Following Karpathy's LLM knowledge base pattern: raw data goes into `library/` items, then Bot compiles the library index files (`library/_index.md` + `library/<slug>/_index.md`) as a wiki — summarizing all items, categorizing by concept, surfacing connections and patterns, and maintaining cross-references. This is the intermediate "understanding" layer between raw signals and published content.
 
-The three-layer flow: `library/ items` (raw) -> `library/index.md` (compiled wiki) -> `distillery/content/` (published). Knowledge feeds in at the content generation stage as company context.
+The three-layer flow: `library/ items` (raw) -> `library/_index.md` + `library/<slug>/_index.md` (compiled wiki) -> `distillery/content/` (published). Knowledge feeds in at the content generation stage as company context.
 
 ## Channels
 

@@ -5,7 +5,7 @@ description: Ingest PDF research papers into the HQ vault as hydrated markdown v
 
 # process-pdfs
 
-Full lifecycle for adding research papers to the HQ vault: extract PDF → markdown, verify output, weave into `library/index.md` synthesis, remind about DEVONthink archival. Defaults are tuned for AI/ML arXiv papers.
+Full lifecycle for adding research papers to the HQ vault: extract PDF → markdown, verify output, weave into `library/academic-reference/_index.md` synthesis (and `library/_index.md` if cross-shelf), remind about DEVONthink archival. Defaults are tuned for AI/ML arXiv papers.
 
 ## Quick start
 
@@ -47,13 +47,14 @@ For each processed PDF:
 
 Re-processing (e.g. to compare models): `rm library/academic-reference/<slug>.md && mv inbox/_processed/<file>.pdf inbox/` and re-run. The script is idempotent and skips existing outputs.
 
-### 4. Synthesize into `library/index.md`
+### 4. Synthesize into `library/academic-reference/_index.md`
 
 **Do not just add a one-liner — the index is a compiled wiki, not a listing** (see project `CLAUDE.md` and `distillery/index.md`).
 
-- Read the current `library/index.md` Synthesis section.
+- Read the current `library/academic-reference/_index.md` (the per-collection synthesis).
 - Identify themes the paper fits (AI/ML agents, LLM reasoning, eval, context engineering, etc.) or propose a new theme if none fits.
 - Write a multi-sentence entry that connects the new paper to existing library items using wikilinks — surface patterns and cross-references, not summaries.
+- If the paper introduces a pattern that spans multiple collections, also add a cross-shelf bullet to `library/_index.md` (top-level) and a dated note to `library/_CHANGELOG.md`.
 - Match the voice and standards in `knowledge/author-profile.md`.
 
 ### 5. Archive
@@ -68,7 +69,7 @@ PDFs in `inbox/_processed/` are gitignored. User's canonical PDF store is DEVONt
 
 Do **not** auto-commit. Run the project CLAUDE.md pre-commit checklist:
 
-- Indexes current (library/index.md updated per step 4)
+- Indexes current (`library/academic-reference/_index.md` updated per step 4; top-level `library/_index.md` + `library/_CHANGELOG.md` updated if cross-shelf)
 - Frontmatter matches `knowledge/hq-vault-design.md` spec
 - All wikilinks resolve
 
@@ -78,7 +79,7 @@ Then surface a proposed commit message and wait for explicit go-ahead.
 
 - Script: `.tools/process_pdfs.py` — all flags + marker/Ollama details in the docstring
 - Frontmatter spec: `knowledge/hq-vault-design.md`
-- Library synthesis structure: `library/index.md`
+- Library synthesis structure: `library/academic-reference/_index.md` (per-collection) + `library/_index.md` (top-level) + `library/_CHANGELOG.md` (resync log)
 - Author voice anchors: `knowledge/author-profile.md`
 - Self-contained-vault principle: `distillery/index.md`
 - Gitignore rules for PDFs: `.gitignore` (`inbox/*.pdf`, `inbox/_processed/*.pdf`)
